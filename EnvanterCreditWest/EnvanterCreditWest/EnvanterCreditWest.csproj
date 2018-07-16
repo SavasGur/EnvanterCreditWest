@@ -153,16 +153,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\BranchesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Class1.cs" />
+    <Compile Include="Models\DatabaseTable.cs" />
     <Compile Include="Models\EnvanterCreditWestContext.cs" />
-    <Compile Include="Models\Products.cs" />
-    <Compile Include="Models\Product_Details.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -203,20 +200,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Products\Create.cshtml" />
-    <Content Include="Views\Products\Delete.cshtml" />
-    <Content Include="Views\Products\Details.cshtml" />
-    <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
-    <Content Include="Views\Branches\Create.cshtml" />
-    <Content Include="Views\Branches\Delete.cshtml" />
-    <Content Include="Views\Branches\Edit.cshtml" />
-    <Content Include="Views\Branches\Index.cshtml" />
-    <Content Include="Views\Product_Details\Create.cshtml" />
-    <Content Include="Views\Product_Details\Delete.cshtml" />
-    <Content Include="Views\Product_Details\Details.cshtml" />
-    <Content Include="Views\Product_Details\Edit.cshtml" />
-    <Content Include="Views\Product_Details\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
