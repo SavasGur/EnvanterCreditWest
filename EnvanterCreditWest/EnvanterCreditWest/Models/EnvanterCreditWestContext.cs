@@ -22,5 +22,7 @@ namespace EnvanterCreditWest.Models
         public System.Data.Entity.DbSet<EnvanterCreditWest.Models.Products> Products { get; set; }
 
         public System.Data.Entity.DbSet<EnvanterCreditWest.Models.Branches> Branches { get; set; }
+
+        public System.Data.Entity.DbSet<EnvanterCreditWest.Models.Product_Details> Product_Details { get; set; }
     }
 }
