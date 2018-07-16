@@ -18,4 +18,12 @@ namespace EnvanterCreditWest.Models
         public string Condition { get; set; }
         public int Price { get; set; }
     }
+
+    public class Branches
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Latitude { get; set; }
+        public string Longitude { get; set; }
+    }
 }
