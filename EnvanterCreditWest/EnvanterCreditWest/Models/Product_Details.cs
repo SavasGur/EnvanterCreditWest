@@ -7,7 +7,6 @@ namespace EnvanterCreditWest.Models
 {
     public class Product_Details
     {
-
         public int Id { get; set; }
         public string Ip { get; set; }
         public string RAM { get; set; }
