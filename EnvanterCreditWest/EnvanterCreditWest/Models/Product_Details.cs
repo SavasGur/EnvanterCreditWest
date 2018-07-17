@@ -5,7 +5,7 @@ using System.Web;
 
 namespace EnvanterCreditWest.Models
 {
-    public class Product_Details
+    public class ProductDetails
     {
         public int Id { get; set; }
         public string Ram { get; set; }
