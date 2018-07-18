@@ -9,8 +9,8 @@ namespace EnvanterCreditWest.Models
     {
         public int Id { get; set; }
         public string BranchName { get; set; }
-        public string Latitude { get; set; }
-        public string Longitude { get; set; }
-        public string ProductId { get; set; }
+        public int Latitude { get; set; }
+        public int Longitude { get; set; }
+        public int ProductId { get; set; }
     }
 }

@@ -21,5 +21,7 @@ namespace EnvanterCreditWest.Models
         public System.Data.Entity.DbSet<EnvanterCreditWest.Models.Roles> Roles { get; set; }
 
         public System.Data.Entity.DbSet<EnvanterCreditWest.Models.Users> Users { get; set; }
+
+        public System.Data.Entity.DbSet<EnvanterCreditWest.Models.Log> Logs { get; set; }
     }
 }
