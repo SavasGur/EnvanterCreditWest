@@ -13,15 +13,10 @@ namespace EnvanterCreditWest.Models
         }
 
         public DbSet<Products> Products { get; set; }
-
         public DbSet<ProductDetails> ProductDetails { get; set; }
-
-        public System.Data.Entity.DbSet<EnvanterCreditWest.Models.Branches> Branches { get; set; }
-
-        public System.Data.Entity.DbSet<EnvanterCreditWest.Models.Roles> Roles { get; set; }
-
-        public System.Data.Entity.DbSet<EnvanterCreditWest.Models.Users> Users { get; set; }
-
-        public System.Data.Entity.DbSet<EnvanterCreditWest.Models.Log> Logs { get; set; }
+        public DbSet<Branches> Branches { get; set; }
+        public DbSet<Roles> Roles { get; set; }
+        public DbSet<Users> Users { get; set; }
+        public DbSet<Log> Logs { get; set; }
     }
 }

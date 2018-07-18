@@ -12,6 +12,5 @@ namespace EnvanterCreditWest.Models
         public string CPU { get; set; }
         public string OS { get; set; }
         public string Size { get; set; }
-
     }
 }

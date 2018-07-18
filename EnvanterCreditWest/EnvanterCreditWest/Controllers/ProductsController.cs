@@ -35,6 +35,8 @@ namespace EnvanterCreditWest.Controllers
             return View(products);
         }
 
+        
+
         // GET: Products/Create
         public ActionResult Create()
         {
