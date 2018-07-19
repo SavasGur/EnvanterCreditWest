@@ -16,86 +16,88 @@
 
     @* Baslık *@
     <div class="container">
-        <h2>Products</h2>
-        <p>List of products in inventory.</p>
+        <div class="jumbotron">
+            <h1>Products</h1>
+            <p>List of products in inventory.</p>
+        </div>
+            @* Create button *@
+            <p>
+                @Html.ActionLink("Create New Product", "Create", null, new { @class = "btn btn-success" })
+            </p>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Type)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Model)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Brand)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Warranty)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DateAcquired)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Barcode)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ProductionDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Condition)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Price)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Model)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Brand)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Warranty)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateAcquired)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Barcode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProductionDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Condition)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
 
-        @* Create button *@
-        <p>
-            @Html.ActionLink("Create New Product", "Create", null, new { @class = "btn btn-success" })
-        </p>
-        <table class="table">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Type)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Model)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Brand)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Warranty)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DateAcquired)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Barcode)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ProductionDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Condition)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Price)
-                </th>
-                <th></th>
-            </tr>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-info" })
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
 
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Type)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Model)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Brand)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Warranty)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DateAcquired)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Barcode)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ProductionDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Condition)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Price)
-                    </td>
-                    <td>
+                        </td>
+                    </tr>
+                }
 
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class ="btn btn-primary" })
-                        @Html.ActionLink("Details", "Details", new { id = item.Id }, new {@class="btn btn-info" })
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class="btn btn-danger" })
-
-                    </td>
-                </tr>
-            }
-
-        </table>
-    </div>
+            </table>
+        </div>
 </body>
 </html>
