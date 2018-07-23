@@ -42,7 +42,7 @@ namespace EnvanterCreditWest.Controllers
             }
             else
             {
-                barcodeResult.Error = "Barcode must be 12 char. ( " + barcode.Length + ")";
+                barcodeResult.Error = "Barcode must be 12 char. ( " + barcode.Length + " )";
             }
             return PartialView(barcodeResult);
 
