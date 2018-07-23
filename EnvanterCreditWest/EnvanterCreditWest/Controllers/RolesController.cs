@@ -25,13 +25,14 @@ namespace EnvanterCreditWest.Controllers
         }
 
         
-        public PartialViewResult CreateBarcode(string barcode)
+        public PartialViewResult CreateBarcode(string barcode="")
         {
             BarcodeResult barcodeResult = new BarcodeResult();
-            if (barcode.Length==13)
+            if (barcode.Length==12)
             {
                 Barcode b = new Barcode();
-                Image img = b.Encode(BarcodeLib.TYPE.EAN13, barcode, Color.Black, Color.White, 290, 120);
+                
+                Image img = b.Encode(TYPE.Interleaved2of5, barcode, Color.Black, Color.White, 290, 120);
                 var randomString = RandomStringGenerator.RandomString();
                 var path = Server.MapPath("/Resources/" + randomString) + ".jpg";
                 img.Save(path);
@@ -41,7 +42,7 @@ namespace EnvanterCreditWest.Controllers
             }
             else
             {
-                barcodeResult.Error = "Please enter 13 character";
+                barcodeResult.Error = "Barcode must be 12 char. ( " + barcode.Length + ")";
             }
             return PartialView(barcodeResult);
 
