@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using BarcodeLib;
 using EnvanterCreditWest.Models;
 
 namespace EnvanterCreditWest.Controllers
@@ -18,6 +22,29 @@ namespace EnvanterCreditWest.Controllers
         public ActionResult Index()
         {
             return View(db.Roles.ToList());
+        }
+
+        
+        public PartialViewResult CreateBarcode(string barcode)
+        {
+            BarcodeResult barcodeResult = new BarcodeResult();
+            if (barcode.Length==13)
+            {
+                Barcode b = new Barcode();
+                Image img = b.Encode(BarcodeLib.TYPE.EAN13, barcode, Color.Black, Color.White, 290, 120);
+                var randomString = RandomStringGenerator.RandomString();
+                var path = Server.MapPath("/Resources/" + randomString) + ".jpg";
+                img.Save(path);
+
+                barcodeResult.Url = "/Resources/" + randomString + ".jpg";
+                barcodeResult.Barcode = barcode;
+            }
+            else
+            {
+                barcodeResult.Error = "Please enter 13 character";
+            }
+            return PartialView(barcodeResult);
+
         }
 
         // GET: Roles/Details/5
