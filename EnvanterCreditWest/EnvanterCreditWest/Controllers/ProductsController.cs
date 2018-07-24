@@ -17,7 +17,8 @@ namespace EnvanterCreditWest.Controllers
         // GET: Products
         public ActionResult Index()
         {
-            return View(db.Products.ToList());
+            var products = db.Products.Include(p => p.Branches).Include(p => p.Firms);
+            return View(products.ToList());
         }
 
         // GET: Products/Details/5
@@ -35,11 +36,11 @@ namespace EnvanterCreditWest.Controllers
             return View(products);
         }
 
-        
-
         // GET: Products/Create
         public ActionResult Create()
         {
+            ViewBag.BranchId = new SelectList(db.Branches, "Id", "BranchName");
+            ViewBag.FirmId = new SelectList(db.Firms, "Id", "FirmName");
             return View();
         }
 
@@ -48,7 +49,7 @@ namespace EnvanterCreditWest.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Type,Model,Brand,Warranty,DateAcquired,Barcode,ProductionDate,Condition,Price")] Products products)
+        public ActionResult Create([Bind(Include = "Id,FirmId,Type,Model,Brand,Warranty,DateAcquired,Barcode,ProductionDate,Status,Price,BranchId")] Products products)
         {
             if (ModelState.IsValid)
             {
@@ -57,6 +58,8 @@ namespace EnvanterCreditWest.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.BranchId = new SelectList(db.Branches, "Id", "BranchName", products.BranchId);
+            ViewBag.FirmId = new SelectList(db.Firms, "Id", "FirmName", products.FirmId);
             return View(products);
         }
 
@@ -72,6 +75,8 @@ namespace EnvanterCreditWest.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.BranchId = new SelectList(db.Branches, "Id", "BranchName", products.BranchId);
+            ViewBag.FirmId = new SelectList(db.Firms, "Id", "FirmName", products.FirmId);
             return View(products);
         }
 
@@ -80,7 +85,7 @@ namespace EnvanterCreditWest.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Type,Model,Brand,Warranty,DateAcquired,Barcode,ProductionDate,Condition,Price")] Products products)
+        public ActionResult Edit([Bind(Include = "Id,FirmId,Type,Model,Brand,Warranty,DateAcquired,Barcode,ProductionDate,Status,Price,BranchId")] Products products)
         {
             if (ModelState.IsValid)
             {
@@ -88,6 +93,8 @@ namespace EnvanterCreditWest.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.BranchId = new SelectList(db.Branches, "Id", "BranchName", products.BranchId);
+            ViewBag.FirmId = new SelectList(db.Firms, "Id", "FirmName", products.FirmId);
             return View(products);
         }
 

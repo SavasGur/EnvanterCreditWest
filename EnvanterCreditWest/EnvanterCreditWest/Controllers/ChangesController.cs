@@ -10,107 +10,112 @@ using EnvanterCreditWest.Models;
 
 namespace EnvanterCreditWest.Controllers
 {
-    public class LogsController : Controller
+    public class ChangesController : Controller
     {
         private EnvanterCreditWestContext db = new EnvanterCreditWestContext();
 
-        // GET: Logs
+        // GET: Changes
         public ActionResult Index()
         {
-            return View(db.Logs.ToList());
+            var changes = db.Changes.Include(c => c.Products);
+            return View(changes.ToList());
         }
 
-        // GET: Logs/Details/5
+        // GET: Changes/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Log log = db.Logs.Find(id);
-            if (log == null)
+            Changes changes = db.Changes.Find(id);
+            if (changes == null)
             {
                 return HttpNotFound();
             }
-            return View(log);
+            return View(changes);
         }
 
-        // GET: Logs/Create
+        // GET: Changes/Create
         public ActionResult Create()
         {
+            ViewBag.ProductId = new SelectList(db.Products, "Id", "Type");
             return View();
         }
 
-        // POST: Logs/Create
+        // POST: Changes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "LogId,ProductId,Date,TakenId,GivenId,BranchId,Description")] Log log)
+        public ActionResult Create([Bind(Include = "Id,Date,DataChanged,Description,Ip,ProductId")] Changes changes)
         {
             if (ModelState.IsValid)
             {
-                db.Logs.Add(log);
+                db.Changes.Add(changes);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(log);
+            ViewBag.ProductId = new SelectList(db.Products, "Id", "Type", changes.ProductId);
+            return View(changes);
         }
 
-        // GET: Logs/Edit/5
+        // GET: Changes/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Log log = db.Logs.Find(id);
-            if (log == null)
+            Changes changes = db.Changes.Find(id);
+            if (changes == null)
             {
                 return HttpNotFound();
             }
-            return View(log);
+            ViewBag.ProductId = new SelectList(db.Products, "Id", "Type", changes.ProductId);
+            return View(changes);
         }
 
-        // POST: Logs/Edit/5
+        // POST: Changes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "LogId,ProductId,Date,TakenId,GivenId,BranchId,Description")] Log log)
+        public ActionResult Edit([Bind(Include = "Id,Date,DataChanged,Description,Ip,ProductId")] Changes changes)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(log).State = EntityState.Modified;
+                db.Entry(changes).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(log);
+            ViewBag.ProductId = new SelectList(db.Products, "Id", "Type", changes.ProductId);
+            return View(changes);
         }
 
-        // GET: Logs/Delete/5
+        // GET: Changes/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Log log = db.Logs.Find(id);
-            if (log == null)
+            Changes changes = db.Changes.Find(id);
+            if (changes == null)
             {
                 return HttpNotFound();
             }
-            return View(log);
+            return View(changes);
         }
 
-        // POST: Logs/Delete/5
+        // POST: Changes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Log log = db.Logs.Find(id);
-            db.Logs.Remove(log);
+            Changes changes = db.Changes.Find(id);
+            db.Changes.Remove(changes);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

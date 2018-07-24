@@ -1,4 +1,4 @@
-﻿@model IEnumerable<EnvanterCreditWest.Models.Users>
+﻿@model IEnumerable<EnvanterCreditWest.Models.Changes>
 
 @{
     ViewBag.Title = "Index";
@@ -16,13 +16,16 @@
             @Html.DisplayNameFor(model => model.Products.Type)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.DisplayNameFor(model => model.Date)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Surname)
+            @Html.DisplayNameFor(model => model.DataChanged)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BranchId)
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ip)
         </th>
         <th></th>
     </tr>
@@ -33,13 +36,16 @@
             @Html.DisplayFor(modelItem => item.Products.Type)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
+            @Html.DisplayFor(modelItem => item.Date)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Surname)
+            @Html.DisplayFor(modelItem => item.DataChanged)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.BranchId)
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ip)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

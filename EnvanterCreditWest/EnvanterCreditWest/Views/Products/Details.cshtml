@@ -12,6 +12,22 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.Branches.BranchName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Branches.BranchName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Firms.FirmName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Firms.FirmName)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Type)
         </dt>
 
@@ -68,11 +84,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Condition)
+            @Html.DisplayNameFor(model => model.Status)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Condition)
+            @Html.DisplayFor(model => model.Status)
         </dd>
 
         <dt>
@@ -88,9 +104,4 @@
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
-</p>
-<p>
-    <a href="Print" class="btn btn-primary btn-lg">
-        <span class="glyphicon glyphicon-print"></span> Print
-    </a>
 </p>

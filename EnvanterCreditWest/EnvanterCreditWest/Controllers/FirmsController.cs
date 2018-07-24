@@ -2,143 +2,115 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using BarcodeLib;
 using EnvanterCreditWest.Models;
 
 namespace EnvanterCreditWest.Controllers
 {
-    public class RolesController : Controller
+    public class FirmsController : Controller
     {
         private EnvanterCreditWestContext db = new EnvanterCreditWestContext();
 
-        // GET: Roles
+        // GET: Firms
         public ActionResult Index()
         {
-            return View(db.Roles.ToList());
+            return View(db.Firms.ToList());
         }
 
-        
-        public PartialViewResult CreateBarcode(string barcode="")
-        {
-            BarcodeResult barcodeResult = new BarcodeResult();
-            if (barcode.Length==12)
-            {
-                Barcode b = new Barcode();
-                
-                Image img = b.Encode(TYPE.Interleaved2of5, barcode, Color.Black, Color.White, 290, 120);
-                var randomString = RandomStringGenerator.RandomString();
-                var path = Server.MapPath("/Resources/" + randomString) + ".jpg";
-                img.Save(path);
-
-                barcodeResult.Url = "/Resources/" + randomString + ".jpg";
-                barcodeResult.Barcode = barcode;
-            }
-            else
-            {
-                barcodeResult.Error = "Barcode must be 12 char. ( " + barcode.Length + " )";
-            }
-            return PartialView(barcodeResult);
-
-        }
-
-        // GET: Roles/Details/5
+        // GET: Firms/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Roles roles = db.Roles.Find(id);
-            if (roles == null)
+            Firms firms = db.Firms.Find(id);
+            if (firms == null)
             {
                 return HttpNotFound();
             }
-            return View(roles);
+            return View(firms);
         }
 
-        // GET: Roles/Create
+        // GET: Firms/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Roles/Create
+        // POST: Firms/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Admins,Editors,Others")] Roles roles)
+        public ActionResult Create([Bind(Include = "Id,FirmName,PhoneNumber,Email,Address,PersonInContact,PersonalEmail,PersonalNumber,Notes")] Firms firms)
         {
             if (ModelState.IsValid)
             {
-                db.Roles.Add(roles);
+                db.Firms.Add(firms);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(roles);
+            return View(firms);
         }
 
-        // GET: Roles/Edit/5
+        // GET: Firms/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Roles roles = db.Roles.Find(id);
-            if (roles == null)
+            Firms firms = db.Firms.Find(id);
+            if (firms == null)
             {
                 return HttpNotFound();
             }
-            return View(roles);
+            return View(firms);
         }
 
-        // POST: Roles/Edit/5
+        // POST: Firms/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Admins,Editors,Others")] Roles roles)
+        public ActionResult Edit([Bind(Include = "Id,FirmName,PhoneNumber,Email,Address,PersonInContact,PersonalEmail,PersonalNumber,Notes")] Firms firms)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(roles).State = EntityState.Modified;
+                db.Entry(firms).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(roles);
+            return View(firms);
         }
 
-        // GET: Roles/Delete/5
+        // GET: Firms/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Roles roles = db.Roles.Find(id);
-            if (roles == null)
+            Firms firms = db.Firms.Find(id);
+            if (firms == null)
             {
                 return HttpNotFound();
             }
-            return View(roles);
+            return View(firms);
         }
 
-        // POST: Roles/Delete/5
+        // POST: Firms/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Roles roles = db.Roles.Find(id);
-            db.Roles.Remove(roles);
+            Firms firms = db.Firms.Find(id);
+            db.Firms.Remove(firms);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

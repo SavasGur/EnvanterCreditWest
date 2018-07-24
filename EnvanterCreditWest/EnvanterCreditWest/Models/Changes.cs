@@ -7,16 +7,16 @@ using System.Web;
 
 namespace EnvanterCreditWest.Models
 {
-    public class ProductDetails
+    public class Changes
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        public DateTime Date { get; set; }
+        public string DataChanged { get; set; }
+        public string Description { get; set; }
+        public string Ip { get; set; }
         public int ProductId { get; set; }
-        public string Ram { get; set; }
-        public string CPU { get; set; }
-        public string OS { get; set; }
-        public string Size { get; set; }
 
         [ForeignKey("ProductId")]
         public virtual Products Products { get; set; }

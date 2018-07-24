@@ -17,7 +17,8 @@ namespace EnvanterCreditWest.Controllers
         // GET: ProductDetails
         public ActionResult Index()
         {
-            return View(db.ProductDetails.ToList());
+            var productDetails = db.ProductDetails.Include(p => p.Products);
+            return View(productDetails.ToList());
         }
 
         // GET: ProductDetails/Details/5
@@ -38,6 +39,7 @@ namespace EnvanterCreditWest.Controllers
         // GET: ProductDetails/Create
         public ActionResult Create()
         {
+            ViewBag.ProductId = new SelectList(db.Products, "Id", "Type");
             return View();
         }
 
@@ -46,7 +48,7 @@ namespace EnvanterCreditWest.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Ram,CPU,OS,Size")] ProductDetails productDetails)
+        public ActionResult Create([Bind(Include = "Id,ProductId,Ram,CPU,OS,Size")] ProductDetails productDetails)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +57,7 @@ namespace EnvanterCreditWest.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.ProductId = new SelectList(db.Products, "Id", "Type", productDetails.ProductId);
             return View(productDetails);
         }
 
@@ -70,6 +73,7 @@ namespace EnvanterCreditWest.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ProductId = new SelectList(db.Products, "Id", "Type", productDetails.ProductId);
             return View(productDetails);
         }
 
@@ -78,7 +82,7 @@ namespace EnvanterCreditWest.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Ram,CPU,OS,Size")] ProductDetails productDetails)
+        public ActionResult Edit([Bind(Include = "Id,ProductId,Ram,CPU,OS,Size")] ProductDetails productDetails)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +90,7 @@ namespace EnvanterCreditWest.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.ProductId = new SelectList(db.Products, "Id", "Type", productDetails.ProductId);
             return View(productDetails);
         }
 
