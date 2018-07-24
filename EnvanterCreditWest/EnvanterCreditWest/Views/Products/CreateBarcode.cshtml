@@ -1,0 +1,44 @@
+﻿@model EnvanterCreditWest.Models.BarcodeResult
+<style>
+    .cw-barcode {
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        height: 150px;
+        width: 290px;
+    }
+
+        .cw-barcode > img {
+            height: auto;
+            width: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .cw-barcode > p {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%,0);
+            letter-spacing: 10px;
+        }
+
+        .cw-barcode > a {
+            color: red;
+        }
+</style>
+
+@if (string.IsNullOrEmpty(Model.Error))
+{
+    <div class="cw-barcode">
+        <img src="@Model.Url" />
+        <p>@Model.Barcode</p>
+    </div>
+}
+else
+{
+    <div>
+        <a>* @Model.Error</a>
+    </div>
+}
