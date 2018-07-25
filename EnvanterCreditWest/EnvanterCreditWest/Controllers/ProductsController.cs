@@ -2,14 +2,10 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using BarcodeLib;
 using EnvanterCreditWest.Models;
 
 namespace EnvanterCreditWest.Controllers
@@ -23,28 +19,6 @@ namespace EnvanterCreditWest.Controllers
         {
             var products = db.Products.Include(p => p.Branches).Include(p => p.Firms);
             return View(products.ToList());
-        }
-        public PartialViewResult CreateBarcode(string barcode = "")
-        {
-            BarcodeResult barcodeResult = new BarcodeResult();
-            if (barcode.Length == 12)
-            {
-                Barcode b = new Barcode();
-
-                Image img = b.Encode(TYPE.Interleaved2of5, barcode, Color.Black, Color.White, 290, 120);
-                var randomString = RandomStringGenerator.RandomString();
-                var path = Server.MapPath("/Resources/" + randomString) + ".jpg";
-                img.Save(path);
-
-                barcodeResult.Url = "/Resources/" + randomString + ".jpg";
-                barcodeResult.Barcode = barcode;
-            }
-            else
-            {
-                barcodeResult.Error = "Barcode must be 12 char. ( " + barcode.Length + " )";
-            }
-            return PartialView(barcodeResult);
-
         }
 
         // GET: Products/Details/5
@@ -66,7 +40,7 @@ namespace EnvanterCreditWest.Controllers
         public ActionResult Create()
         {
             ViewBag.BranchId = new SelectList(db.Branches, "Id", "BranchName");
-            ViewBag.FirmId = new SelectList(db.Firms, "Id", "FirmName");
+            ViewBag.FirmId = new SelectList(db.Firms, "Id", "Name");
             return View();
         }
 
@@ -85,7 +59,7 @@ namespace EnvanterCreditWest.Controllers
             }
 
             ViewBag.BranchId = new SelectList(db.Branches, "Id", "BranchName", products.BranchId);
-            ViewBag.FirmId = new SelectList(db.Firms, "Id", "FirmName", products.FirmId);
+            ViewBag.FirmId = new SelectList(db.Firms, "Id", "Name", products.FirmId);
             return View(products);
         }
 
@@ -102,7 +76,7 @@ namespace EnvanterCreditWest.Controllers
                 return HttpNotFound();
             }
             ViewBag.BranchId = new SelectList(db.Branches, "Id", "BranchName", products.BranchId);
-            ViewBag.FirmId = new SelectList(db.Firms, "Id", "FirmName", products.FirmId);
+            ViewBag.FirmId = new SelectList(db.Firms, "Id", "Name", products.FirmId);
             return View(products);
         }
 
@@ -120,7 +94,7 @@ namespace EnvanterCreditWest.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.BranchId = new SelectList(db.Branches, "Id", "BranchName", products.BranchId);
-            ViewBag.FirmId = new SelectList(db.Firms, "Id", "FirmName", products.FirmId);
+            ViewBag.FirmId = new SelectList(db.Firms, "Id", "Name", products.FirmId);
             return View(products);
         }
 

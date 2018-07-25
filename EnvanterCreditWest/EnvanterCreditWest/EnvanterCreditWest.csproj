@@ -172,21 +172,25 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BranchesController.cs" />
+    <Compile Include="Controllers\ChangeDetailsController.cs" />
     <Compile Include="Controllers\ChangesController.cs" />
     <Compile Include="Controllers\FirmsController.cs" />
     <Compile Include="Controllers\ProductDetailsController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\UserProductsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Branches.cs" />
+    <Compile Include="Models\ChangeDetails.cs" />
     <Compile Include="Models\EnvanterCreditWestContext.cs" />
     <Compile Include="Models\Changes.cs" />
     <Compile Include="Models\Firms.cs" />
     <Compile Include="Models\Products.cs" />
     <Compile Include="Models\ProductDetails.cs" />
-    <Compile Include="Models\RandomStringGenerator.cs" />
+    <Compile Include="Service\RandomStringGenerator.cs" />
+    <Compile Include="Models\UserProducts.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -233,7 +237,6 @@
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\popper.min.js" />
-    <Content Include="Resources\S1QP6FNYRZB.jpg" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
@@ -247,8 +250,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
@@ -260,41 +261,50 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Home\CreateBarcode.cshtml" />
-    <Content Include="Views\Products\Create.cshtml" />
-    <Content Include="Views\Products\Delete.cshtml" />
-    <Content Include="Views\Products\Details.cshtml" />
-    <Content Include="Views\Products\Edit.cshtml" />
-    <Content Include="Views\Products\Index.cshtml" />
-    <Content Include="Views\ProductDetails\Create.cshtml" />
-    <Content Include="Views\ProductDetails\Delete.cshtml" />
-    <Content Include="Views\ProductDetails\Details.cshtml" />
-    <Content Include="Views\ProductDetails\Edit.cshtml" />
-    <Content Include="Views\ProductDetails\Index.cshtml" />
     <Content Include="Views\Branches\Create.cshtml" />
     <Content Include="Views\Branches\Delete.cshtml" />
     <Content Include="Views\Branches\Details.cshtml" />
     <Content Include="Views\Branches\Edit.cshtml" />
     <Content Include="Views\Branches\Index.cshtml" />
-    <Content Include="Views\Changes\Create.cshtml" />
-    <Content Include="Views\Changes\Delete.cshtml" />
-    <Content Include="Views\Changes\Details.cshtml" />
-    <Content Include="Views\Changes\Edit.cshtml" />
-    <Content Include="Views\Changes\Index.cshtml" />
-    <Content Include="Views\Firms\Create.cshtml" />
-    <Content Include="Views\Firms\Delete.cshtml" />
-    <Content Include="Views\Firms\Details.cshtml" />
-    <Content Include="Views\Firms\Edit.cshtml" />
-    <Content Include="Views\Firms\Index.cshtml" />
+    <Content Include="Views\UserProducts\Create.cshtml" />
+    <Content Include="Views\UserProducts\Delete.cshtml" />
+    <Content Include="Views\UserProducts\Details.cshtml" />
+    <Content Include="Views\UserProducts\Edit.cshtml" />
+    <Content Include="Views\UserProducts\Index.cshtml" />
     <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Users\Delete.cshtml" />
     <Content Include="Views\Users\Details.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
-    <Content Include="Views\Products\CreateBarcode.cshtml" />
+    <Content Include="Views\Firms\Create.cshtml" />
+    <Content Include="Views\Firms\Delete.cshtml" />
+    <Content Include="Views\Firms\Details.cshtml" />
+    <Content Include="Views\Firms\Edit.cshtml" />
+    <Content Include="Views\Firms\Index.cshtml" />
+    <Content Include="Views\ChangeDetails\Create.cshtml" />
+    <Content Include="Views\ChangeDetails\Delete.cshtml" />
+    <Content Include="Views\ChangeDetails\Details.cshtml" />
+    <Content Include="Views\ChangeDetails\Edit.cshtml" />
+    <Content Include="Views\ChangeDetails\Index.cshtml" />
+    <Content Include="Views\Changes\Create.cshtml" />
+    <Content Include="Views\Changes\Delete.cshtml" />
+    <Content Include="Views\Changes\Details.cshtml" />
+    <Content Include="Views\Changes\Edit.cshtml" />
+    <Content Include="Views\Changes\Index.cshtml" />
+    <Content Include="Views\ProductDetails\Create.cshtml" />
+    <Content Include="Views\ProductDetails\Delete.cshtml" />
+    <Content Include="Views\ProductDetails\Details.cshtml" />
+    <Content Include="Views\ProductDetails\Edit.cshtml" />
+    <Content Include="Views\ProductDetails\Index.cshtml" />
+    <Content Include="Views\Products\Create.cshtml" />
+    <Content Include="Views\Products\Delete.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Resources\" />
     <Folder Include="Scripts\Resources\" />
   </ItemGroup>
   <ItemGroup>

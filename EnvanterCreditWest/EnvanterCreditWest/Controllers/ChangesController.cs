@@ -17,7 +17,7 @@ namespace EnvanterCreditWest.Controllers
         // GET: Changes
         public ActionResult Index()
         {
-            var changes = db.Changes.Include(c => c.Products);
+            var changes = db.Changes.Include(c => c.ChangeDetails).Include(c => c.Products);
             return View(changes.ToList());
         }
 
@@ -39,6 +39,7 @@ namespace EnvanterCreditWest.Controllers
         // GET: Changes/Create
         public ActionResult Create()
         {
+            ViewBag.ChangesDetailsId = new SelectList(db.ChangeDetails, "Id", "Type");
             ViewBag.ProductId = new SelectList(db.Products, "Id", "Type");
             return View();
         }
@@ -48,7 +49,7 @@ namespace EnvanterCreditWest.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Date,DataChanged,Description,Ip,ProductId")] Changes changes)
+        public ActionResult Create([Bind(Include = "Id,Date,ChangesDetailsId,Description,Ip,ProductId")] Changes changes)
         {
             if (ModelState.IsValid)
             {
@@ -57,6 +58,7 @@ namespace EnvanterCreditWest.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.ChangesDetailsId = new SelectList(db.ChangeDetails, "Id", "Type", changes.ChangesDetailsId);
             ViewBag.ProductId = new SelectList(db.Products, "Id", "Type", changes.ProductId);
             return View(changes);
         }
@@ -73,6 +75,7 @@ namespace EnvanterCreditWest.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ChangesDetailsId = new SelectList(db.ChangeDetails, "Id", "Type", changes.ChangesDetailsId);
             ViewBag.ProductId = new SelectList(db.Products, "Id", "Type", changes.ProductId);
             return View(changes);
         }
@@ -82,7 +85,7 @@ namespace EnvanterCreditWest.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Date,DataChanged,Description,Ip,ProductId")] Changes changes)
+        public ActionResult Edit([Bind(Include = "Id,Date,ChangesDetailsId,Description,Ip,ProductId")] Changes changes)
         {
             if (ModelState.IsValid)
             {
@@ -90,6 +93,7 @@ namespace EnvanterCreditWest.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.ChangesDetailsId = new SelectList(db.ChangeDetails, "Id", "Type", changes.ChangesDetailsId);
             ViewBag.ProductId = new SelectList(db.Products, "Id", "Type", changes.ProductId);
             return View(changes);
         }

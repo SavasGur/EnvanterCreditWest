@@ -13,13 +13,13 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.ChangeDetails.Type)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Products.Type)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DataChanged)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Description)
@@ -33,13 +33,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.ChangeDetails.Type)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Products.Type)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataChanged)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Description)

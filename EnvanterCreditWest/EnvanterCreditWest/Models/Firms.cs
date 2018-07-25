@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -12,13 +13,22 @@ namespace EnvanterCreditWest.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public string FirmName { get; set; }
-        public int PhoneNumber { get; set; }
+
+        [Required]
+        [DisplayName("Firma Adı")]
+        public string Name { get; set; }
+        [DisplayName("Telefon Numarası")]
+        public string PhoneNumber { get; set; }
         public string Email { get; set; }
+        [DisplayName("Adres")]
         public string Address { get; set; }
-        public string PersonInContact { get; set; }
-        public string PersonalEmail { get; set; }
-        public int PersonalNumber { get; set; }
-        public string Notes { get; set; }
+        [DisplayName("Satış Temsilcisi")]
+        public string VendorName { get; set; }
+        [DisplayName("Temsilci Email")]
+        public string VendorEmail { get; set; }
+        [DisplayName("Temsilci Numarası")]
+        public string VendorNumber { get; set; }
+        [DisplayName("Açıklama")]
+        public string Description { get; set; }
     }
 }

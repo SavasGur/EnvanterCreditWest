@@ -1,4 +1,4 @@
-﻿@model IEnumerable<EnvanterCreditWest.Models.Users>
+﻿@model IEnumerable<EnvanterCreditWest.Models.ChangeDetails>
 
 @{
     ViewBag.Title = "Index";
@@ -13,10 +13,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Surname)
+            @Html.DisplayNameFor(model => model.Type)
         </th>
         <th></th>
     </tr>
@@ -24,10 +21,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Surname)
+            @Html.DisplayFor(modelItem => item.Type)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

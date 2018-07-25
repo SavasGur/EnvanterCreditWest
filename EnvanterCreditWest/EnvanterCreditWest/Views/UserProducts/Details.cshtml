@@ -1,4 +1,4 @@
-﻿@model EnvanterCreditWest.Models.Users
+﻿@model EnvanterCreditWest.Models.UserProducts
 
 @{
     ViewBag.Title = "Details";
@@ -8,23 +8,23 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Users</h4>
+    <h4>UserProducts</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.DisplayNameFor(model => model.Product.Type)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FirstName)
+            @Html.DisplayFor(model => model.Product.Type)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Surname)
+            @Html.DisplayNameFor(model => model.Users.FirstName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Surname)
+            @Html.DisplayFor(model => model.Users.FirstName)
         </dd>
 
     </dl>

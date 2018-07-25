@@ -10,107 +10,107 @@ using EnvanterCreditWest.Models;
 
 namespace EnvanterCreditWest.Controllers
 {
-    public class UsersController : Controller
+    public class ChangeDetailsController : Controller
     {
         private EnvanterCreditWestContext db = new EnvanterCreditWestContext();
 
-        // GET: Users
+        // GET: ChangeDetails
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            return View(db.ChangeDetails.ToList());
         }
 
-        // GET: Users/Details/5
+        // GET: ChangeDetails/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Users users = db.Users.Find(id);
-            if (users == null)
+            ChangeDetails changeDetails = db.ChangeDetails.Find(id);
+            if (changeDetails == null)
             {
                 return HttpNotFound();
             }
-            return View(users);
+            return View(changeDetails);
         }
 
-        // GET: Users/Create
+        // GET: ChangeDetails/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Users/Create
+        // POST: ChangeDetails/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,Surname")] Users users)
+        public ActionResult Create([Bind(Include = "Id,Type")] ChangeDetails changeDetails)
         {
             if (ModelState.IsValid)
             {
-                db.Users.Add(users);
+                db.ChangeDetails.Add(changeDetails);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(users);
+            return View(changeDetails);
         }
 
-        // GET: Users/Edit/5
+        // GET: ChangeDetails/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Users users = db.Users.Find(id);
-            if (users == null)
+            ChangeDetails changeDetails = db.ChangeDetails.Find(id);
+            if (changeDetails == null)
             {
                 return HttpNotFound();
             }
-            return View(users);
+            return View(changeDetails);
         }
 
-        // POST: Users/Edit/5
+        // POST: ChangeDetails/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,Surname")] Users users)
+        public ActionResult Edit([Bind(Include = "Id,Type")] ChangeDetails changeDetails)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(users).State = EntityState.Modified;
+                db.Entry(changeDetails).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(users);
+            return View(changeDetails);
         }
 
-        // GET: Users/Delete/5
+        // GET: ChangeDetails/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Users users = db.Users.Find(id);
-            if (users == null)
+            ChangeDetails changeDetails = db.ChangeDetails.Find(id);
+            if (changeDetails == null)
             {
                 return HttpNotFound();
             }
-            return View(users);
+            return View(changeDetails);
         }
 
-        // POST: Users/Delete/5
+        // POST: ChangeDetails/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Users users = db.Users.Find(id);
-            db.Users.Remove(users);
+            ChangeDetails changeDetails = db.ChangeDetails.Find(id);
+            db.ChangeDetails.Remove(changeDetails);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
