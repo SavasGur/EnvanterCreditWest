@@ -29,8 +29,9 @@ namespace EnvanterCreditWest.Models
         [DisplayName("Barkod")]
         public int Barcode { get; set; }
 
-        [DisplayName("Şube")]
+
         [Required]
+        [DisplayName("Şube")]
         public int BranchId { get; set; }
 
         [DisplayName("Üretim Tarihi")]

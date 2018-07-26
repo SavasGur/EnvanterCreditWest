@@ -12,7 +12,6 @@ namespace EnvanterCreditWest.Models
     public class Branches
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [DisplayName("Şube Adı")]
