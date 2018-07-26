@@ -1,4 +1,4 @@
-﻿@model IEnumerable<EnvanterCreditWest.Models.Branches>
+﻿@model IEnumerable<EnvanterCreditWest.Models.Typey>
 
 @{
     ViewBag.Title = "Index";
@@ -13,13 +13,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.BranchName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Latitude)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Longitude)
+            @Html.DisplayNameFor(model => model.TypeName)
         </th>
         <th></th>
     </tr>
@@ -27,13 +21,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.BranchName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Latitude)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Longitude)
+            @Html.DisplayFor(modelItem => item.TypeName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
