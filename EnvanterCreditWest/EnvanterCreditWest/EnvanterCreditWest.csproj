@@ -183,12 +183,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Branches.cs" />
+    <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\ChangeDetails.cs" />
     <Compile Include="Models\EnvanterCreditWestContext.cs" />
     <Compile Include="Models\Changes.cs" />
     <Compile Include="Models\Firms.cs" />
     <Compile Include="Models\Products.cs" />
     <Compile Include="Models\ProductDetails.cs" />
+    <Compile Include="Models\Type.cs" />
     <Compile Include="Service\RandomStringGenerator.cs" />
     <Compile Include="Models\UserProducts.cs" />
     <Compile Include="Models\Users.cs" />
