@@ -175,6 +175,7 @@
     <Compile Include="Controllers\ChangeDetailsController.cs" />
     <Compile Include="Controllers\ChangesController.cs" />
     <Compile Include="Controllers\FirmsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductDetailsController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\UserProductsController.cs" />
@@ -187,6 +188,7 @@
     <Compile Include="Models\EnvanterCreditWestContext.cs" />
     <Compile Include="Models\Changes.cs" />
     <Compile Include="Models\Firms.cs" />
+    <Compile Include="Models\Home.cs" />
     <Compile Include="Models\Products.cs" />
     <Compile Include="Models\ProductDetails.cs" />
     <Compile Include="Service\RandomStringGenerator.cs" />
@@ -301,6 +303,7 @@
     <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
