@@ -12,31 +12,50 @@ namespace EnvanterCreditWest.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+
         public int Id { get; set; }
-        [DisplayName("Firma Adı")]
-        public int FirmId { get; set; }
+
         [DisplayName("Cihaz")]
+        [Required]
         public string Type { get; set; }
-        public string Model { get; set; }
-        [DisplayName("Marka")] 
+
+        [DisplayName("Marka")]
+        [Required]
         public string Brand { get; set; }
-        [DisplayName("Garanti Bitiş Tarihi")]
-        public DateTime Warranty { get; set; }
-        [DisplayName("Alış Tarihi")]
-        public DateTime DateAcquired { get; set; }
+
+        [Required]
+        public string Model { get; set; }
+
         [DisplayName("Barkod")]
         public int Barcode { get; set; }
-        [DisplayName("Üretim Tarihi")]
-        public DateTime ProductionDate{ get; set; }
-        [DisplayName("Durum")]
-        public bool Status { get; set; }
-        [DisplayName("Fiyat")]
-        public float Price { get; set; }
-        [DisplayName("Şubeler")]
+
+        [DisplayName("Şube")]
+        [Required]
         public int BranchId { get; set; }
 
+        [DisplayName("Üretim Tarihi")]
+        public DateTime ProductionDate { get; set; }
+
+        [DisplayName("Alış Tarihi")]
+        public DateTime DateAcquired { get; set; }
+
+        [DisplayName("Garanti Bitiş Tarihi")]
+        public DateTime Warranty { get; set; }
+        
+        [DisplayName("Firma Adı")]
+        public int FirmId { get; set; }
+
+        [DisplayName("Kullanılıyor/Kullanılmıyor")]
+        [Required]
+        public bool Status { get; set; }
+
+        [DisplayName("Fiyat")]
+        public float Price { get; set; }
+        
+   
         [ForeignKey("BranchId")]
         public virtual Branches Branches { get; set; }
+
         [ForeignKey("FirmId")]
         public virtual Firms Firms { get; set; }
     }

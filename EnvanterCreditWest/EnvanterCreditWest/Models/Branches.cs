@@ -14,12 +14,16 @@ namespace EnvanterCreditWest.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+
         [DisplayName("Şube Adı")]
+        [Required]
         public string BranchName { get; set; }
+
         [DisplayName("Enlem")]
-        public int Latitude { get; set; }
+        public string Latitude { get; set; }
+
         [DisplayName("Boylam")]
-        public int Longitude { get; set; }
+        public string Longitude { get; set; }
     }
     
 }

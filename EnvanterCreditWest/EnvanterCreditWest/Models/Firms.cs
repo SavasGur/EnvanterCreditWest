@@ -17,6 +17,7 @@ namespace EnvanterCreditWest.Models
         [Required]
         [DisplayName("Firma Adı")]
         public string Name { get; set; }
+        [Required]
         [DisplayName("Telefon Numarası")]
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
