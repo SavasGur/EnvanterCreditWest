@@ -5,9 +5,9 @@ using System.Web;
 
 namespace EnvanterCreditWest.Models
 {
-    public class Typey
+    public class Brands
     {
         public int Id { get; set; }
-        public string TypeName { get; set; }
+        public string BrandName { get; set; }
     }
 }

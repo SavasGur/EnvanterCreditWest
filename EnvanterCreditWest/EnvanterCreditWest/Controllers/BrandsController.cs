@@ -27,12 +27,12 @@ namespace EnvanterCreditWest.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Brand brand = db.Brands.Find(id);
-            if (brand == null)
+            Brands brands = db.Brands.Find(id);
+            if (brands == null)
             {
                 return HttpNotFound();
             }
-            return View(brand);
+            return View(brands);
         }
 
         // GET: Brands/Create
@@ -46,16 +46,16 @@ namespace EnvanterCreditWest.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,BrandName")] Brand brand)
+        public ActionResult Create([Bind(Include = "Id,BrandName")] Brands brands)
         {
             if (ModelState.IsValid)
             {
-                db.Brands.Add(brand);
+                db.Brands.Add(brands);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(brand);
+            return View(brands);
         }
 
         // GET: Brands/Edit/5
@@ -65,12 +65,12 @@ namespace EnvanterCreditWest.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Brand brand = db.Brands.Find(id);
-            if (brand == null)
+            Brands brands = db.Brands.Find(id);
+            if (brands == null)
             {
                 return HttpNotFound();
             }
-            return View(brand);
+            return View(brands);
         }
 
         // POST: Brands/Edit/5
@@ -78,15 +78,15 @@ namespace EnvanterCreditWest.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,BrandName")] Brand brand)
+        public ActionResult Edit([Bind(Include = "Id,BrandName")] Brands brands)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(brand).State = EntityState.Modified;
+                db.Entry(brands).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(brand);
+            return View(brands);
         }
 
         // GET: Brands/Delete/5
@@ -96,12 +96,12 @@ namespace EnvanterCreditWest.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Brand brand = db.Brands.Find(id);
-            if (brand == null)
+            Brands brands = db.Brands.Find(id);
+            if (brands == null)
             {
                 return HttpNotFound();
             }
-            return View(brand);
+            return View(brands);
         }
 
         // POST: Brands/Delete/5
@@ -109,8 +109,8 @@ namespace EnvanterCreditWest.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Brand brand = db.Brands.Find(id);
-            db.Brands.Remove(brand);
+            Brands brands = db.Brands.Find(id);
+            db.Brands.Remove(brands);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
