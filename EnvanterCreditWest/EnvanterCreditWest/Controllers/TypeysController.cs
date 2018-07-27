@@ -27,12 +27,12 @@ namespace EnvanterCreditWest.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Typey typey = db.Types.Find(id);
-            if (typey == null)
+            Typeys typeys = db.Types.Find(id);
+            if (typeys == null)
             {
                 return HttpNotFound();
             }
-            return View(typey);
+            return View(typeys);
         }
 
         // GET: Typeys/Create
@@ -46,16 +46,16 @@ namespace EnvanterCreditWest.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,TypeName")] Typey typey)
+        public ActionResult Create([Bind(Include = "Id,TypeName")] Typeys typeys)
         {
             if (ModelState.IsValid)
             {
-                db.Types.Add(typey);
+                db.Types.Add(typeys);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(typey);
+            return View(typeys);
         }
 
         // GET: Typeys/Edit/5
@@ -65,12 +65,12 @@ namespace EnvanterCreditWest.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Typey typey = db.Types.Find(id);
-            if (typey == null)
+            Typeys typeys = db.Types.Find(id);
+            if (typeys == null)
             {
                 return HttpNotFound();
             }
-            return View(typey);
+            return View(typeys);
         }
 
         // POST: Typeys/Edit/5
@@ -78,15 +78,15 @@ namespace EnvanterCreditWest.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,TypeName")] Typey typey)
+        public ActionResult Edit([Bind(Include = "Id,TypeName")] Typeys typeys)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(typey).State = EntityState.Modified;
+                db.Entry(typeys).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(typey);
+            return View(typeys);
         }
 
         // GET: Typeys/Delete/5
@@ -96,12 +96,12 @@ namespace EnvanterCreditWest.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Typey typey = db.Types.Find(id);
-            if (typey == null)
+            Typeys typeys = db.Types.Find(id);
+            if (typeys == null)
             {
                 return HttpNotFound();
             }
-            return View(typey);
+            return View(typeys);
         }
 
         // POST: Typeys/Delete/5
@@ -109,8 +109,8 @@ namespace EnvanterCreditWest.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Typey typey = db.Types.Find(id);
-            db.Types.Remove(typey);
+            Typeys typeys = db.Types.Find(id);
+            db.Types.Remove(typeys);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

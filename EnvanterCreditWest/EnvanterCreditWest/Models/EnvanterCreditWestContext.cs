@@ -28,8 +28,8 @@ namespace EnvanterCreditWest.Models
 
         public System.Data.Entity.DbSet<EnvanterCreditWest.Models.UserProducts> UserProducts { get; set; }
 
-        public System.Data.Entity.DbSet<EnvanterCreditWest.Models.Typey> Types { get; set; }
+        public System.Data.Entity.DbSet<EnvanterCreditWest.Models.Typeys> Types { get; set; }
 
-        public System.Data.Entity.DbSet<EnvanterCreditWest.Models.Brand> Brands { get; set; }
+        public System.Data.Entity.DbSet<EnvanterCreditWest.Models.Brands> Brands { get; set; }
     }
 }
