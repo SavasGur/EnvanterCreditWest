@@ -11,7 +11,8 @@
 
                 </div>
                 <div class="modal-body" style="padding-right: 3rem;padding-left:  3rem;">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Register new products</button><button type="button" class="btn btn-secondary" data-dismiss="modal" style="
+                    @Html.ActionLink("Register New Product", "Create", "Products")
+                    <button type="button" class="btn btn-secondar,y" data-dismiss="modal">Register new products</button><button type="button" class="btn btn-secondary" data-dismiss="modal" style="
     float:  right;
 ">
                         Add a branch/depot
@@ -131,6 +132,50 @@
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
+
+        </div>
+    </div>
+</div>
+<div class="container-fluid" style="text-align:center;">
+    <img src="~/Resources\cwest.jpg">
+    <div class="center-flex">
+        <div class="maindiv-buttonbox" data-toggle="modal" data-target="#addmodal">
+            <img src="~/Resources\add.png" style="width: 30%;">
+            <h3 style="
+    margin-top: 10px;
+">
+                Add New
+            </h3><ul style="color: #5a5a5a;font-size: 1rem;padding-left: 25%;padding-right: 10px;margin-top: 40px;text-align:  left;">
+                <li>Register new products</li>
+                <li>Create a brand name</li>
+                <li>Add a depot/branch</li>
+            </ul>
+
+        </div>
+        <div class="maindiv-buttonbox" data-toggle="modal" data-target="#transmodal">
+            <img src="~/Resources/enterprise.png" style="
+                    width: 30%;
+                    ">
+            <h3 style="
+    margin-top: 10px;
+">
+                Branches/Depots
+            </h3><ul style="color: #5a5a5a;font-size: 1rem;padding-left: 25%;padding-right: 10px;margin-top: 40px;text-align:  left;">
+                <li>List products in depots</li>
+                <li>Show employees</li>
+                <li>Transfer assets</li>
+            </ul>
+
+        </div>
+        <div class="maindiv-buttonbox">
+            <img src="~/Resources\search.png" style="width: 30%;">
+            <h3 style="margin-top: 10px;">
+                Search
+            </h3><ul style="color: #5a5a5a;font-size: 1rem;padding-left: 25%;padding-right: 10px;margin-top: 40px;text-align:  left;">
+                <li>Search with manual input</li>
+                <li>Scan barcode</li>
+                <li>Query for specific lists</li>
+            </ul>
 
         </div>
     </div>

@@ -7,14 +7,11 @@
     <meta name="author" content="">
     <title>Asset Manager</title>
     <link rel="shortcut icon" href="~/Resources\Resources\favicon.ico">
-    <!-- Bootstrap core CSS-->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom fonts for this template-->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <!-- Page level plugin CSS-->
-    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-    <!-- Custom styles for this template-->
-    <link href="css/sb-admin.css" rel="stylesheet">
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="~/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="~/css/sb-admin.css" rel="stylesheet">
+    <script src="~/vendor/jquery/jquery.min.js"></script>
     <style>
         .center-flex {
             display: flex;
@@ -66,6 +63,8 @@
     </style>
 </head>
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
+
+
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
 
@@ -193,51 +192,8 @@
             </ul>
         </div>
     </nav>
-    <div class="content-wrapper">
-        <div class="container-fluid" style="text-align:center;">
-            <img src="~/Resources\cwest.jpg">
-            <div class="center-flex">
-                <div class="maindiv-buttonbox" data-toggle="modal" data-target="#addmodal">
-                    <img src="~/Resources\add.png" style="width: 30%;">
-                    <h3 style="
-    margin-top: 10px;
-">
-                        Add New
-                    </h3><ul style="color: #5a5a5a;font-size: 1rem;padding-left: 25%;padding-right: 10px;margin-top: 40px;text-align:  left;">
-                        <li>Register new products</li>
-                        <li>Create a brand name</li>
-                        <li>Add a depot/branch</li>
-                    </ul>
+    <div class="content-wrapper" style="padding: 5vh;">
 
-                </div>
-                <div class="maindiv-buttonbox" data-toggle="modal" data-target="#transmodal">
-                    <img src="~/Resources/enterprise.png" style="
-                    width: 30%;
-                    ">
-                    <h3 style="
-    margin-top: 10px;
-">
-                        Branches/Depots
-                    </h3><ul style="color: #5a5a5a;font-size: 1rem;padding-left: 25%;padding-right: 10px;margin-top: 40px;text-align:  left;">
-                        <li>List products in depots</li>
-                        <li>Show employees</li>
-                        <li>Transfer assets</li>
-                    </ul>
-
-                </div>
-                <div class="maindiv-buttonbox">
-                    <img src="~/Resources\search.png" style="width: 30%;">
-                    <h3 style="margin-top: 10px;">
-                        Search
-                    </h3><ul style="color: #5a5a5a;font-size: 1rem;padding-left: 25%;padding-right: 10px;margin-top: 40px;text-align:  left;">
-                        <li>Search with manual input</li>
-                        <li>Scan barcode</li>
-                        <li>Query for specific lists</li>
-                    </ul>
-
-                </div>
-            </div>
-        </div>
 
         <footer class="sticky-footer">
             <div class="container">
@@ -268,22 +224,22 @@
                 </div>
             </div>
         </div>
-        <!-- Bootstrap core JavaScript-->
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <!-- Core plugin JavaScript-->
-        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-        <!-- Page level plugin JavaScript-->
-        <script src="vendor/datatables/jquery.dataTables.js"></script>
-        <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
-        <!-- Custom scripts for all pages-->
-        <script src="js/sb-admin.min.js"></script>
-        <!-- Custom scripts for this page-->
-        <script src="js/sb-admin-datatables.min.js"></script>
+        @RenderBody()
     </div>
 
-    @RenderBody()
+    <!-- Bootstrap core JavaScript-->
 
-
+    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Page level plugin JavaScript-->
+    <script src="~/vendor/datatables/jquery.dataTables.js"></script>
+    <script src="~/vendor/datatables/dataTables.bootstrap4.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="~/js/sb-admin.min.js"></script>
+    <!-- Custom scripts for this page-->
+    <script src="~/js/sb-admin-datatables.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    @RenderSection("scripts", required: false)
 </body>
 </html>
