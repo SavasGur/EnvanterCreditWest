@@ -10,11 +10,13 @@
 
 
                 </div>
-                <div class="modal-body" style="padding-right: 3rem;padding-left:  3rem;">
-                    @Html.ActionLink("Yeni Cihaz Ekle    ", "Create", "Products", null, new { @class = "btn btn-primary" })
+                <div class="modal-body" style="padding-right: 5rem;padding-left:  5rem;">
+                    <a class="btn btn-primary" href="/Products/Create">Yeni Cihaz Ekle    </a>
 
 
-                    @Html.ActionLink("Yeni Şube Ekle", "Create", "Branches", null, new { @class = "btn btn-primary" })
+                    <a class="btn btn-primary" href="/Branches/Create" style="
+    float: right;
+">Yeni Şube Ekle</a>
 
 
 
