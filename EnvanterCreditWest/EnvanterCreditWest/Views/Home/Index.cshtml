@@ -1,8 +1,137 @@
-﻿
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+﻿<div id="modals">
+    <div id="addmodal" class="modal fade" role="dialog" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
 
-<h2>Index</h2>
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="
+">
+                    <h4 class="modal-title" style="margin-left: 1rem;">Add New</h4><button type="button" class="close" data-dismiss="modal">x</button>
 
+
+                </div>
+                <div class="modal-body" style="padding-right: 3rem;padding-left:  3rem;">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Register new products</button><button type="button" class="btn btn-secondary" data-dismiss="modal" style="
+    float:  right;
+">
+                        Add a branch/depot
+                    </button>
+
+                </div>
+                <div class="modal-footer" style="
+">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="deletemodal" class="modal fade" role="dialog" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="
+">
+                    <h4 class="modal-title" style="margin-left: 1rem;">Delete selected?</h4><button type="button" class="close" data-dismiss="modal">�</button>
+
+
+                </div>
+                <div class="modal-footer" style="
+">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Confirm</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="editmodal" class="modal fade" role="dialog" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="
+">
+                    <h4 class="modal-title" style="margin-left: 1rem;">Edit</h4><button type="button" class="close" data-dismiss="modal">�</button>
+
+
+                </div>
+                <div class="modal-body" style="
+">
+                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#addmodal" data-dismiss="modal" style="
+    margin-right: 10px; margin-left:15px;
+">
+                        Change user and/or branch
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#deletemodal" data-dismiss="modal" style="
+    margin-right: 10px; margin-left:15px;
+">
+                        Change product details
+                    </button>
+
+                </div>
+                <div class="modal-footer" style="
+">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="exportmodal" class="modal fade" role="dialog" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="
+">
+                    <h4 class="modal-title" style="margin-left: 1rem;">Add New</h4><button type="button" class="close" data-dismiss="modal">�</button>
+
+
+                </div>
+                <div class="modal-body" style="
+">
+
+
+
+                </div>
+                <div class="modal-footer" style="
+">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="transmodal" class="modal fade" role="dialog" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="
+">
+                    <h4 class="modal-title" style="margin-left: 1rem;">Branches/Depots</h4><button type="button" class="close" data-dismiss="modal">x</button>
+
+
+                </div>
+                <div class="modal-body" style="padding-right: 1rem;padding-left: 1rem;display:  flex;">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-right: 8px;">
+                        Transfer assets
+                    </button><button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-right: 8px;">Add a branch/depot</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="
+">
+                        Show data tables
+                    </button>
+
+                </div>
+
+                <div class="modal-footer" style="
+">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

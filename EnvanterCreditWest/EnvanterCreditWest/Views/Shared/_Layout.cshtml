@@ -1,68 +1,289 @@
-﻿<!DOCTYPE html>
-<html>
+﻿<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Asset Manager</title>
+    <link rel="shortcut icon" href="~/Resources\Resources\favicon.ico">
+    <!-- Bootstrap core CSS-->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Page level plugin CSS-->
+    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin.css" rel="stylesheet">
+    <style>
+        .center-flex {
+            display: flex;
+            justify-content: center;
+        }
 
-    <link rel="shortcut icon" href="http://www.creditwestbank.com/wp-content/themes/creditwest/images/favicon.ico">
+        .center-west {
+            display: grid;
+            justify-content: center;
+        }
+
+        .maindiv-buttonbox {
+            border: solid rgba(0,0,0, 0.4);
+            background-color: whitesmoke;
+            border-radius: 7px;
+            border-width: thin;
+            position: relative;
+            width: 350px;
+            height: 370px;
+            margin: 20px;
+            transition-duration: 0.25s;
+            padding-top: 45px;
+            cursor: pointer;
+        }
+
+            .maindiv-buttonbox:hover {
+                opacity: 1;
+                border-radius: 7px;
+                position: relative;
+                width: 350px;
+                height: 370px;
+                margin: 20px;
+                transform: translateY(-10px);
+                transition-duration: 0.25s;
+                -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+                -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+                box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+            }
+
+        .sidenav-toggler {
+            position: fixed;
+            height: 56px;
+            display: block;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            bottom: 0;
+        }
+    </style>
 </head>
-<body>
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
 
-    <div class="navbar navbar-inverse">
-        <div class="container-fluid">
+        <button class="navbar-toggler navbar-toggler-right collapsed" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbarResponsive" style="">
+            <h2 style="color:white">Asset Manager</h2>
+            <ul class="navbar-nav navbar-sidenav" id="exampleAccordion" style="left:0">
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Dashboard">
+                    <a class="nav-link" href="index.html">
+                        <i class="fa fa-fw fa-dashboard"></i>
+                        <span class="nav-link-text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Charts">
+                    <a class="nav-link" href="charts.html">
+                        <i class="fa fa-fw fa-area-chart"></i>
+                        <span class="nav-link-text">Charts</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Tables">
+                    <a class="nav-link" href="tables.html">
+                        <i class="fa fa-fw fa-table"></i>
+                        <span class="nav-link-text">Tables</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Components">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
+                        <i class="fa fa-fw fa-wrench"></i>
+                        <span class="nav-link-text">Components</span>
+                    </a>
+                    <ul class="sidenav-second-level collapse" id="collapseComponents">
+                        <li>
+                            <a href="navbar.html">Navbar</a>
+                        </li>
+                        <li>
+                            <a href="cards.html">Cards</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Example Pages">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">
+                        <i class="fa fa-fw fa-file"></i>
+                        <span class="nav-link-text">Example Pages</span>
+                    </a>
+                    <ul class="sidenav-second-level collapse" id="collapseExamplePages">
+                        <li>
+                            <a href="login.html">Login Page</a>
+                        </li>
+                        <li>
+                            <a href="register.html">Registration Page</a>
+                        </li>
+                        <li>
+                            <a href="forgot-password.html">Forgot Password Page</a>
+                        </li>
+                        <li>
+                            <a href="blank.html">Blank Page</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Menu Levels">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti" data-parent="#exampleAccordion">
+                        <i class="fa fa-fw fa-sitemap"></i>
+                        <span class="nav-link-text">Menu Levels</span>
+                    </a>
+                    <ul class="sidenav-second-level collapse" id="collapseMulti">
+                        <li>
+                            <a href="#">Second Level Item</a>
+                        </li>
+                        <li>
+                            <a href="#">Second Level Item</a>
+                        </li>
+                        <li>
+                            <a href="#">Second Level Item</a>
+                        </li>
+                        <li>
+                            <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti2">Third Level</a>
+                            <ul class="sidenav-third-level collapse" id="collapseMulti2">
+                                <li>
+                                    <a href="#">Third Level Item</a>
+                                </li>
+                                <li>
+                                    <a href="#">Third Level Item</a>
+                                </li>
+                                <li>
+                                    <a href="#">Third Level Item</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Link">
+                    <a class="nav-link" href="#">
+                        <i class="fa fa-fw fa-link"></i>
+                        <span class="nav-link-text">Link</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav sidenav-toggler" style="left:0">
+                <li class="nav-item">
+                    <a class="nav-link text-center" id="sidenavToggler">
+                        <i class="fa fa-fw fa-angle-left"></i>
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item" style="
+                                left: 2%;
+                                position: absolute;
+                                width: 235px;
+                                color:  white;
+                                top: 20%;">
 
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                </li>
 
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-
-                    <li style="top: 0px;"><a href="/Home"><font size=" +2" color="red">W</font><font size=" +2" font color="#3399FF">est Manager</font></a></li>
-                    <li>@Html.ActionLink("Cihazlar", "Index", "Products")</li>
-                    <li>@Html.ActionLink("Cihaz Detayları", "Index", "ProductDetails")</li>
-                    <li>@Html.ActionLink("Şubeler", "Index", "Branches")</li>
-                    <li>@Html.ActionLink("Kullanıcılar", "Index", "Users")</li>
-                    <li>@Html.ActionLink("Firmalar", "Index", "Firms")</li>
-                    <li>@Html.ActionLink("Değişiklikler", "Index", "Changes")</li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+                        <i class="fa fa-fw fa-sign-out"></i>Logout
+                    </a>
+                </li>
 
 
 
-                </ul>
-                <div class="col-sm-3 col-md-3 pull-right">
-                    <form class="navbar-form" role="search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
-                            <div class="input-group-btn">
-                                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                            </div>
-                        </div>
-                    </form>
+            </ul>
+        </div>
+    </nav>
+    <div class="content-wrapper">
+        <div class="container-fluid" style="text-align:center;">
+            <img src="~/Resources\cwest.jpg">
+            <div class="center-flex">
+                <div class="maindiv-buttonbox" data-toggle="modal" data-target="#addmodal">
+                    <img src="~/Resources\add.png" style="width: 30%;">
+                    <h3 style="
+    margin-top: 10px;
+">
+                        Add New
+                    </h3><ul style="color: #5a5a5a;font-size: 1rem;padding-left: 25%;padding-right: 10px;margin-top: 40px;text-align:  left;">
+                        <li>Register new products</li>
+                        <li>Create a brand name</li>
+                        <li>Add a depot/branch</li>
+                    </ul>
+
+                </div>
+                <div class="maindiv-buttonbox" data-toggle="modal" data-target="#transmodal">
+                    <img src="~/Resources/enterprise.png" style="
+                    width: 30%;
+                    ">
+                    <h3 style="
+    margin-top: 10px;
+">
+                        Branches/Depots
+                    </h3><ul style="color: #5a5a5a;font-size: 1rem;padding-left: 25%;padding-right: 10px;margin-top: 40px;text-align:  left;">
+                        <li>List products in depots</li>
+                        <li>Show employees</li>
+                        <li>Transfer assets</li>
+                    </ul>
+
+                </div>
+                <div class="maindiv-buttonbox">
+                    <img src="~/Resources\search.png" style="width: 30%;">
+                    <h3 style="margin-top: 10px;">
+                        Search
+                    </h3><ul style="color: #5a5a5a;font-size: 1rem;padding-left: 25%;padding-right: 10px;margin-top: 40px;text-align:  left;">
+                        <li>Search with manual input</li>
+                        <li>Scan barcode</li>
+                        <li>Query for specific lists</li>
+                    </ul>
+
                 </div>
             </div>
-
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Creditwest Bank</p>
+
+        <footer class="sticky-footer">
+            <div class="container">
+                <div class="text-center">
+                    <small>© 2018 - Software Genius</small>
+                </div>
+            </div>
         </footer>
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fa fa-angle-up"></i>
+        </a>
+        <!-- Logout Modal-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">�</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="login.html">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bootstrap core JavaScript-->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Page level plugin JavaScript-->
+        <script src="vendor/datatables/jquery.dataTables.js"></script>
+        <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="js/sb-admin.min.js"></script>
+        <!-- Custom scripts for this page-->
+        <script src="js/sb-admin-datatables.min.js"></script>
     </div>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/modernizr-2.8.3.js"></script>
-    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
-    @RenderSection("scripts", required: false)
+
+    @RenderBody()
+
+
 </body>
 </html>
