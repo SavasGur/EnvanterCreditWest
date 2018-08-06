@@ -18,18 +18,18 @@
                     <br />
                     <br />
                     @Html.ActionLink("Yeni Firma Ekle", "Create", "Firms", null, new { @class = "btn btn-primary" })
-                  
+
 
 
                     @Html.ActionLink("Yeni Kullanıcı Ekle", "Create", "Users", null, new { @class = "btn btn-primary" })
 
 
                 </div>
-                    <div class="modal-footer" style="
+                <div class="modal-footer" style="
 ">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                    </div>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                 </div>
+            </div>
 
         </div>
     </div>
@@ -118,18 +118,18 @@
             <div class="modal-content">
                 <div class="modal-header" style="
 ">
-                    <h4 class="modal-title" style="margin-left: 1rem;">Branches/Depots</h4><button type="button" class="close" data-dismiss="modal">x</button>
+                    <h4 class="modal-title" style="margin-left: 1rem;">Şubeler/Depolar</h4><button type="button" class="close" data-dismiss="modal">x</button>
 
 
                 </div>
                 <div class="modal-body" style="padding-right: 1rem;padding-left: 1rem;display:  flex;">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-right: 8px;">
-                        Transfer assets
-                    </button><button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-right: 8px;">Add a branch/depot</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="
-">
-                        Show data tables
-                    </button>
+
+                    @Html.ActionLink("Cihaz Transferi", "Create", "Changes", null, new { @class = "btn btn-primary" })
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    @Html.ActionLink("Çalışan Listesi", null, "Users", null, new { @class = "btn btn-primary" })
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    @Html.ActionLink("Cihazları Listele", null, "Products", null, new { @class = "btn btn-primary" })
+
 
                 </div>
 
@@ -141,6 +141,40 @@
 
         </div>
     </div>
+    <div id="searchmodal" class="modal fade" role="dialog" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="
+">
+                    <h4 class="modal-title" style="margin-left: 1rem;">Şubeler/Depolar</h4><button type="button" class="close" data-dismiss="modal">x</button>
+
+
+                </div>
+                <div class="modal-body" style="padding-right: 1rem;padding-left: 1rem;display:  flex;">
+
+                    <div class="input-group" style="
+   
+">
+                        <input class="form-control" type="text" placeholder="Search for...">
+                        <span class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="modal-footer" style="
+">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 </div>
 <div class="container-fluid" style="text-align:center;">
     <img src="~/Resources\cwest.jpg">
@@ -166,22 +200,21 @@
             <h3 style="
     margin-top: 10px;
 ">
-                Branches/Depots
+                Şubeler/Depolar
             </h3><ul style="color: #5a5a5a;font-size: 1rem;padding-left: 25%;padding-right: 10px;margin-top: 40px;text-align:  left;">
-                <li>List products in depots</li>
-                <li>Show employees</li>
-                <li>Transfer assets</li>
+                <li>Şubelerdeki Cihazları Listele</li>
+                <li>Çalışanları Listele</li>
+                <li>Cihaz Transferi Yap</li>
             </ul>
 
         </div>
-        <div class="maindiv-buttonbox">
+        <div class="maindiv-buttonbox" data-toggle="modal" data-target="#searchmodal">
             <img src="~/Resources\search.png" style="width: 30%;">
             <h3 style="margin-top: 10px;">
-                Search
+                Ara
             </h3><ul style="color: #5a5a5a;font-size: 1rem;padding-left: 25%;padding-right: 10px;margin-top: 40px;text-align:  left;">
-                <li>Search with manual input</li>
-                <li>Scan barcode</li>
-                <li>Query for specific lists</li>
+                <li>Manuel giriş ile arama yap</li>
+                <li>Barkod Okut</li>
             </ul>
 
         </div>
