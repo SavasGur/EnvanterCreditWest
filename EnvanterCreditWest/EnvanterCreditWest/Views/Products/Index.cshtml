@@ -9,9 +9,34 @@
     <h1>Cihazlar</h1>
     <p>Cihaz bilgileri.</p>
 </div>
-<p>
-    @Html.ActionLink("Yeni Ekle", "Create", null , new { @class = "btn btn-success btn-large" })
-</p>
+<div id="a">
+    <p>
+
+        @Html.ActionLink("Yeni Ekle", "Create", null, new { @class = "btn btn-success btn-large" })
+        <div id="a" class="modal-body" style="padding-right: 1rem;padding-left: 1rem;display:  flex;">
+
+            <div class="input-group" style="
+
+">
+                <input class="form-control" type="text" placeholder="Ara...">
+                <span class="input-group-append">
+                    <button class="btn btn-primary" type="button">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+        </div>
+
+
+    </p>
+
+</div>
+
+
+
+   
+ 
+
 <table class="table">
     <tr>
         <th>
@@ -96,3 +121,5 @@
     }
 
 </table>
+
+
