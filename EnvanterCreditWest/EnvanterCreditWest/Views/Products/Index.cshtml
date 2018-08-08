@@ -5,48 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="page-header">
-    <h1>Cihazlar</h1>
-    <p>Cihaz bilgileri.</p>
-</div>
-<div id="a">
-    <p>
+<h2>Index</h2>
 
-        @Html.ActionLink("Yeni Ekle", "Create", null, new { @class = "btn btn-success btn-large" })
-        @*<div id="a" class="modal-body" style="padding-right:26px; 1rem;padding-left:20px; 1rem;display:  flex;">
-
-                        <div class="input-group" style="
-
-            ">
-                            <input class="form-control" type="text" placeholder="Ara...">
-                            <span class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                        </div>
-                    </div>*@
-
-        <div class="input-group" style="margin-top: -70;margin-left: 888px;height: 30px; padding-right:75%">
-            <input class="form-control" type="text" placeholder="Ara...">
-            <span class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                    <i class="fa fa-search"></i>
-                </button>
-            </span>
-
-        </div>
-
-
-    </p>
-    <br />
-</div>
-
-
-
-   
- 
-
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
 <table class="table">
     <tr>
         <th>
@@ -54,6 +17,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Firms.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Users.FirstLastName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Type)
@@ -66,9 +32,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Barcode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductionDate)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.DateAcquired)
@@ -85,51 +48,47 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Branches.BranchName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Firms.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Brand)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Model)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Barcode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductionDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateAcquired)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Warranty)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary btn-large" })
-                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-large" })
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-large" })
-
-            </td>
-        </tr>
-    }
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Branches.BranchName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Firms.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Users.FirstLastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Brand)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Model)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Barcode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateAcquired)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Warranty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
 
 </table>
-
-

@@ -2,14 +2,11 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using BarcodeLib;
 using EnvanterCreditWest.Models;
 
 namespace EnvanterCreditWest.Controllers
@@ -21,33 +18,9 @@ namespace EnvanterCreditWest.Controllers
         // GET: Products
         public ActionResult Index()
         {
-            var products = db.Products.Include(p => p.Branches).Include(p => p.Firms);
+            var products = db.Products.Include(p => p.Branches).Include(p => p.Firms).Include(p => p.Users);
             return View(products.ToList());
         }
-
-        public PartialViewResult CreateBarcode(string barcode = "")
-        {
-            BarcodeResult barcodeResult = new BarcodeResult();
-            if (barcode.Length == 12)
-            {
-                Barcode b = new Barcode();
-
-                Image img = b.Encode(TYPE.Interleaved2of5, barcode, Color.Black, Color.White, 290, 120);
-                var randomString = RandomStringGenerator.RandomString();
-                var path = Server.MapPath("/Resources/" + randomString) + ".jpg";
-                img.Save(path);
-
-                barcodeResult.Url = "/Resources/" + randomString + ".jpg";
-                barcodeResult.Barcode = barcode;
-            }
-            else
-            {
-                barcodeResult.Error = "Barcode must be 12 char. ( " + barcode.Length + " )";
-            }
-            return PartialView(barcodeResult);
-
-        }
-
 
         // GET: Products/Details/5
         public ActionResult Details(int? id)
@@ -69,6 +42,7 @@ namespace EnvanterCreditWest.Controllers
         {
             ViewBag.BranchId = new SelectList(db.Branches, "Id", "BranchName");
             ViewBag.FirmId = new SelectList(db.Firms, "Id", "Name");
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstLastName");
             return View();
         }
 
@@ -77,10 +51,28 @@ namespace EnvanterCreditWest.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Type,Brand,Model,Barcode,BranchId,ProductionDate,DateAcquired,Warranty,FirmId,Status,Price")] Products products)
+        public ActionResult Create(HttpPostedFileBase invoiceFile, [Bind(Include = "Id,Type,Brand,Model,Barcode,BranchId,UserId,DateAcquired,Warranty,FirmId,Status,Price,InvoiceURL")] Products products)
         {
+
+            products.InvoiceURL = "";
+
             if (ModelState.IsValid)
             {
+                if (invoiceFile == null)
+                {
+                    return View(products);
+                }
+                else
+                {
+                    var extension = Path.GetExtension(invoiceFile.FileName);
+
+                    var imgName = products.Barcode + extension;
+
+                    string path = Path.Combine(Server.MapPath("~/Images"), Path.GetFileName(imgName));
+                    invoiceFile.SaveAs(path);
+                    products.InvoiceURL = "/Images/"+ imgName;
+                }
+
                 db.Products.Add(products);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -88,6 +80,7 @@ namespace EnvanterCreditWest.Controllers
 
             ViewBag.BranchId = new SelectList(db.Branches, "Id", "BranchName", products.BranchId);
             ViewBag.FirmId = new SelectList(db.Firms, "Id", "Name", products.FirmId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstLastName", products.UserId);
             return View(products);
         }
 
@@ -105,6 +98,7 @@ namespace EnvanterCreditWest.Controllers
             }
             ViewBag.BranchId = new SelectList(db.Branches, "Id", "BranchName", products.BranchId);
             ViewBag.FirmId = new SelectList(db.Firms, "Id", "Name", products.FirmId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstLastName", products.UserId);
             return View(products);
         }
 
@@ -113,7 +107,7 @@ namespace EnvanterCreditWest.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Type,Brand,Model,Barcode,BranchId,ProductionDate,DateAcquired,Warranty,FirmId,Status,Price")] Products products)
+        public ActionResult Edit([Bind(Include = "Id,Type,Brand,Model,Barcode,BranchId,UserId,DateAcquired,Warranty,FirmId,Status,Price,InvoiceURL")] Products products)
         {
             if (ModelState.IsValid)
             {
@@ -123,6 +117,7 @@ namespace EnvanterCreditWest.Controllers
             }
             ViewBag.BranchId = new SelectList(db.Branches, "Id", "BranchName", products.BranchId);
             ViewBag.FirmId = new SelectList(db.Firms, "Id", "Name", products.FirmId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstLastName", products.UserId);
             return View(products);
         }
 

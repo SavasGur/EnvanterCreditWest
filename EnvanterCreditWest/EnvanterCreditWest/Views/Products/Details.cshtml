@@ -28,6 +28,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Users.FirstLastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Users.FirstLastName)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Type)
         </dt>
 
@@ -60,14 +68,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ProductionDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ProductionDate)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.DateAcquired)
         </dt>
 
@@ -97,6 +97,14 @@
 
         <dd>
             @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InvoiceURL)
+        </dt>
+
+        <dd>
+            <img src="@Model.InvoiceURL" style="width: 70vh;"/>
         </dd>
 
     </dl>

@@ -17,12 +17,8 @@ namespace EnvanterCreditWest.Models
         [DisplayName("Şube Adı")]
         [Required]
         public string BranchName { get; set; }
+        public string Adres { get; set; }
 
-        [DisplayName("Enlem")]
-        public string Latitude { get; set; }
-
-        [DisplayName("Boylam")]
-        public string Longitude { get; set; }
     }
     
 }

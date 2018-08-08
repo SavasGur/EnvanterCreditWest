@@ -34,15 +34,17 @@ namespace EnvanterCreditWest.Models
         [DisplayName("Şube")]
         public int BranchId { get; set; }
 
-        [DisplayName("Üretim Tarihi")]
-        public DateTime ProductionDate { get; set; }
+        public int? UserId { get; set; }
+
+        [ForeignKey("UserId")]
+        public virtual Users Users { get; set; }
 
         [DisplayName("Alış Tarihi")]
         public DateTime DateAcquired { get; set; }
 
         [DisplayName("Garanti Bitiş Tarihi")]
         public DateTime Warranty { get; set; }
-        
+
         [DisplayName("Firma Adı")]
         public int FirmId { get; set; }
 
@@ -52,8 +54,9 @@ namespace EnvanterCreditWest.Models
 
         [DisplayName("Fiyat")]
         public float Price { get; set; }
-        
-   
+
+        public string InvoiceURL { get; set; }
+
         [ForeignKey("BranchId")]
         public virtual Branches Branches { get; set; }
 

@@ -5,48 +5,36 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-    
-    <div class="page-header">
-        <h1>Şubeler</h1>
-        <p>Şube bilgileri.</p>
-    </div>
-    <p>
-        @Html.ActionLink("Yeni Ekle", "Create", null, new { @class = "btn btn-success btn-large" })
-    </p>
-    
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.BranchName)
-            </th>
-            @*@<th>
-                    @Html.DisplayNameFor(model => model.Latitude)
-                </th>*@
-            @*<th>
-                    @Html.DisplayNameFor(model => model.Longitude)
-                </th>*@
-            <th></th>
-        </tr>
+<h2>Index</h2>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BranchName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Latitude)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Longitude)
-                </td>
-                <td>
-                    @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-primary btn-large" })
-                    @Html.ActionLink("Detaylar", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-large" })
-                    @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-large" })
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BranchName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Adres)
+        </th>
+        <th></th>
+    </tr>
 
-                </td>
-            </tr>
-        }
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BranchName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Adres)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
 
-    </table>
+</table>
