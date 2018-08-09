@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -18,8 +19,56 @@ namespace EnvanterCreditWest.Controllers
         // GET: Products
         public ActionResult Index()
         {
-            var products = db.Products.Include(p => p.Branches).Include(p => p.Firms).Include(p => p.Users);
+            var products = db.Products.Include(p => p.Branches).Include(p => p.Brands).Include(p => p.Firms).Include(p => p.Users);
+
+            ViewBag.Branches = new SelectList(db.Branches, "Id", "BranchName");
+            ViewBag.Firms = new SelectList(db.Firms, "Id", "Name");
+            ViewBag.Users = new SelectList(db.Users, "Id", "FirstLastName");
+            ViewBag.Brands = new SelectList(db.Brands, "Id", "BrandName");
+
+            List<string> list = new List<string>();
+            foreach(var item in products)
+            {
+                list.Add(item.Model);
+            }
+            ViewBag.Models = new SelectList(list);
+
             return View(products.ToList());
+        }
+
+        public ActionResult Search(int checkBrand, int checkBranch, int checkFirm, int checkUser, int checkModel, int dropBranch, int dropBrand, int dropFirm, int dropUser, string dropModel)
+        {
+            var products = db.Products.Include(p => p.Branches).Include(p => p.Firms).Include(p => p.Users).ToList();
+            List<string> list = new List<string>();
+            foreach (var item in products)
+            {
+                list.Add(item.Model);
+            }
+            ViewBag.Models = new SelectList(list,dropModel);
+
+            if (checkBrand == 1)
+                products = products.Where(x => x.BrandId == dropBrand).ToList();
+
+            if (checkBranch == 1)
+                products = products.Where(x => x.BranchId == dropBranch).ToList();
+
+            if (checkFirm == 1)
+                products = products.Where(x => x.FirmId == dropFirm).ToList();
+
+            if (checkUser == 1)
+                products = products.Where(x => x.UserId == dropUser).ToList();
+
+            if (checkModel == 1)
+                products = products.Where(x => x.Model == dropModel).ToList();
+
+            ViewBag.Branches = new SelectList(db.Branches, "Id", "BranchName", dropBranch);
+            ViewBag.Firms = new SelectList(db.Firms, "Id", "Name", dropFirm);
+            ViewBag.Users = new SelectList(db.Users, "Id", "FirstLastName", dropUser);
+            ViewBag.Brands = new SelectList(db.Brands, "Id", "BrandName", dropBrand);
+
+
+
+            return View("Index", products);
         }
 
         // GET: Products/Details/5
@@ -41,6 +90,7 @@ namespace EnvanterCreditWest.Controllers
         public ActionResult Create()
         {
             ViewBag.BranchId = new SelectList(db.Branches, "Id", "BranchName");
+            ViewBag.BrandId = new SelectList(db.Brands, "Id", "BrandName");
             ViewBag.FirmId = new SelectList(db.Firms, "Id", "Name");
             ViewBag.UserId = new SelectList(db.Users, "Id", "FirstLastName");
             return View();
@@ -51,11 +101,15 @@ namespace EnvanterCreditWest.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(HttpPostedFileBase invoiceFile, [Bind(Include = "Id,Type,Brand,Model,Barcode,BranchId,UserId,DateAcquired,Warranty,FirmId,Status,Price,InvoiceURL")] Products products)
+        public ActionResult Create(HttpPostedFileBase invoiceFile,[Bind(Include = "Id,Type,BrandId,Model,Barcode,BranchId,UserId,DateAcquired,Warranty,FirmId,Status,Price,InvoiceURL")] Products products)
         {
+            ViewBag.BranchId = new SelectList(db.Branches, "Id", "BranchName", products.BranchId);
+            ViewBag.BrandId = new SelectList(db.Brands, "Id", "BrandName", products.BrandId);
+            ViewBag.FirmId = new SelectList(db.Firms, "Id", "Name", products.FirmId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstLastName", products.UserId);
+
 
             products.InvoiceURL = "";
-
             if (ModelState.IsValid)
             {
                 if (invoiceFile == null)
@@ -70,7 +124,7 @@ namespace EnvanterCreditWest.Controllers
 
                     string path = Path.Combine(Server.MapPath("~/Images"), Path.GetFileName(imgName));
                     invoiceFile.SaveAs(path);
-                    products.InvoiceURL = "/Images/"+ imgName;
+                    products.InvoiceURL = "/Images/" + imgName;
                 }
 
                 db.Products.Add(products);
@@ -78,9 +132,14 @@ namespace EnvanterCreditWest.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.BranchId = new SelectList(db.Branches, "Id", "BranchName", products.BranchId);
-            ViewBag.FirmId = new SelectList(db.Firms, "Id", "Name", products.FirmId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstLastName", products.UserId);
+            if (ModelState.IsValid)
+            {
+                db.Products.Add(products);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+    
             return View(products);
         }
 
@@ -97,6 +156,7 @@ namespace EnvanterCreditWest.Controllers
                 return HttpNotFound();
             }
             ViewBag.BranchId = new SelectList(db.Branches, "Id", "BranchName", products.BranchId);
+            ViewBag.BrandId = new SelectList(db.Brands, "Id", "BrandName", products.BrandId);
             ViewBag.FirmId = new SelectList(db.Firms, "Id", "Name", products.FirmId);
             ViewBag.UserId = new SelectList(db.Users, "Id", "FirstLastName", products.UserId);
             return View(products);
@@ -107,7 +167,7 @@ namespace EnvanterCreditWest.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Type,Brand,Model,Barcode,BranchId,UserId,DateAcquired,Warranty,FirmId,Status,Price,InvoiceURL")] Products products)
+        public ActionResult Edit([Bind(Include = "Id,Type,BrandId,Model,Barcode,BranchId,UserId,DateAcquired,Warranty,FirmId,Status,Price,InvoiceURL")] Products products)
         {
             if (ModelState.IsValid)
             {
@@ -116,6 +176,7 @@ namespace EnvanterCreditWest.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.BranchId = new SelectList(db.Branches, "Id", "BranchName", products.BranchId);
+            ViewBag.BrandId = new SelectList(db.Brands, "Id", "BrandName", products.BrandId);
             ViewBag.FirmId = new SelectList(db.Firms, "Id", "Name", products.FirmId);
             ViewBag.UserId = new SelectList(db.Users, "Id", "FirstLastName", products.UserId);
             return View(products);
