@@ -22,7 +22,7 @@ namespace EnvanterCreditWest.Models
         [DisplayName("Marka")]
         [Required]
         public int BrandId { get; set; }
-
+        [DisplayName("Model")]
         [Required]
         public string Model { get; set; }
 

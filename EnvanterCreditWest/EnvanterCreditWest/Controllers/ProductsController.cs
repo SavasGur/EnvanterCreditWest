@@ -25,6 +25,7 @@ namespace EnvanterCreditWest.Controllers
             ViewBag.Firms = new SelectList(db.Firms, "Id", "Name");
             ViewBag.Users = new SelectList(db.Users, "Id", "FirstLastName");
             ViewBag.Brands = new SelectList(db.Brands, "Id", "BrandName");
+           
 
             List<string> list = new List<string>();
             foreach(var item in products)
