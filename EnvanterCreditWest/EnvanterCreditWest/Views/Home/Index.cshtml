@@ -1,6 +1,8 @@
 ﻿<div id="modals">
-    <div id="addmodal" class="modal fade" role="dialog" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog">
+    <div id="addmodal" class="modal fade" role="dialog" style="display: none;" aria-hidden="true;">
+        <div class="modal-dialog" style="
+    width: 433px;
+">
 
             <!-- Modal content-->
             <div class="modal-content">
@@ -11,17 +13,23 @@
 
                 </div>
                 <div class="modal-body" style="padding-right: 3rem;padding-left:  3rem;">
-                    @Html.ActionLink("Yeni Cihaz Ekle    ", "Create", "Products", null, new { @class = "btn btn-primary" })
+                    <a class="btn btn-primary" href="/Products/Create" style="width:  150px;">
+                        Yeni Cihaz Kaydı
+                    </a>
 
-                    @Html.ActionLink("Yeni Şube Ekle", "Create", "Branches", null, new { @class = "btn btn-primary" })
-                    <br />
-                    <br />
-                    <br />
-                    @Html.ActionLink("Yeni Firma Ekle", "Create", "Firms", null, new { @class = "btn btn-primary" })
+                    <a class="btn btn-primary" href="/Branches/Create" style="
+    float:  right;
+    width: 150px;
+">Yeni Şube Ekle</a>
+                    <br>
 
-
-
-                    @Html.ActionLink("Yeni Kullanıcı Ekle", "Create", "Users", null, new { @class = "btn btn-primary" })
+                    <br>
+                    <a class="btn btn-primary" href="/Firms/Create" style="width:  150px;">
+                    Firma Ekle
+                    </a>
+                    <a class="btn btn-primary" href="/Users/Create" style="float:  right;width: 150px;">
+                        Kullanıcı Kaydı
+                    </a>
 
 
                 </div>
@@ -148,7 +156,7 @@
             <div class="modal-content">
                 <div class="modal-header" style="
 ">
-                    <h4 class="modal-title" style="margin-left: 1rem;">Şubeler/Depolar</h4><button type="button" class="close" data-dismiss="modal">x</button>
+                    <h4 class="modal-title" style="margin-left: 1rem;">Barkod Okut</h4><button type="button" class="close" data-dismiss="modal">x</button>
 
 
                 </div>
@@ -177,19 +185,19 @@
 
 </div>
 <div class="container-fluid" style="text-align:center;">
-    <img src="~/Resources\cwest.jpg">
+    <img src="~/Resources\cwest.jpg" style="width:15%;">
     <div class="center-flex">
         <div class="maindiv-buttonbox" data-toggle="modal" data-target="#addmodal">
             <img src="~/Resources\add.png" style="width: 30%;">
             <h3 style="
     margin-top: 10px;
 ">
-                Düzenle
+                Kayıt Yap
             </h3><ul style="color: #5a5a5a;font-size: 1rem;padding-left: 25%;padding-right: 10px;margin-top: 40px;text-align:  left;">
-                <li>Yeni Cihaz Ekle</li>
+                <li>Yeni Cihaz Kaydı</li>
                 <li>Yeni Şube Ekle</li>
-                <li>Yeni Firma Ekle</li>
-                <li>Yeni Kullanıcı Ekle</li>
+                <li>Firma Ekle</li>
+                <li>Kullanıcı Kaydı</li>
             </ul>
 
         </div>
@@ -202,8 +210,8 @@
 ">
                 Şubeler/Depolar
             </h3><ul style="color: #5a5a5a;font-size: 1rem;padding-left: 25%;padding-right: 10px;margin-top: 40px;text-align:  left;">
-                <li>Şubelerdeki Cihazları Listele</li>
-                <li>Çalışanları Listele</li>
+                <li>Şubelerdeki Envanteri Listele</li>
+                <li>Kullanıcıları Listele</li>
                 <li>Cihaz Transferi Yap</li>
             </ul>
 
