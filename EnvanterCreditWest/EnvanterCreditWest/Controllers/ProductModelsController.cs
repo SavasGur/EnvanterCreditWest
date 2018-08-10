@@ -10,107 +10,107 @@ using EnvanterCreditWest.Models;
 
 namespace EnvanterCreditWest.Controllers
 {
-    public class TypeysController : Controller
+    public class ProductModelsController : Controller
     {
         private EnvanterCreditWestContext db = new EnvanterCreditWestContext();
 
-        // GET: Typeys
+        // GET: ProductModels
         public ActionResult Index()
         {
-            return View(db.Types.ToList());
+            return View(db.ProductModels.ToList());
         }
 
-        // GET: Typeys/Details/5
+        // GET: ProductModels/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Typeys typeys = db.Types.Find(id);
-            if (typeys == null)
+            ProductModels productModels = db.ProductModels.Find(id);
+            if (productModels == null)
             {
                 return HttpNotFound();
             }
-            return View(typeys);
+            return View(productModels);
         }
 
-        // GET: Typeys/Create
+        // GET: ProductModels/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Typeys/Create
+        // POST: ProductModels/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Code,Name")] Typeys typeys)
+        public ActionResult Create([Bind(Include = "Id,Name,Code")] ProductModels productModels)
         {
             if (ModelState.IsValid)
             {
-                db.Types.Add(typeys);
+                db.ProductModels.Add(productModels);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(typeys);
+            return View(productModels);
         }
 
-        // GET: Typeys/Edit/5
+        // GET: ProductModels/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Typeys typeys = db.Types.Find(id);
-            if (typeys == null)
+            ProductModels productModels = db.ProductModels.Find(id);
+            if (productModels == null)
             {
                 return HttpNotFound();
             }
-            return View(typeys);
+            return View(productModels);
         }
 
-        // POST: Typeys/Edit/5
+        // POST: ProductModels/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Code,Name")] Typeys typeys)
+        public ActionResult Edit([Bind(Include = "Id,Name,Code")] ProductModels productModels)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(typeys).State = EntityState.Modified;
+                db.Entry(productModels).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(typeys);
+            return View(productModels);
         }
 
-        // GET: Typeys/Delete/5
+        // GET: ProductModels/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Typeys typeys = db.Types.Find(id);
-            if (typeys == null)
+            ProductModels productModels = db.ProductModels.Find(id);
+            if (productModels == null)
             {
                 return HttpNotFound();
             }
-            return View(typeys);
+            return View(productModels);
         }
 
-        // POST: Typeys/Delete/5
+        // POST: ProductModels/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Typeys typeys = db.Types.Find(id);
-            db.Types.Remove(typeys);
+            ProductModels productModels = db.ProductModels.Find(id);
+            db.ProductModels.Remove(productModels);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

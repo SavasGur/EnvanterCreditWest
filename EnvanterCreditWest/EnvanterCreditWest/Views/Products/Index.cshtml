@@ -16,19 +16,19 @@
             @Html.DisplayNameFor(model => model.Branches.BranchName)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Brands.Code)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Firms.Name)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.ProductModels.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Types.Code)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Users.FirstLastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Type)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Brand)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Model)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Barcode)
@@ -45,6 +45,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Price)
         </th>
+      
         <th></th>
     </tr>
 
@@ -54,19 +55,19 @@
             @Html.DisplayFor(modelItem => item.Branches.BranchName)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Brands.Code)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Firms.Name)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.ProductModels.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Types.Code)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Users.FirstLastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Type)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Brand)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Model)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Barcode)

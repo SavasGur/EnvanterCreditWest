@@ -15,7 +15,7 @@ namespace EnvanterCreditWest.Models
         public int Id { get; set; }
 
         [Required]
-        [DisplayName("İsim")]
+        [DisplayName("İsim Soyisim")]
         public string FirstLastName { get; set; }
 
     }

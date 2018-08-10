@@ -11,13 +11,13 @@ namespace EnvanterCreditWest.Models
         public static string RandomString()
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            return new string(Enumerable.Repeat(chars, 13)
+            return new string(Enumerable.Repeat(chars, 6)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
         public static string RandomInt()
         {
             const string chars = "0123456789";
-            return new string(Enumerable.Repeat(chars, 13)
+            return new string(Enumerable.Repeat(chars, 6)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
     }

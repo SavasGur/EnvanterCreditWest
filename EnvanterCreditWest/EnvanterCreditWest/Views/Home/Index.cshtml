@@ -165,9 +165,9 @@
                     <div class="input-group" style="
 
 ">
-                        <input class="form-control" type="text" placeholder="Ara...">
+                        <input class="form-control" type="text" id="txtSearchBarcode" placeholder="Ara...">
                         <span class="input-group-append">
-                            <button class="btn btn-primary" type="button">
+                            <button class="btn btn-primary" id="btnSearchBarcode" type="button">
                                 <i class="fa fa-search"></i>
                             </button>
                         </span>
@@ -228,3 +228,16 @@
         </div>
     </div>
 </div>
+<script>
+    $('#txtSearchBarcode').keypress(function (e) {
+        if (e.which == 13) {
+            window.location.href = "/Products/Barcode?barcode=" + $("#txtSearchBarcode").val();
+            return false;
+        }
+    });
+    $("#btnSearchBarcode").click(function ()
+    {
+        window.location.href = "/Products/Barcode?barcode="+$("#txtSearchBarcode").val();
+    });
+    
+</script>

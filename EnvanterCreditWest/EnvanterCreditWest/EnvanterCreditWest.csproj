@@ -178,14 +178,21 @@
     <Compile Include="Controllers\FirmsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductDetailsController.cs" />
+    <Compile Include="Controllers\ProductModelsController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\TypeysController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808100743568_Test.cs" />
+    <Compile Include="Migrations\201808100743568_Test.Designer.cs">
+      <DependentUpon>201808100743568_Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\EnvanterCreditWestContext.cs" />
     <Compile Include="Models\Home.cs" />
+    <Compile Include="Models\ProductModels.cs" />
     <Compile Include="Models\Products.cs" />
     <Compile Include="Service\RandomStringGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -215,7 +222,6 @@
     <Compile Include="Models\Firms.cs" />
     <Compile Include="Models\ProductDetails.cs" />
     <Compile Include="Models\Typeys.cs" />
-    <Compile Include="Models\UserProducts.cs" />
     <Compile Include="Models\Users.cs" />
     <Content Include="Resources\add.png" />
     <Content Include="Resources\attach.png" />
@@ -362,11 +368,6 @@
     <Content Include="vendor\font-awesome\scss\_variables.scss" />
     <Content Include="vendor\jquery\jquery.min.map" />
     <Content Include="vendor\jquery\jquery.slim.min.map" />
-    <Content Include="Views\Brands\Create.cshtml" />
-    <Content Include="Views\Brands\Delete.cshtml" />
-    <Content Include="Views\Brands\Details.cshtml" />
-    <Content Include="Views\Brands\Edit.cshtml" />
-    <Content Include="Views\Brands\Index.cshtml" />
     <Content Include="Views\ChangeDetails\Create.cshtml" />
     <Content Include="Views\ChangeDetails\Delete.cshtml" />
     <Content Include="Views\ChangeDetails\Details.cshtml" />
@@ -387,16 +388,6 @@
     <Content Include="Views\ProductDetails\Details.cshtml" />
     <Content Include="Views\ProductDetails\Edit.cshtml" />
     <Content Include="Views\ProductDetails\Index.cshtml" />
-    <Content Include="Views\Typeys\Create.cshtml" />
-    <Content Include="Views\Typeys\Delete.cshtml" />
-    <Content Include="Views\Typeys\Details.cshtml" />
-    <Content Include="Views\Typeys\Edit.cshtml" />
-    <Content Include="Views\Typeys\Index.cshtml" />
-    <Content Include="Views\UserProducts\Create.cshtml" />
-    <Content Include="Views\UserProducts\Delete.cshtml" />
-    <Content Include="Views\UserProducts\Details.cshtml" />
-    <Content Include="Views\UserProducts\Edit.cshtml" />
-    <Content Include="Views\UserProducts\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Users\Delete.cshtml" />
@@ -408,14 +399,31 @@
     <Content Include="Views\Branches\Details.cshtml" />
     <Content Include="Views\Branches\Edit.cshtml" />
     <Content Include="Views\Branches\Index.cshtml" />
+    <Content Include="Views\ProductModels\Create.cshtml" />
+    <Content Include="Views\ProductModels\Delete.cshtml" />
+    <Content Include="Views\ProductModels\Details.cshtml" />
+    <Content Include="Views\ProductModels\Edit.cshtml" />
+    <Content Include="Views\ProductModels\Index.cshtml" />
     <Content Include="Views\Products\Create.cshtml" />
     <Content Include="Views\Products\Delete.cshtml" />
     <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Products\Search.cshtml" />
+    <Content Include="Views\Typeys\Create.cshtml" />
+    <Content Include="Views\Typeys\Delete.cshtml" />
+    <Content Include="Views\Typeys\Details.cshtml" />
+    <Content Include="Views\Typeys\Edit.cshtml" />
+    <Content Include="Views\Typeys\Index.cshtml" />
+    <Content Include="Views\Brands\Create.cshtml" />
+    <Content Include="Views\Brands\Delete.cshtml" />
+    <Content Include="Views\Brands\Details.cshtml" />
+    <Content Include="Views\Brands\Edit.cshtml" />
+    <Content Include="Views\Brands\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Binding\" />
     <Folder Include="Images\" />
     <Folder Include="Scripts\Resources\" />
   </ItemGroup>
@@ -429,6 +437,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201808100743568_Test.resx">
+      <DependentUpon>201808100743568_Test.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
