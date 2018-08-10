@@ -39,7 +39,7 @@ namespace EnvanterCreditWest.Models
         [DisplayName("Firma Adı")]
         public int FirmId { get; set; }
 
-        [DisplayName("Kullanılıyor/Kullanılmıyor")]
+        [DisplayName("Aktif")]
         [Required]
         public bool Status { get; set; }
 
