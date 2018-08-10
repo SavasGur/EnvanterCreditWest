@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -19,33 +18,25 @@ namespace EnvanterCreditWest.Controllers
         // GET: Products
         public ActionResult Index()
         {
-            var products = db.Products.Include(p => p.Branches).Include(p => p.Brands).Include(p => p.Firms).Include(p => p.Users);
-
+            var products = db.Products.Include(p => p.Branches).Include(p => p.Brands).Include(p => p.Firms).Include(p => p.ProductModels).Include(p => p.Types).Include(p => p.Users);
             ViewBag.Branches = new SelectList(db.Branches, "Id", "BranchName");
             ViewBag.Firms = new SelectList(db.Firms, "Id", "Name");
             ViewBag.Users = new SelectList(db.Users, "Id", "FirstLastName");
             ViewBag.Brands = new SelectList(db.Brands, "Id", "BrandName");
-           
-
-            List<string> list = new List<string>();
-            foreach(var item in products)
-            {
-                list.Add(item.Model);
-            }
-            ViewBag.Models = new SelectList(list);
-
+            ViewBag.Models = new SelectList(db.ProductModels, "Id", "Name");
             return View(products.ToList());
         }
 
-        public ActionResult Search(int checkBrand, int checkBranch, int checkFirm, int checkUser, int checkModel, int dropBranch, int dropBrand, int dropFirm, int dropUser, string dropModel)
+        public ActionResult Barcode(string barcode)
+        {
+            var products = db.Products.Include(p => p.Branches).Include(p => p.Firms).Include(p => p.Users).FirstOrDefault(x => x.Barcode == barcode);
+            return View("Details",products);
+        }
+
+        public ActionResult Search(int checkBrand, int checkBranch, int checkFirm, int checkUser, int checkModel, int dropBranch, int dropBrand, int dropFirm, int dropUser, int dropModel)
         {
             var products = db.Products.Include(p => p.Branches).Include(p => p.Firms).Include(p => p.Users).ToList();
-            List<string> list = new List<string>();
-            foreach (var item in products)
-            {
-                list.Add(item.Model);
-            }
-            ViewBag.Models = new SelectList(list,dropModel);
+
 
             if (checkBrand == 1)
                 products = products.Where(x => x.BrandId == dropBrand).ToList();
@@ -60,17 +51,19 @@ namespace EnvanterCreditWest.Controllers
                 products = products.Where(x => x.UserId == dropUser).ToList();
 
             if (checkModel == 1)
-                products = products.Where(x => x.Model == dropModel).ToList();
+                products = products.Where(x => x.ProductModelId == dropModel).ToList();
 
             ViewBag.Branches = new SelectList(db.Branches, "Id", "BranchName", dropBranch);
             ViewBag.Firms = new SelectList(db.Firms, "Id", "Name", dropFirm);
             ViewBag.Users = new SelectList(db.Users, "Id", "FirstLastName", dropUser);
             ViewBag.Brands = new SelectList(db.Brands, "Id", "BrandName", dropBrand);
+            ViewBag.Models = new SelectList(db.ProductModels, "Id", "Name", dropModel);
 
 
 
-            return View("Index", products);
+            return View(products);
         }
+
 
         // GET: Products/Details/5
         public ActionResult Details(int? id)
@@ -93,6 +86,8 @@ namespace EnvanterCreditWest.Controllers
             ViewBag.BranchId = new SelectList(db.Branches, "Id", "BranchName");
             ViewBag.BrandId = new SelectList(db.Brands, "Id", "BrandName");
             ViewBag.FirmId = new SelectList(db.Firms, "Id", "Name");
+            ViewBag.ProductModelId = new SelectList(db.ProductModels, "Id", "Name");
+            ViewBag.TypeId = new SelectList(db.Types, "Id", "Name");
             ViewBag.UserId = new SelectList(db.Users, "Id", "FirstLastName");
             return View();
         }
@@ -102,27 +97,29 @@ namespace EnvanterCreditWest.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(HttpPostedFileBase invoiceFile,[Bind(Include = "Id,Type,BrandId,Model,Barcode,BranchId,UserId,DateAcquired,Warranty,FirmId,Status,Price,InvoiceURL")] Products products)
+        public ActionResult Create(HttpPostedFileBase invoiceFile,[Bind(Include = "Id,BrandId,ProductModelId,Barcode,BranchId,UserId,DateAcquired,Warranty,FirmId,Status,Price,InvoiceURL,TypeId")] Products products)
         {
             ViewBag.BranchId = new SelectList(db.Branches, "Id", "BranchName", products.BranchId);
             ViewBag.BrandId = new SelectList(db.Brands, "Id", "BrandName", products.BrandId);
             ViewBag.FirmId = new SelectList(db.Firms, "Id", "Name", products.FirmId);
+            ViewBag.ProductModelId = new SelectList(db.ProductModels, "Id", "Name", products.ProductModelId);
+            ViewBag.TypeId = new SelectList(db.Types, "Id", "Name", products.TypeId);
             ViewBag.UserId = new SelectList(db.Users, "Id", "FirstLastName", products.UserId);
 
+            var code = db.Types.First(x => x.Id == products.TypeId).Code;
+            code += db.Brands.First(x => x.Id == products.BrandId).Code;
+            code += db.ProductModels.First(x => x.Id == products.ProductModelId).Code;
+            code += RandomStringGenerator.RandomInt();
+
+            products.Barcode = code;
 
             products.InvoiceURL = "";
             if (ModelState.IsValid)
             {
-                if (invoiceFile == null)
-                {
-                    return View(products);
-                }
-                else
+                if (invoiceFile != null)
                 {
                     var extension = Path.GetExtension(invoiceFile.FileName);
-
                     var imgName = products.Barcode + extension;
-
                     string path = Path.Combine(Server.MapPath("~/Images"), Path.GetFileName(imgName));
                     invoiceFile.SaveAs(path);
                     products.InvoiceURL = "/Images/" + imgName;
@@ -140,7 +137,6 @@ namespace EnvanterCreditWest.Controllers
                 return RedirectToAction("Index");
             }
 
-    
             return View(products);
         }
 
@@ -157,8 +153,10 @@ namespace EnvanterCreditWest.Controllers
                 return HttpNotFound();
             }
             ViewBag.BranchId = new SelectList(db.Branches, "Id", "BranchName", products.BranchId);
-            ViewBag.BrandId = new SelectList(db.Brands, "Id", "BrandName", products.BrandId);
+            ViewBag.BrandId = new SelectList(db.Brands, "Id", "Code", products.BrandId);
             ViewBag.FirmId = new SelectList(db.Firms, "Id", "Name", products.FirmId);
+            ViewBag.ProductModelId = new SelectList(db.ProductModels, "Id", "Name", products.ProductModelId);
+            ViewBag.TypeId = new SelectList(db.Types, "Id", "Code", products.TypeId);
             ViewBag.UserId = new SelectList(db.Users, "Id", "FirstLastName", products.UserId);
             return View(products);
         }
@@ -168,7 +166,7 @@ namespace EnvanterCreditWest.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Type,BrandId,Model,Barcode,BranchId,UserId,DateAcquired,Warranty,FirmId,Status,Price,InvoiceURL")] Products products)
+        public ActionResult Edit([Bind(Include = "Id,BrandId,ProductModelId,Barcode,BranchId,UserId,DateAcquired,Warranty,FirmId,Status,Price,InvoiceURL,TypeId")] Products products)
         {
             if (ModelState.IsValid)
             {
@@ -177,8 +175,10 @@ namespace EnvanterCreditWest.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.BranchId = new SelectList(db.Branches, "Id", "BranchName", products.BranchId);
-            ViewBag.BrandId = new SelectList(db.Brands, "Id", "BrandName", products.BrandId);
+            ViewBag.BrandId = new SelectList(db.Brands, "Id", "Code", products.BrandId);
             ViewBag.FirmId = new SelectList(db.Firms, "Id", "Name", products.FirmId);
+            ViewBag.ProductModelId = new SelectList(db.ProductModels, "Id", "Name", products.ProductModelId);
+            ViewBag.TypeId = new SelectList(db.Types, "Id", "Code", products.TypeId);
             ViewBag.UserId = new SelectList(db.Users, "Id", "FirstLastName", products.UserId);
             return View(products);
         }

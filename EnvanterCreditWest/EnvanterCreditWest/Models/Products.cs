@@ -12,22 +12,17 @@ namespace EnvanterCreditWest.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-
         public int Id { get; set; }
 
-        [DisplayName("Cihaz")]
+        
         [Required]
-        public string Type { get; set; }
-
         [DisplayName("Marka")]
-        [Required]
         public int BrandId { get; set; }
-        [DisplayName("Model")]
-        [Required]
-        public string Model { get; set; }
+
+        public int ProductModelId { get; set; }
 
         [DisplayName("Barkod")]
-        public int Barcode { get; set; }
+        public string Barcode { get; set; }
 
         [Required]
         [DisplayName("Şube")]
@@ -53,9 +48,13 @@ namespace EnvanterCreditWest.Models
 
         public string InvoiceURL { get; set; }
 
+        [ForeignKey("ProductModelId")]
+        public virtual ProductModels ProductModels { get; set; }
 
+        public int TypeId { get; set; }
 
-
+        [ForeignKey("TypeId")]
+        public virtual Typeys Types { get; set; }
 
         [ForeignKey("UserId")]
         public virtual Users Users { get; set; }

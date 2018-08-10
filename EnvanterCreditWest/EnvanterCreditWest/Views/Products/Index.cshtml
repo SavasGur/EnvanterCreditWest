@@ -10,160 +10,86 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Branches.BranchName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Brands.Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Firms.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductModels.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Types.Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Users.FirstLastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Barcode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateAcquired)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Warranty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+      
+        <th></th>
+    </tr>
 
-<div class="form-group">
-
-    <div class="row">
-        <div class="col-md-2" style="display: flex;">
-            @Html.DropDownList("Brands", null, htmlAttributes: new { @class = "form-control", @id = "dropBrands" })
-            <div class="checkbox" style="margin: 1.5vh;">
-                <label><input type="checkbox" id="brandsCheckBox" value=""></label>
-            </div>
-        </div>
-        <div class="col-md-2" style="display: flex;">
-            @Html.DropDownList("Branches", null, htmlAttributes: new { @class = "form-control", @id = "dropBranches" })
-            <div class="checkbox" style="margin: 1.5vh;">
-                <label><input type="checkbox" id="branchesCheckBox" value=""></label>
-            </div>
-        </div>
-        <div class="col-md-2" style="display: flex;">
-            @Html.DropDownList("Firms", null, htmlAttributes: new { @class = "form-control", @id = "dropFirms" })
-            <div class="checkbox" style="margin: 1.5vh;">
-                <label><input type="checkbox" id="firmsCheckBox" value=""></label>
-            </div>
-        </div>
-        <div class="col-md-2" style="display: flex;">
-            @Html.DropDownList("Users", null, htmlAttributes: new { @class = "form-control", @id = "dropUsers" })
-            <div class="checkbox" style="margin: 1.5vh;">
-                <label><input type="checkbox" id="usersCheckBox" value=""></label>
-            </div>
-        </div>
-        <div class="col-md-2" style="display: flex;">
-            @Html.DropDownList("Models", null, htmlAttributes: new { @class = "form-control", @id = "dropModels" })
-            <div class="checkbox" style="margin: 1.5vh;">
-                <label><input type="checkbox" id="modelCheckBox" value=""></label>
-            </div>
-        </div>
-        <button type="button" id="btnSearch"><i class="fa fa-search"></i></button>
-
-    </div>
-
-</div>
-@if (Model.Count() > 0)
-{
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Branches.BranchName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Brands.BrandName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Firms.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Users.FirstLastName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Type)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Model)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Barcode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateAcquired)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Warranty)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.InvoiceURL)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Branches.BranchName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Brands.BrandName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Firms.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Users.FirstLastName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Type)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Model)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Barcode)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateAcquired)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Warranty)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.InvoiceURL)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
-            </tr>
-        }
-
-    </table>
-
-}
-else
-{
-    <hr />
-    <h1>Lalalalalal işin babbi</h1>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Branches.BranchName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Brands.Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Firms.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductModels.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Types.Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Users.FirstLastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Barcode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateAcquired)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Warranty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
 }
 
-<script>
-    $("#btnSearch").click(function () {
-        var branchesCheckBox = $('#branchesCheckBox').is(":checked") ? 1 : 0;
-        var brandsCheckBox = $('#brandsCheckBox').is(":checked") ? 1 : 0;
-        var firmsCheckBox = $('#firmsCheckBox').is(":checked") ? 1 : 0;
-        var usersCheckBox = $('#usersCheckBox').is(":checked") ? 1 : 0;
-        var modelCheckBox = $('#modelCheckBox').is(":checked") ? 1 : 0;
-
-        var dropBranches = $("#dropBranches option:selected").val();
-        var dropBrands = $("#dropBrands option:selected").val();
-        var dropFirms = $("#dropFirms option:selected").val();
-        var dropUsers = $("#dropUsers option:selected").val();
-        var dropModels = $("#dropModels option:selected").text();
-
-
-        var route = "/Products/Search?checkBrand=" + brandsCheckBox + "&checkBranch=" + branchesCheckBox + "&checkFirm=" + firmsCheckBox + "&checkUser=" + usersCheckBox + "&checkModel=" + modelCheckBox + "&dropBranch=" + dropBranches + "&dropBrand=" + dropBrands + "&dropFirm=" + dropFirms + "&dropUser=" + dropUsers + "&dropModel=" + dropModels + "";
-        window.location.href = route;
-    });
-</script>
+</table>
