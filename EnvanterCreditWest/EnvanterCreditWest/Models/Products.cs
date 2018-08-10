@@ -51,6 +51,7 @@ namespace EnvanterCreditWest.Models
         [ForeignKey("ProductModelId")]
         public virtual ProductModels ProductModels { get; set; }
 
+        [DisplayName("Türü")]
         public int TypeId { get; set; }
 
         [ForeignKey("TypeId")]
