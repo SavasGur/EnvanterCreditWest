@@ -46,7 +46,7 @@ namespace EnvanterCreditWest.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Type")] ChangeDetails changeDetails)
+        public ActionResult Create([Bind(Include = "Id,TypeId")] ChangeDetails changeDetails)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace EnvanterCreditWest.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Type")] ChangeDetails changeDetails)
+        public ActionResult Edit([Bind(Include = "Id,TypeId")] ChangeDetails changeDetails)
         {
             if (ModelState.IsValid)
             {

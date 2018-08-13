@@ -39,7 +39,7 @@ namespace EnvanterCreditWest.Controllers
         // GET: ProductDetails/Create
         public ActionResult Create()
         {
-            ViewBag.ProductId = new SelectList(db.Products, "Id", "Type");
+            ViewBag.ProductId = new SelectList(db.Products, "Id", "TypeId");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace EnvanterCreditWest.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ProductId = new SelectList(db.Products, "Id", "Type", productDetails.ProductId);
+            ViewBag.ProductId = new SelectList(db.Products, "Id", "TypeId", productDetails.ProductId);
             return View(productDetails);
         }
 
@@ -73,7 +73,7 @@ namespace EnvanterCreditWest.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ProductId = new SelectList(db.Products, "Id", "Type", productDetails.ProductId);
+            ViewBag.ProductId = new SelectList(db.Products, "Id", "TypeId", productDetails.ProductId);
             return View(productDetails);
         }
 
@@ -90,7 +90,7 @@ namespace EnvanterCreditWest.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ProductId = new SelectList(db.Products, "Id", "Type", productDetails.ProductId);
+            ViewBag.ProductId = new SelectList(db.Products, "Id", "TypeId", productDetails.ProductId);
             return View(productDetails);
         }
 

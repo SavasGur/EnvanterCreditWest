@@ -14,9 +14,8 @@ namespace EnvanterCreditWest.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        String datey = DateTime.Today.ToString("dd-MM-yyyy");
         [DisplayName("Tarih")]
-        public string Date { get { return this.Date; } set { this.Date = datey; } }
+        public string Date { get; set;  }
       
 
         public int ChangesDetailsId { get; set; }

@@ -153,7 +153,7 @@ namespace EnvanterCreditWest.Controllers
                 return HttpNotFound();
             }
             ViewBag.BranchId = new SelectList(db.Branches, "Id", "BranchName", products.BranchId);
-            ViewBag.BrandId = new SelectList(db.Brands, "Id", "Code", products.BrandId);
+            ViewBag.BrandId = new SelectList(db.Brands, "Id", "BrandName", products.BrandId);
             ViewBag.FirmId = new SelectList(db.Firms, "Id", "Name", products.FirmId);
             ViewBag.ProductModelId = new SelectList(db.ProductModels, "Id", "Name", products.ProductModelId);
             ViewBag.TypeId = new SelectList(db.Types, "Id", "Code", products.TypeId);
