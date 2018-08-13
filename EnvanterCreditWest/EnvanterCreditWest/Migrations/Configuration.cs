@@ -9,8 +9,7 @@ namespace EnvanterCreditWest.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
-            AutomaticMigrationDataLossAllowed = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(EnvanterCreditWest.Models.EnvanterCreditWestContext context)

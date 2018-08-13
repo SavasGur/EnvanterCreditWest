@@ -7,18 +7,18 @@ namespace EnvanterCreditWest.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Test : IMigrationMetadata
+    public sealed partial class tes : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Test));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(tes));
         
         string IMigrationMetadata.Id
         {
-            get { return "201808100743568_Test"; }
+            get { return "201808130553278_tes"; }
         }
         
         string IMigrationMetadata.Source
         {
-            get { return null; }
+            get { return Resources.GetString("Source"); }
         }
         
         string IMigrationMetadata.Target

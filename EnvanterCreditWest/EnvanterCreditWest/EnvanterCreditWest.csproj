@@ -185,9 +185,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201808100743568_Test.cs" />
-    <Compile Include="Migrations\201808100743568_Test.Designer.cs">
-      <DependentUpon>201808100743568_Test.cs</DependentUpon>
+    <Compile Include="Migrations\201808130553278_tes.cs" />
+    <Compile Include="Migrations\201808130553278_tes.Designer.cs">
+      <DependentUpon>201808130553278_tes.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\EnvanterCreditWestContext.cs" />
@@ -439,8 +439,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201808100743568_Test.resx">
-      <DependentUpon>201808100743568_Test.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201808130553278_tes.resx">
+      <DependentUpon>201808130553278_tes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
