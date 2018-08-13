@@ -5,50 +5,61 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Yeni Ekle", "Create", null, new { @class = "btn btn-success" })
 </p>
 <div class="form-group">
-
     <div class="row">
-        <div class="col-md-2" style="display: flex;">
+        <div class="col-md-4" style="display: flex;">
             @Html.DropDownList("Brands", null, htmlAttributes: new { @class = "form-control", @id = "dropBrands" })
             <div class="checkbox" style="margin: 1.5vh;">
                 <label><input type="checkbox" id="brandsCheckBox" value=""></label>
             </div>
         </div>
-        <div class="col-md-2" style="display: flex;">
+        <div class="col-md-4" style="display: flex;">
+            @Html.DropDownList("StatusId", null, htmlAttributes: new { @class = "form-control", @id = "dropStatus" })
+            <div class="checkbox" style="margin: 1.5vh;">
+                <label><input type="checkbox" id="statusCheckBox" value=""></label>
+            </div>
+        </div>
+        <div class="col-md-4" style="display: flex;">
             @Html.DropDownList("Branches", null, htmlAttributes: new { @class = "form-control", @id = "dropBranches" })
             <div class="checkbox" style="margin: 1.5vh;">
                 <label><input type="checkbox" id="branchesCheckBox" value=""></label>
             </div>
         </div>
-        <div class="col-md-2" style="display: flex;">
+    </div>
+    <br />
+    <div class="row">
+
+        <div class="col-md-4" style="display: flex;">
             @Html.DropDownList("Firms", null, htmlAttributes: new { @class = "form-control", @id = "dropFirms" })
             <div class="checkbox" style="margin: 1.5vh;">
                 <label><input type="checkbox" id="firmsCheckBox" value=""></label>
             </div>
         </div>
-        <div class="col-md-2" style="display: flex;">
+        <div class="col-md-4" style="display: flex;">
             @Html.DropDownList("Users", null, htmlAttributes: new { @class = "form-control", @id = "dropUsers" })
             <div class="checkbox" style="margin: 1.5vh;">
                 <label><input type="checkbox" id="usersCheckBox" value=""></label>
             </div>
         </div>
-        <div class="col-md-2" style="display: flex;">
+        <div class="col-md-4" style="display: flex;">
             @Html.DropDownList("Models", null, htmlAttributes: new { @class = "form-control", @id = "dropModels" })
             <div class="checkbox" style="margin: 1.5vh;">
                 <label><input type="checkbox" id="modelCheckBox" value=""></label>
             </div>
         </div>
-        <button type="button" id="btnSearch"><i class="fa fa-search"></i></button>
+
+        <button type="submit" id="btnSearch" class="ws-button">Ara    <i class="fa fa-search"></i></button>
+
 
     </div>
-
 </div>
-@if (Model.Count() == 0)
+<h5>Toplam Ürün : <span style="font-size:5vh"> @ViewBag.Count</span></h5>
+
+@if (Model.Count() != 0)
 {
     <table class="table">
         <tr>
@@ -56,7 +67,7 @@
                 @Html.DisplayNameFor(model => model.Branches.BranchName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Brands.Code)
+                @Html.DisplayNameFor(model => model.Brands.BrandName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Firms.Name)
@@ -65,27 +76,14 @@
                 @Html.DisplayNameFor(model => model.ProductModels.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Types.Code)
+                @Html.DisplayNameFor(model => model.Types.Name)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Users.FirstLastName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Barcode)
+                @Html.DisplayNameFor(model => model.Statuses.Name)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateAcquired)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Warranty)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-         
             <th></th>
         </tr>
 
@@ -96,7 +94,7 @@
                     @Html.DisplayFor(modelItem => item.Branches.BranchName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Brands.Code)
+                    @Html.DisplayFor(modelItem => item.Brands.BrandName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Firms.Name)
@@ -105,25 +103,13 @@
                     @Html.DisplayFor(modelItem => item.ProductModels.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Types.Code)
+                    @Html.DisplayFor(modelItem => item.Types.Name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Users.FirstLastName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Barcode)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateAcquired)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Warranty)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
+                    @Html.DisplayFor(modelItem => item.Statuses.Name)
                 </td>
                 <td>
                     @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }) |
@@ -149,15 +135,17 @@ else
         var firmsCheckBox = $('#firmsCheckBox').is(":checked") ? 1 : 0;
         var usersCheckBox = $('#usersCheckBox').is(":checked") ? 1 : 0;
         var modelCheckBox = $('#modelCheckBox').is(":checked") ? 1 : 0;
+        var statusCheckBox = $('#statusCheckBox').is(":checked") ? 1 : 0;
 
         var dropBranches = $("#dropBranches option:selected").val();
         var dropBrands = $("#dropBrands option:selected").val();
         var dropFirms = $("#dropFirms option:selected").val();
         var dropUsers = $("#dropUsers option:selected").val();
         var dropModels = $("#dropModels option:selected").val();
+        var dropStatus = $("#dropStatus option:selected").val();
 
 
-        var route = "/Products/Search?checkBrand=" + brandsCheckBox + "&checkBranch=" + branchesCheckBox + "&checkFirm=" + firmsCheckBox + "&checkUser=" + usersCheckBox + "&checkModel=" + modelCheckBox + "&dropBranch=" + dropBranches + "&dropBrand=" + dropBrands + "&dropFirm=" + dropFirms + "&dropUser=" + dropUsers + "&dropModel=" + dropModels + "";
+        var route = "/Products/Search?checkBrand=" + brandsCheckBox + "&checkBranch=" + branchesCheckBox + "&checkFirm=" + firmsCheckBox + "&checkUser=" + usersCheckBox + "&checkModel=" + modelCheckBox + "&checkStatus=" + statusCheckBox + "&dropBranch=" + dropBranches + "&dropBrand=" + dropBrands + "&dropFirm=" + dropFirms + "&dropUser=" + dropUsers + "&dropModel=" + dropModels + "&dropStatus=" + dropStatus + "";
         window.location.href = route;
     });
 </script>

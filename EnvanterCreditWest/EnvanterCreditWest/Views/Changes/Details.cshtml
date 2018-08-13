@@ -12,19 +12,11 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.ChangeDetails.Type)
+            @Html.DisplayNameFor(model => model.Products.Barcode)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ChangeDetails.Type)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Products.Type)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Products.Type)
+            @Html.DisplayFor(model => model.Products.Barcode)
         </dd>
 
         <dt>
@@ -36,24 +28,25 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.Ip)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Description)
+            @Html.DisplayFor(model => model.Ip)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IP)
+            @Html.DisplayNameFor(model => model.LocalIpAddress)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IP)
+            @Html.DisplayFor(model => model.LocalIpAddress)
         </dd>
 
     </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit", "Delete", new { id = Model.Id }) |
+    @Html.ActionLink("Listeye Geri Dön", "Index")
 </p>

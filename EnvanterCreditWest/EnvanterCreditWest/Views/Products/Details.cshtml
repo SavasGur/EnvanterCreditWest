@@ -5,10 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Ürün Detayları</h2>
 
 <div>
-    <h4>Products</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -62,10 +61,14 @@
         <dt>
             @Html.DisplayNameFor(model => model.Barcode)
         </dt>
-
+        <dd>
+            <img src="@Model.BarcodeUrl" />
+            <a>Print Barcode</a>
+        </dd>
         <dd>
             @Html.DisplayFor(model => model.Barcode)
         </dd>
+
 
         <dt>
             @Html.DisplayNameFor(model => model.DateAcquired)
@@ -84,11 +87,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Status)
+            @Html.DisplayNameFor(model => model.Statuses.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Status)
+            @Html.DisplayFor(model => model.Statuses.Name)
         </dd>
 
         <dt>
@@ -104,12 +107,14 @@
         </dt>
 
         <dd>
-           <img src="@Model.InvoiceURL"/>
+            <img src="@Model.InvoiceURL" />
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Donanım Detayları", "Create", "ProductDetails", new { id = Model.Id }, new { @class = "btn btn-success" })
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }, new { @class = "btn btn-info" })
+    @Html.ActionLink("Değişiklikler", "PIndex", "ChangeDetails", new { id = Model.Id }, new { @class = "btn btn-warning" }) 
+    @Html.ActionLink("Listeye Geri Dön", "Index", null, new { @class = "btn btn-primary" })
 </p>

@@ -15,22 +15,15 @@ namespace EnvanterCreditWest.Models
         public int Id { get; set; }
 
         [DisplayName("Tarih")]
-        public string Date { get; set;  }
+        public DateTime? Date { get; set;  }
       
-
-        public int ChangesDetailsId { get; set; }
-
-        [DisplayName("Açıklama")]
-        public string Description { get; set; }
-
-        public string IP { get; set; }
+        public string Ip { get; set; }
 
         public int ProductId { get; set; }
 
         [ForeignKey("ProductId")]
         public virtual Products Products { get; set; }
 
-        [ForeignKey("ChangesDetailsId")]
-        public virtual ChangeDetails ChangeDetails { get; set; }
+        public string LocalIpAddress { get; set; }
     }
 }
