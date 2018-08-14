@@ -13,44 +13,6 @@
     <link href="~/css/sb-admin.css" rel="stylesheet">
     <script src="~/vendor/jquery/jquery.min.js"></script>
     <style>
-        .center-flex {
-            display: flex;
-            justify-content: center;
-        }
-
-        .center-west {
-            display: grid;
-            justify-content: center;
-        }
-
-        .maindiv-buttonbox {
-            border: solid rgba(0,0,0, 0.4);
-            background-color: whitesmoke;
-            border-radius: 7px;
-            border-width: thin;
-            position: relative;
-            width: 350px;
-            height: 370px;
-            margin: 20px;
-            transition-duration: 0.25s;
-            padding-top: 45px;
-            cursor: pointer;
-        }
-
-            .maindiv-buttonbox:hover {
-                opacity: 1;
-                border-radius: 7px;
-                position: relative;
-                width: 350px;
-                height: 370px;
-                margin: 20px;
-                transform: translateY(-10px);
-                transition-duration: 0.25s;
-                -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-                -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-                box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-            }
-
         .sidenav-toggler {
             position: fixed;
             height: 56px;
@@ -63,7 +25,6 @@
     </style>
 </head>
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
-
 
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
@@ -133,13 +94,8 @@
 
             </ul>
             <ul class="navbar-nav sidenav-toggler" style="left:0">
-                <li class="nav-item" style="
-    height: 56px;
-">
-                    <a class="nav-link text-center" id="sidenavToggler" style="
-    height:  56px;
-    padding-top: 1.25rem;
-">
+                <li class="nav-item" style="height: 56px;">
+                    <a class="nav-link text-center" id="sidenavToggler" style="height:56px; padding-top:1.25rem;">
                         <i class="fa fa-fw fa-caret-left"></i>
                     </a>
                 </li>
@@ -151,9 +107,7 @@
                                 width: 235px;
                                 color:  white;
                                 top: 20%;">
-
                 </li>
-
             </ul>
         </div>
     </nav>
@@ -171,29 +125,10 @@
         <a class="scroll-to-top rounded" href="#page-top">
             <i class="fa fa-angle-up"></i>
         </a>
-        <!-- Logout Modal-->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">�</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="login.html">Logout</a>
-                    </div>
-                </div>
-            </div>
-        </div>
         @RenderBody()
     </div>
 
     <!-- Bootstrap core JavaScript-->
-
     <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Core plugin JavaScript-->
     <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
