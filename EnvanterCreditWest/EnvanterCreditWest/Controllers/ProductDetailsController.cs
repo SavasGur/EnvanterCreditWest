@@ -33,16 +33,22 @@ namespace EnvanterCreditWest.Controllers
             {
                 return HttpNotFound();
             }
+
             return View(productDetails);
         }
 
         // GET: ProductDetails/Create
-        public ActionResult Create()
+        public ActionResult Create(int? Id)
         {
-            ViewBag.ProductId = new SelectList(db.Products, "Id", "TypeId");
+            var product = db.ProductDetails.FirstOrDefault(x => x.ProductId==Id);
+            if (product != null)
+                return RedirectToAction("Details/"+ product.Id);
+
+            ViewBag.Barcode = db.Products.Find(Id).Barcode;
+            ViewBag.ProductId =Id;
             return View();
         }
-
+        
         // POST: ProductDetails/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -50,6 +56,7 @@ namespace EnvanterCreditWest.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,ProductId,Ram,CPU,OS,Size")] ProductDetails productDetails)
         {
+            productDetails.ProductId = productDetails.Id;
             if (ModelState.IsValid)
             {
                 db.ProductDetails.Add(productDetails);
@@ -73,7 +80,9 @@ namespace EnvanterCreditWest.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ProductId = new SelectList(db.Products, "Id", "TypeId", productDetails.ProductId);
+
+            var productId = db.ProductDetails.Find(id).ProductId;
+            ViewBag.Barcode = db.Products.Find(productId).Barcode;
             return View(productDetails);
         }
 

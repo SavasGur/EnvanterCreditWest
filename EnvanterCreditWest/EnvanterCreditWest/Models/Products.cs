@@ -14,7 +14,6 @@ namespace EnvanterCreditWest.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        
         [Required]
         [DisplayName("Marka")]
         public int BrandId { get; set; }
@@ -23,6 +22,8 @@ namespace EnvanterCreditWest.Models
 
         [DisplayName("Barkod")]
         public string Barcode { get; set; }
+
+        public string BarcodeUrl { get; set; }
 
         [Required]
         [DisplayName("Şube")]
@@ -39,9 +40,8 @@ namespace EnvanterCreditWest.Models
         [DisplayName("Firma Adı")]
         public int FirmId { get; set; }
 
-        [DisplayName("Aktif")]
         [Required]
-        public bool Status { get; set; }
+        public int StatusId { get; set; }
 
         [DisplayName("Fiyat")]
         public float Price { get; set; }
@@ -65,6 +65,9 @@ namespace EnvanterCreditWest.Models
 
         [ForeignKey("BranchId")]
         public virtual Branches Branches { get; set; }
+
+        [ForeignKey("StatusId")]
+        public virtual Statuses Statuses { get; set; }
 
         [ForeignKey("FirmId")]
         public virtual Firms Firms { get; set; }

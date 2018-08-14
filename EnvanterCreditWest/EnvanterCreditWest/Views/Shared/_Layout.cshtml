@@ -12,7 +12,36 @@
     <link href="~/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
     <link href="~/css/sb-admin.css" rel="stylesheet">
     <script src="~/vendor/jquery/jquery.min.js"></script>
+    
     <style>
+        .ws-button {
+            float: left;
+            width: 15%;
+            margin-left: auto;
+            padding: 10px;
+            background: #2196F3;
+            color: white;
+            font-size: 17px;
+            border: 1px solid grey;
+            border-left: none; /* Prevent double borders */
+            cursor: pointer;
+            float: right;
+            margin-right: 7vh;
+            margin-top: 2vh;
+            margin-bottom: 2vh;
+        }
+
+        form.example button:hover {
+            background: #0b7dda;
+        }
+
+        /* Clear floats */
+        form.example::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
         .center-flex {
             display: flex;
             justify-content: center;
@@ -60,6 +89,18 @@
             flex-direction: column;
             bottom: 0;
         }
+
+        hr {
+            padding: 0;
+            border: none;
+            height: 1px;
+            background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+            background-image: -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+            background-image: -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+            background-image: -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+            color: #333;
+            text-align: center;
+        }
     </style>
 </head>
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -89,13 +130,6 @@
                     </a>
                 </li>
 
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Cihaz Detayları">
-                    <a class="nav-link" href="/ProductDetails/Index">
-                        <i class="fa fa-fw fa-microchip"></i>
-                        <span class="nav-link-text">Cihaz Detayları</span>
-                    </a>
-                </li>
-
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Şubeler">
                     <a class="nav-link" href="/Branches/Index">
                         <i class="fa fa-fw fa-location-arrow"></i>
@@ -121,13 +155,6 @@
                     <a class="nav-link" href="/Brands/Index">
                         <i class="fa fa-fw fa-map-signs"></i>
                         <span class="nav-link-text">Markalar</span>
-                    </a>
-                </li>
-
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Değişiklikler">
-                    <a class="nav-link" href="/Changes/Index">
-                        <i class="fa fa-fw fa-exchange"></i>
-                        <span class="nav-link-text">Değişiklikler</span>
                     </a>
                 </li>
 
