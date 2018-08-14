@@ -1,118 +1,67 @@
-﻿<div id="modals">
+﻿<style>
+    .maindiv-buttonbox {
+        border: solid rgba(0,0,0, 0.4);
+        background-color: whitesmoke;
+        border-radius: 7px;
+        border-width: thin;
+        position: relative;
+        width: 350px;
+        height: 370px;
+        margin: 20px;
+        transition-duration: 0.25s;
+        padding-top: 45px;
+        cursor: pointer;
+    }
+
+        .maindiv-buttonbox:hover {
+            opacity: 1;
+            border-radius: 7px;
+            position: relative;
+            width: 350px;
+            height: 370px;
+            margin: 20px;
+            transform: translateY(-10px);
+            transition-duration: 0.25s;
+            -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+            -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+            box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+        }
+
+     .center-flex {
+        display: flex;
+        justify-content: center;
+    }
+</style>
+<div id="modals">
     <div id="addmodal" class="modal fade" role="dialog" style="display: none;" aria-hidden="true;">
-        <div class="modal-dialog" style="
-    width: 433px;
-">
+        <div class="modal-dialog" style="width: 433px;">
 
-            <!-- Modal content-->
+         <!-- Modal content-->
             <div class="modal-content">
-                <div class="modal-header" style="
-">
-                    <h4 class="modal-title" style="margin-left: 1rem;">Düzenle</h4><button type="button" class="close" data-dismiss="modal">x</button>
-
-
+                <div class="modal-header">
+                    <h4 class="modal-title" style="margin-left: 1rem;">Düzenle</h4>
+                    <button type="button" class="close" data-dismiss="modal">x</button>
                 </div>
                 <div class="modal-body" style="padding-right: 3rem;padding-left:  3rem;">
                     <a class="btn btn-primary" href="/Products/Create" style="width:  150px;">
                         Yeni Cihaz Kaydı
                     </a>
 
-                    <a class="btn btn-primary" href="/Branches/Create" style="
-    float:  right;
-    width: 150px;
-">Yeni Şube Ekle</a>
+                    <a class="btn btn-primary" href="/Branches/Create" style="float: right;width: 150px;">
+                    Yeni Şube Ekle
+                    </a>
+                    <br>
                     <br>
 
-                    <br>
                     <a class="btn btn-primary" href="/Firms/Create" style="width:  150px;">
                     Firma Ekle
                     </a>
+
                     <a class="btn btn-primary" href="/Users/Create" style="float:  right;width: 150px;">
                         Kullanıcı Kaydı
                     </a>
-
-
                 </div>
-                <div class="modal-footer" style="
-">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Geri</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <div id="deletemodal" class="modal fade" role="dialog" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header" style="
-">
-                    <h4 class="modal-title" style="margin-left: 1rem;">Delete selected?</h4><button type="button" class="close" data-dismiss="modal">�</button>
-
-
-                </div>
-                <div class="modal-footer" style="
-">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Confirm</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <div id="editmodal" class="modal fade" role="dialog" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header" style="
-">
-                    <h4 class="modal-title" style="margin-left: 1rem;">Edit</h4><button type="button" class="close" data-dismiss="modal">�</button>
-
-
-                </div>
-                <div class="modal-body" style="
-">
-                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#addmodal" data-dismiss="modal" style="
-    margin-right: 10px; margin-left:15px;
-">
-                        Change user and/or branch
-                    </button>
-                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#deletemodal" data-dismiss="modal" style="
-    margin-right: 10px; margin-left:15px;
-">
-                        Change product details
-                    </button>
-
-                </div>
-                <div class="modal-footer" style="
-">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Geri</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <div id="exportmodal" class="modal fade" role="dialog" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header" style="
-">
-                    <h4 class="modal-title" style="margin-left: 1rem;">Add New</h4><button type="button" class="close" data-dismiss="modal">�</button>
-
-
-                </div>
-                <div class="modal-body" style="
-">
-
-
-
-                </div>
-                <div class="modal-footer" style="
-">
+                <div class="modal-footer" style="">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Geri</button>
                 </div>
             </div>
@@ -124,11 +73,8 @@
 
             <!-- Modal content-->
             <div class="modal-content">
-                <div class="modal-header" style="
-">
+                <div class="modal-header">
                     <h4 class="modal-title" style="margin-left: 1rem;">Şubeler/Depolar</h4><button type="button" class="close" data-dismiss="modal">x</button>
-
-
                 </div>
                 <div class="modal-body" style="padding-right: 1rem;padding-left: 1rem;display:  flex;">
 
@@ -141,8 +87,7 @@
 
                 </div>
 
-                <div class="modal-footer" style="
-">
+                <div class="modal-footer" style="">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Geri</button>
                 </div>
             </div>
