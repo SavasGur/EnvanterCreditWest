@@ -19,9 +19,9 @@
     @Html.HiddenFor(model => model.Id)
 
     <div class="form-group">
-        @Html.LabelFor(model => model.ProductId, "ProductId", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.ProductId, "Barkod", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @ViewBag.Barcode
+            <input value="@ViewBag.Barcode" disabled="disabled" class="form-control"/>
         </div>
     </div>
 
@@ -59,16 +59,9 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
+            <input type="submit" value="Güncelle" class="btn btn-success" />
+            @Html.ActionLink("Ürüne git", "Details", "Products", new { id = Model.ProductId }, new { @class = "btn btn-primary" })
         </div>
     </div>
 </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
 }

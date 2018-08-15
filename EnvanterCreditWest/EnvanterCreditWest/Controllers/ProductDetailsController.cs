@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using EnvanterCreditWest.Models;
+using EnvanterCreditWest.Service;
 
 namespace EnvanterCreditWest.Controllers
 {
@@ -46,7 +47,11 @@ namespace EnvanterCreditWest.Controllers
 
             ViewBag.Barcode = db.Products.Find(Id).Barcode;
             ViewBag.ProductId =Id;
-            return View();
+
+            return View(new ProductDetails
+            {
+                ProductId=Id ?? 0
+            });
         }
         
         // POST: ProductDetails/Create
@@ -93,10 +98,69 @@ namespace EnvanterCreditWest.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,ProductId,Ram,CPU,OS,Size")] ProductDetails productDetails)
         {
+
             if (ModelState.IsValid)
             {
-                db.Entry(productDetails).State = EntityState.Modified;
+                var get = db.ProductDetails.Find(productDetails.Id);
+
+                var changes = new Changes
+                {
+                    LocalIpAddress = LocalIPAddress.Get(),
+                    Date = DateTime.Now.Date,
+                    ProductId = get.Products.Id,
+                    Ip = "???"
+                };
+
+                if (get.OS != productDetails.OS)
+                {
+                    db.ChangeDetails.Add(new ChangeDetails
+                    {
+                        Changes = changes,
+                        Description = "OS değişiklik yapıldı. ---- " + get.OS + " --> " + productDetails.OS
+                    });
+                    get.OS = productDetails.OS;
+                }
+
+                if (get.Ram != productDetails.Ram)
+                {
+                    db.ChangeDetails.Add(new ChangeDetails
+                    {
+                        Changes = changes,
+                        Description = "Ram değişiklik yapıldı. ---- " + get.Ram + " --> " + productDetails.Ram
+                    });
+                    get.Ram = productDetails.Ram;
+                }
+                if (get.Ram != productDetails.Ram)
+                {
+                    db.ChangeDetails.Add(new ChangeDetails
+                    {
+                        Changes = changes,
+                        Description = "Ram değişiklik yapıldı. ---- " + get.Ram + " --> " + productDetails.Ram
+                    });
+                    get.Ram = productDetails.Ram;
+                }
+                if (get.Size != productDetails.Size)
+                {
+                    db.ChangeDetails.Add(new ChangeDetails
+                    {
+                        Changes = changes,
+                        Description = "Boyut değişiklik yapıldı. ---- " + get.Size + " --> " + productDetails.Size
+                    });
+                    get.Size = productDetails.Size;
+                }
+
+                if (get.CPU != productDetails.CPU)
+                {
+                    db.ChangeDetails.Add(new ChangeDetails
+                    {
+                        Changes = changes,
+                        Description = "CPU değişiklik yapıldı. ---- " + get.CPU + " --> " + productDetails.CPU
+                    });
+                    get.CPU = productDetails.CPU;
+                }
                 db.SaveChanges();
+
+
                 return RedirectToAction("Index");
             }
             ViewBag.ProductId = new SelectList(db.Products, "Id", "TypeId", productDetails.ProductId);

@@ -61,6 +61,7 @@
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Activities" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -171,6 +172,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Bind\ProductBind.cs" />
     <Compile Include="Controllers\BranchesController.cs" />
     <Compile Include="Controllers\BrandsController.cs" />
     <Compile Include="Controllers\ChangeDetailsController.cs" />
@@ -237,6 +239,7 @@
     <Content Include="Resources\file.png" />
     <Content Include="Resources\folder.png" />
     <Content Include="Resources\info.png" />
+    <Content Include="Resources\loading.gif" />
     <Content Include="Resources\maps.png" />
     <Content Include="Resources\office-material.png" />
     <Content Include="Resources\save.png" />
@@ -262,6 +265,8 @@
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\excel-gen.js" />
+    <Content Include="Scripts\FileSaver.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -273,6 +278,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <None Include="Scripts\linq-vsdoc.js" />
+    <Content Include="Scripts\linq.js" />
+    <Content Include="Scripts\linq.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
@@ -392,11 +400,6 @@
     <Content Include="Views\Branches\Details.cshtml" />
     <Content Include="Views\Branches\Edit.cshtml" />
     <Content Include="Views\Branches\Index.cshtml" />
-    <Content Include="Views\ProductModels\Create.cshtml" />
-    <Content Include="Views\ProductModels\Delete.cshtml" />
-    <Content Include="Views\ProductModels\Details.cshtml" />
-    <Content Include="Views\ProductModels\Edit.cshtml" />
-    <Content Include="Views\ProductModels\Index.cshtml" />
     <Content Include="Views\Products\Create.cshtml" />
     <Content Include="Views\Products\Delete.cshtml" />
     <Content Include="Views\Products\Details.cshtml" />
@@ -428,6 +431,12 @@
     <Content Include="Views\Statuses\Details.cshtml" />
     <Content Include="Views\Statuses\Edit.cshtml" />
     <Content Include="Views\Statuses\Index.cshtml" />
+    <Content Include="Views\ProductModels\Create.cshtml" />
+    <Content Include="Views\ProductModels\Delete.cshtml" />
+    <Content Include="Views\ProductModels\Details.cshtml" />
+    <Content Include="Views\ProductModels\Edit.cshtml" />
+    <Content Include="Views\ProductModels\Index.cshtml" />
+    <Content Include="Views\Products\ProductDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

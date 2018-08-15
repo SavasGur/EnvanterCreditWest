@@ -1,0 +1,55 @@
+﻿@model EnvanterCreditWest.Models.ProductDetails
+
+@if (Model.Id == -1)
+{
+    <h4>Donanım Detayları</h4>
+    <hr />
+    <h6>Donanım detayları eklenmemiştir.</h6>
+    @Html.ActionLink("Ekle", "Create", "ProductDetails", new { id = Model.ProductId }, new { @class = "btn btn-warning" })
+}
+else
+{
+    <div>
+        <h4>Donanım Detayları</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Ram)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Ram)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CPU)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CPU)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.OS)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.OS)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Size)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Size)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Düzenle", "Edit", "ProductDetails", new { id = Model.Id }, new { @class = "btn btn-warning" })
+    </p>
+}
+
+

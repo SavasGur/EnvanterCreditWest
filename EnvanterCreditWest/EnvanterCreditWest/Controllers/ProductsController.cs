@@ -1,22 +1,27 @@
 ﻿using System;
+using System.Activities;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BarcodeLib;
+using EnvanterCreditWest.Bind;
 using EnvanterCreditWest.Models;
 using EnvanterCreditWest.Service;
+using Newtonsoft.Json;
 
 namespace EnvanterCreditWest.Controllers
 {
     public class ProductsController : Controller
     {
         private EnvanterCreditWestContext db = new EnvanterCreditWestContext();
+        System.Drawing.Image printImg;
 
         // GET: Products
         public ActionResult Index()
@@ -93,11 +98,60 @@ namespace EnvanterCreditWest.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Products products = db.Products.Find(id);
+
+            var productsDetail = new ProductDetails();
+
+            productsDetail = db.ProductDetails.FirstOrDefault(x => x.ProductId==products.Id);
+
             if (products == null)
             {
                 return HttpNotFound();
             }
-            return View(products);
+            if (productsDetail == null)
+                productsDetail = new ProductDetails{Id = -1,ProductId=products.Id};
+
+            switch(products.Currency)
+            {
+                case 0:
+                    ViewBag.Currency = "₺ (TL)"; break;
+                case 1:
+                    ViewBag.Currency = "$ (USD)";break;
+                case 2:
+                    ViewBag.Currency = "€ (EUR)"; break;
+                case 3:
+                    ViewBag.Currency = "£ (STG)"; break;
+            }
+
+            return View(new ProductBind
+            {
+                Products = products,
+                ProductDetails=productsDetail
+            });
+        }
+
+        public ActionResult PrintBarcode(int? id)
+        {
+            var getUrl = db.Products.Find(id)?.BarcodeUrl;
+
+            if(getUrl!=null)
+            {
+                PrintDocument pd = new PrintDocument();
+                pd.PrintPage += Pd_PrintPage;
+                var url = Path.Combine(Server.MapPath("~/Resources"), Path.GetFileName(getUrl));
+                printImg = System.Drawing.Image.FromFile(url);
+                pd.Print();
+                return null;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        private void Pd_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            Point loc = new Point(100, 100);
+            e.Graphics.DrawImage(printImg, loc);
         }
 
         // GET: Products/Create
@@ -110,6 +164,28 @@ namespace EnvanterCreditWest.Controllers
             ViewBag.TypeId = new SelectList(db.Types, "Id", "Name");
             ViewBag.UserId = new SelectList(db.Users, "Id", "FirstLastName");
             ViewBag.StatusId = new SelectList(db.Statuses, "Id", "Name");
+            ViewBag.Currency = new SelectList(new List<SelectListItem>
+                               {
+                                    new SelectListItem { Selected = true, Text = "₺ (TL) ", Value = "0"},
+                                    new SelectListItem { Selected = false, Text = "$ (USD) ", Value = "1"},
+                                    new SelectListItem { Selected = false, Text = "€ (EUR)", Value = "2"},
+                                    new SelectListItem { Selected = false, Text = "£ (STG)", Value = "3"},
+                               },
+                                "Value", "Text", 0);
+
+            var list = new List<TypeToModels>();
+            var modelsList = db.ProductModels.ToList();
+            foreach (var item in modelsList)
+            {
+                list.Add(new TypeToModels
+                {
+                    ModelId=item.Id,
+                    TypeId=item.TypeId
+                });
+            }
+
+            ViewBag.TypeToModels = JsonConvert.SerializeObject(list);
+
 
             return View();
         }
@@ -119,28 +195,19 @@ namespace EnvanterCreditWest.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(HttpPostedFileBase invoiceFile,[Bind(Include = "Id,BrandId,ProductModelId,Barcode,BranchId,UserId,DateAcquired,Warranty,FirmId,Status,Price,InvoiceURL,TypeId,StatusId")] Products products)
+        public ActionResult Create(HttpPostedFileBase invoiceFile,[Bind(Include = "Id,BrandId,ProductModelId,Barcode,BranchId,UserId,DateAcquired,Warranty,FirmId,Status,Price,InvoiceURL,TypeId,StatusId,Currency")] Products products)
         {
-            ViewBag.BranchId = new SelectList(db.Branches, "Id", "BranchName", products.BranchId);
-            ViewBag.BrandId = new SelectList(db.Brands, "Id", "BrandName", products.BrandId);
-            ViewBag.FirmId = new SelectList(db.Firms, "Id", "Name", products.FirmId);
-            ViewBag.ProductModelId = new SelectList(db.ProductModels, "Id", "Name", products.ProductModelId);
-            ViewBag.TypeId = new SelectList(db.Types, "Id", "Name", products.TypeId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstLastName", products.UserId);
-            ViewBag.StatusId = new SelectList(db.Statuses, "Id", "Name",products.StatusId);
-
-
-            var code = db.Types.First(x => x.Id == products.TypeId).Code;
-            code += db.Brands.First(x => x.Id == products.BrandId).Code;
-            code += db.ProductModels.First(x => x.Id == products.ProductModelId).Code;
-            code += RandomStringGenerator.RandomInt();
-
-            products.Barcode = code;
-            products.BarcodeUrl = CreateBarcode(code);
-
             products.InvoiceURL = "";
             if (ModelState.IsValid)
             {
+                var code = db.Types.First(x => x.Id == products.TypeId).Code;
+                code += db.Brands.First(x => x.Id == products.BrandId).Code;
+                code += db.ProductModels.First(x => x.Id == products.ProductModelId).Code;
+                code += RandomStringGenerator.RandomInt();
+
+                products.Barcode = code;
+                products.BarcodeUrl = CreateBarcode(code);
+
                 if (invoiceFile != null)
                 {
                     var extension = Path.GetExtension(invoiceFile.FileName);
@@ -161,6 +228,22 @@ namespace EnvanterCreditWest.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            ViewBag.BranchId = new SelectList(db.Branches, "Id", "BranchName", products.BranchId);
+            ViewBag.BrandId = new SelectList(db.Brands, "Id", "BrandName", products.BrandId);
+            ViewBag.FirmId = new SelectList(db.Firms, "Id", "Name", products.FirmId);
+            ViewBag.ProductModelId = new SelectList(db.ProductModels, "Id", "Name", products.ProductModelId);
+            ViewBag.TypeId = new SelectList(db.Types, "Id", "Name", products.TypeId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstLastName", products.UserId);
+            ViewBag.StatusId = new SelectList(db.Statuses, "Id", "Name", products.StatusId);
+            ViewBag.Currency = new SelectList(new List<SelectListItem>
+                               {
+                                    new SelectListItem { Selected = true, Text = "₺ (TL) ", Value = "0"},
+                                    new SelectListItem { Selected = false, Text = "$ (USD) ", Value = "1"},
+                                    new SelectListItem { Selected = false, Text = "€ (EUR)", Value = "2"},
+                                    new SelectListItem { Selected = false, Text = "£ (STG)", Value = "3"},
+                               },
+                    "Value", "Text", products.Currency);
 
             return View(products);
         }
@@ -184,7 +267,14 @@ namespace EnvanterCreditWest.Controllers
             ViewBag.TypeId = new SelectList(db.Types, "Id", "Code", products.TypeId);
             ViewBag.UserId = new SelectList(db.Users, "Id", "FirstLastName", products.UserId);
             ViewBag.StatusId = new SelectList(db.Statuses, "Id", "Name", products.StatusId);
-
+            ViewBag.Currency = new SelectList(new List<SelectListItem>
+                               {
+                                    new SelectListItem { Selected = true, Text = "₺ (TL) ", Value = "0"},
+                                    new SelectListItem { Selected = false, Text = "$ (USD) ", Value = "1"},
+                                    new SelectListItem { Selected = false, Text = "€ (EUR)", Value = "2"},
+                                    new SelectListItem { Selected = false, Text = "£ (STG)", Value = "3"},
+                               },
+                    "Value", "Text", products.Currency);
 
             return View(products);
         }
@@ -194,7 +284,7 @@ namespace EnvanterCreditWest.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,BrandId,ProductModelId,Barcode,BranchId,UserId,DateAcquired,Warranty,FirmId,Status,Price,InvoiceURL,TypeId,StatusId")] Products products)
+        public ActionResult Edit([Bind(Include = "Id,BrandId,ProductModelId,Barcode,BranchId,UserId,DateAcquired,Warranty,FirmId,Status,Price,InvoiceURL,TypeId,StatusId,Currency")] Products products)
         {
 
             if (ModelState.IsValid)
@@ -343,6 +433,17 @@ namespace EnvanterCreditWest.Controllers
                     getProduct.DateAcquired = products.DateAcquired;
                 }
 
+                if (getProduct.Currency != products.Currency)
+                {
+                    db.ChangeDetails.Add(new ChangeDetails
+                    {
+                        Changes = changes,
+                        Description = "Kur tarihi değişiklik yapıldı. " + getProduct.Currency + " --> " + products.Currency
+                    });
+
+                    getProduct.Currency = products.Currency;
+                }
+
                 if (getProduct.Warranty != products.Warranty)
                 {
                     db.ChangeDetails.Add(new ChangeDetails
@@ -364,7 +465,14 @@ namespace EnvanterCreditWest.Controllers
             ViewBag.TypeId = new SelectList(db.Types, "Id", "Code", products.TypeId);
             ViewBag.UserId = new SelectList(db.Users, "Id", "FirstLastName", products.UserId);
             ViewBag.StatusId = new SelectList(db.Statuses, "Id", "Name", products.StatusId);
-
+            ViewBag.Currency = new SelectList(new List<SelectListItem>
+                               {
+                                    new SelectListItem { Selected = true, Text = "₺ (TL) ", Value = "0"},
+                                    new SelectListItem { Selected = false, Text = "$ (USD) ", Value = "1"},
+                                    new SelectListItem { Selected = false, Text = "€ (EUR)", Value = "2"},
+                                    new SelectListItem { Selected = false, Text = "£ (STG)", Value = "3"},
+                               },
+                                "Value", "Text", products.Currency);
 
             return View(products);
         }

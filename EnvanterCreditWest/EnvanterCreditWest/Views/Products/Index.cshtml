@@ -9,6 +9,9 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+
+
 <div class="form-group">
     <div class="row">
         <div class="col-md-4" style="display: flex;">
@@ -52,12 +55,17 @@
             </div>
         </div>
 
-        <button type="submit" id="btnSearch" class="ws-button">Ara    <i class="fa fa-search"></i></button>
+        <button type="submit" id="btnSearch" class="ws-button">Ara<i class="fa fa-search"></i></button>
 
+    </div>
+</div>
 
+<div class="ws-button" id="excelExport">
+    <a>Export Excel</a>
+    <img src="https://cdn2.iconfinder.com/data/icons/logos-brands-4/24/logo_brand_brands_logos_excel-512.png" width="48px" height="48px"/>
 </div>
-</div>
-<table class="table">
+
+<table class="table" id="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Branches.BranchName)
@@ -104,9 +112,12 @@
         <td>
             @Html.DisplayFor(modelItem => item.Users.FirstLastName)
         </td>
-        <th>
+        <td>
             @Html.DisplayFor(modelItem => item.Statuses.Name)
-        </th>
+        </td>
+        <td style="visibility:hidden;">
+            @Html.DisplayFor(modelItem => item.Statuses.Name)
+        </td>
         <td>
             @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }) |
             @Html.ActionLink("Detaylar", "Details", new { id = item.Id }) |
@@ -118,6 +129,17 @@
 
 </table>
 <script>
+
+    myExcel = new ExcelGen({
+              "src_id": "table",
+              "show_header": true
+    });
+
+    $("#excelExport").click(function () {
+        alert();
+        myExcel.generate();
+    });
+
     $("#btnSearch").click(function () {
         var branchesCheckBox = $('#branchesCheckBox').is(":checked") ? 1 : 0;
         var brandsCheckBox = $('#brandsCheckBox').is(":checked") ? 1 : 0;

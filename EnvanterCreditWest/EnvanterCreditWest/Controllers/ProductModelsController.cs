@@ -38,6 +38,7 @@ namespace EnvanterCreditWest.Controllers
         // GET: ProductModels/Create
         public ActionResult Create()
         {
+            ViewBag.TypeId = new SelectList(db.Types, "Id", "Name");
             return View();
         }
 
@@ -46,7 +47,7 @@ namespace EnvanterCreditWest.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Code")] ProductModels productModels)
+        public ActionResult Create([Bind(Include = "Id,Name,Code,TypeId")] ProductModels productModels)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +56,7 @@ namespace EnvanterCreditWest.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.TypeId = new SelectList(db.Types, "Id", "Name");
             return View(productModels);
         }
 
@@ -70,6 +72,8 @@ namespace EnvanterCreditWest.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.TypeId = new SelectList(db.Types, "Id", "Name");
             return View(productModels);
         }
 
@@ -78,7 +82,7 @@ namespace EnvanterCreditWest.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Code")] ProductModels productModels)
+        public ActionResult Edit([Bind(Include = "Id,Name,Code,TypeId")] ProductModels productModels)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +90,8 @@ namespace EnvanterCreditWest.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            ViewBag.TypeId = new SelectList(db.Types, "Id", "Name");
             return View(productModels);
         }
 

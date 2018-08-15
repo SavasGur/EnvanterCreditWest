@@ -1,120 +1,222 @@
-﻿@model EnvanterCreditWest.Models.Products
+﻿@model EnvanterCreditWest.Bind.ProductBind
 
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Ürün Detayları</h2>
-
 <div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Branches.BranchName)
-        </dt>
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Ürün Detayları</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Products.Branches.BranchName)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Branches.BranchName)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Products.Branches.BranchName)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Brands.Code)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Products.Brands.Code)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Brands.Code)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Products.Brands.Code)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Firms.Name)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Products.Firms.Name)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Firms.Name)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Products.Firms.Name)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ProductModels.Name)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Products.ProductModels.Name)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ProductModels.Name)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Products.ProductModels.Name)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Types.Code)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Products.Types.Code)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Types.Code)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Products.Types.Code)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Users.FirstLastName)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Products.Users.FirstLastName)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Users.FirstLastName)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Products.Users.FirstLastName)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Barcode)
-        </dt>
-        <dd>
-            <img src="@Model.BarcodeUrl" />
-            <a>Print Barcode</a>
-        </dd>
-        <dd>
-            @Html.DisplayFor(model => model.Barcode)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Products.Barcode)
+                </dt>
+                <dd>
+
+                    <button id="btnBarcode" class="btn btn-default">
+                        <img src="https://cdn4.iconfinder.com/data/icons/Primo_Icons/PNG/128x128/barcode.png"
+                             style="width:48px;height:48px" />
+                        Barkod Göster
+                    </button>
+
+                    <div class="cw-button">
+                        @Ajax.ActionLink("Print Barkod", "PrintBarcode", "Products",  new { id = Model.Products.Id },
+                                           new AjaxOptions
+                                           {
+                                               HttpMethod = "GET",
+                                               InsertionMode = InsertionMode.Replace,
+                                               OnBegin = "SetLoading();",
+                                               OnComplete="SetCompleted();"
+                                           },
+                                           new { @class = "btn btn-default" })
+                        <img src="https://cdn3.iconfinder.com/data/icons/snowish/128x128/devices/printer.png"
+                             style="width:48px;height:48px" />
+                    </div>
+
+                </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Products.Barcode)
+                </dd>
 
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DateAcquired)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Products.DateAcquired)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DateAcquired)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Products.DateAcquired)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Warranty)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Products.Warranty)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Warranty)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Products.Warranty)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Statuses.Name)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Products.Statuses.Name)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Statuses.Name)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Products.Statuses.Name)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Products.Price)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Products.Price)
+                    @ViewBag.Currency
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.InvoiceURL)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Products.InvoiceURL)
+                </dt>
 
-        <dd>
-            <img src="@Model.InvoiceURL" />
-        </dd>
+                <dd>
+                    <button id="btnImg" class="btn btn-default">
+                        <img src="https://cdn1.iconfinder.com/data/icons/ecommerce-and-business-icon-set/256/invoice.png"
+                             style="width:48px;height:48px" />
+                        Fatura Göster
+                    </button>
+                </dd>
 
-    </dl>
+            </dl>
+
+        </div>
+        <div class="col-md-6">
+            @Html.Partial("ProductDetails", Model.ProductDetails)
+        </div>
+    </div>
 </div>
+
+<div class="fixed">
+    <span class="fixed-back" />
+    <i class="fas fa-times fa-3x fixed-close"></i>
+    <div class="fixed-inner">
+        <img src="@Model.Products.InvoiceURL" width="100%" />
+    </div>
+</div>
+
+<div class="fixed">
+    <span class="fixed-back" />
+    <i class="fas fa-times fa-3x fixed-close"></i>
+    <div class="fixed-inner">
+        <img src="@Model.Products.BarcodeUrl" width="100%" />
+    </div>
+</div>
+
+<div class="fixed">
+    <span class="fixed-back" />
+    <i class="fas fa-times fa-3x fixed-close"></i>
+    <div class="fixed-inner">
+        <img src="~/Resources/loading.gif" width="100%" />
+    </div>
+</div>
+
+
 <p>
-    @Html.ActionLink("Donanım Detayları", "Create", "ProductDetails", new { id = Model.Id }, new { @class = "btn btn-success" })
-    @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }, new { @class = "btn btn-info" })
-    @Html.ActionLink("Değişiklikler", "PIndex", "ChangeDetails", new { id = Model.Id }, new { @class = "btn btn-warning" }) 
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.Products.Id }, new { @class = "btn btn-info" })
+    @Html.ActionLink("Değişiklikler", "PIndex", "ChangeDetails", new { id = Model.Products.Id }, new { @class = "btn btn-success" })
     @Html.ActionLink("Listeye Geri Dön", "Index", null, new { @class = "btn btn-primary" })
 </p>
+<script>
+    $("#btnImg").click(function () {
+        $(".fixed:eq(0)").css('visibility', 'visible');
+        $(".fixed:eq(0)").css('opacity', '1');
+
+        $(".fixed-back:eq(0)").css('visibility', 'visible');
+        $(".fixed-back:eq(0)").css('opacity', '1');
+
+        $(".fixed-inner:eq(0)").css('top', '50%');
+    });
+
+    $("#btnBarcode").click(function () {
+        $(".fixed:eq(1)").css('visibility', 'visible');
+        $(".fixed:eq(1)").css('opacity', '1');
+
+        $(".fixed-back:eq(1)").css('visibility', 'visible');
+        $(".fixed-back:eq(1)").css('opacity', '1');
+
+        $(".fixed-inner:eq(1)").css('top', '50%');
+    });
+
+
+    function SetLoading() {
+            $(".fixed:eq(2)").css('visibility', 'visible');
+            $(".fixed:eq(2)").css('opacity', '1');
+
+            $(".fixed-back:eq(2)").css('visibility', 'visible');
+            $(".fixed-back:eq(2)").css('opacity', '1');
+
+            $(".fixed-inner:eq(2)").css('top', '50%');
+    }
+    function SetCompleted() {
+        alert("done");  
+    }
+    $(".fixed-back").click(function () {
+
+        $(".fixed").css('visibility', 'hidden');
+        $(".fixed").css('opacity', '0');
+
+        $(".fixed-back").css('visibility', 'hidden');
+        $(".fixed-back").css('opacity', '0');
+
+        $(".fixed-inner").css('top', '-150%');
+    });
+
+</script>

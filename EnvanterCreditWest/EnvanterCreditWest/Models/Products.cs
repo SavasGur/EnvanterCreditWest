@@ -18,6 +18,7 @@ namespace EnvanterCreditWest.Models
         [DisplayName("Marka")]
         public int BrandId { get; set; }
 
+        [DisplayName("Model")]
         public int ProductModelId { get; set; }
 
         [DisplayName("Barkod")]
@@ -41,10 +42,14 @@ namespace EnvanterCreditWest.Models
         public int FirmId { get; set; }
 
         [Required]
+        [DisplayName("Durum")]
         public int StatusId { get; set; }
 
         [DisplayName("Fiyat")]
         public float Price { get; set; }
+
+        [DisplayName("Kur")]
+        public int Currency { get; set; }
 
         public string InvoiceURL { get; set; }
 
@@ -73,3 +78,4 @@ namespace EnvanterCreditWest.Models
         public virtual Firms Firms { get; set; }
     }
 }
+
