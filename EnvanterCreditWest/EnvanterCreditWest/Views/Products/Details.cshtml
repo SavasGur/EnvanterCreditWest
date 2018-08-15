@@ -20,11 +20,11 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.Products.Brands.Code)
+                    @Html.DisplayNameFor(model => model.Products.Brands.BrandName)
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.Products.Brands.Code)
+                    @Html.DisplayFor(model => model.Products.Brands.BrandName)
                 </dd>
 
                 <dt>
@@ -44,11 +44,11 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.Products.Types.Code)
+                    @Html.DisplayNameFor(model => model.Products.Types.Name)
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.Products.Types.Code)
+                    @Html.DisplayFor(model => model.Products.Types.Name)
                 </dd>
 
                 <dt>
@@ -63,14 +63,13 @@
                     @Html.DisplayNameFor(model => model.Products.Barcode)
                 </dt>
                 <dd>
-
-                    <button id="btnBarcode" class="btn btn-default">
+                    <div class="cw-btn" id="btnBarcode">
+                        <a>Barkod Göster</a>
                         <img src="https://cdn4.iconfinder.com/data/icons/Primo_Icons/PNG/128x128/barcode.png"
                              style="width:48px;height:48px" />
-                        Barkod Göster
-                    </button>
+                    </div>
 
-                    <div class="cw-button">
+                    <div class="cw-btn">
                         @Ajax.ActionLink("Print Barkod", "PrintBarcode", "Products",  new { id = Model.Products.Id },
                                            new AjaxOptions
                                            {
@@ -128,11 +127,18 @@
                 </dt>
 
                 <dd>
-                    <button id="btnImg" class="btn btn-default">
-                        <img src="https://cdn1.iconfinder.com/data/icons/ecommerce-and-business-icon-set/256/invoice.png"
-                             style="width:48px;height:48px" />
-                        Fatura Göster
-                    </button>
+                    @if (!string.IsNullOrEmpty(Model.Products.InvoiceURL))
+                    {
+                        <div class="cw-btn" id="btnImg">
+                            <a>Fatura Göster</a>
+                            <img src="https://cdn1.iconfinder.com/data/icons/ecommerce-and-business-icon-set/256/invoice.png"
+                                 style="width:48px;height:48px" />
+                        </div>
+                    }
+                    else
+                    {
+                        <a>Fatura kayıt edilmemiştir.</a>
+                    }
                 </dd>
 
             </dl>
@@ -205,8 +211,15 @@
 
             $(".fixed-inner:eq(2)").css('top', '50%');
     }
-    function SetCompleted() {
-        alert("done");  
+    function SetCompleted()
+    {
+        $(".fixed").css('visibility', 'hidden');
+        $(".fixed").css('opacity', '0');
+
+        $(".fixed-back").css('visibility', 'hidden');
+        $(".fixed-back").css('opacity', '0');
+
+        $(".fixed-inner").css('top', '-150%');
     }
     $(".fixed-back").click(function () {
 

@@ -31,6 +31,13 @@
         display: flex;
         justify-content: center;
     }
+    .menu-info > a {
+        margin-right: auto;
+        text-align: start;
+        display: block;
+        margin-left: 6vh;
+        line-height: 25px;
+    }
 </style>
 <div id="modals">
     <div id="addmodal" class="modal fade" role="dialog" style="display: none;" aria-hidden="true;">
@@ -138,12 +145,24 @@
                 Kayıt Yap
             </h3>
             
-            <ul style="color: #5a5a5a;font-size: 1rem;padding-left: 25%;padding-right: 10px;margin-top: 40px;text-align:  left;">
-                <li>Yeni Cihaz Kaydı</li>
-                <li>Yeni Şube Ekle</li>
-                <li>Firma Ekle</li>
-                <li>Kullanıcı Kaydı</li>
-            </ul>
+            <div class="menu-info">
+                <a>
+                    <img src="https://cdn0.iconfinder.com/data/icons/octicons/1024/primitive-dot-512.png" width="8" style="opacity:.5;margin:5px" />
+                    Yeni Cihaz Kaydı
+                </a>
+                <a>
+                    <img src="https://cdn0.iconfinder.com/data/icons/octicons/1024/primitive-dot-512.png" width="8" style="opacity:.5;margin:5px" />
+                    Yeni Şube Ekle
+                </a>
+                <a>
+                    <img src="https://cdn0.iconfinder.com/data/icons/octicons/1024/primitive-dot-512.png" width="8" style="opacity:.5;margin:5px" />
+                    Firma Ekle
+                </a>
+                <a>
+                    <img src="https://cdn0.iconfinder.com/data/icons/octicons/1024/primitive-dot-512.png" width="8" style="opacity:.5;margin:5px" />
+                    Kullanıcı Kaydı
+                </a>
+            </div>
 
         </div>
         <div class="maindiv-buttonbox" data-toggle="modal" data-target="#transmodal">
@@ -152,25 +171,37 @@
             <h3 style="margin-top: 10px;">
                 Şubeler/Depolar
             </h3>
-            
-            <ul style="color: #5a5a5a;font-size: 1rem;padding-left: 25%;padding-right: 10px;margin-top: 40px;text-align:  left;">
-                <li>Envanterleri Listele</li>
-                <li>Kullanıcıları Listele</li>
-                <li>Cihaz Transferi Yap</li>
-            </ul>
-
+            <div class="menu-info">
+                <a>
+                    <img src="https://cdn0.iconfinder.com/data/icons/octicons/1024/primitive-dot-512.png" width="8" style="opacity:.5;margin:5px" />
+                    Envanterleri Listele
+                </a>
+                <a>
+                    <img src="https://cdn0.iconfinder.com/data/icons/octicons/1024/primitive-dot-512.png" width="8" style="opacity:.5;margin:5px" />
+                    Kullanıcıları Listele
+                </a>
+                <a>
+                    <img src="https://cdn0.iconfinder.com/data/icons/octicons/1024/primitive-dot-512.png" width="8" style="opacity:.5;margin:5px" />
+                    Cihaz Transferi Yap
+                </a>
+            </div>
         </div>
         <div class="maindiv-buttonbox" data-toggle="modal" data-target="#searchmodal">
             <img src="~/Resources\search.png" style="width: 30%;">
             <h3 style="margin-top: 10px;">
                 Ara
             </h3>
-            
-            <ul style="color: #5a5a5a;font-size: 1rem;padding-left: 25%;padding-right: 10px;margin-top: 40px;text-align:  left;">
-            <li>Barkod Okut</li>
-            <li>Manuel giriş ile arama yap</li>
-            </ul>
 
+            <div class="menu-info">
+                <a>
+                    <img src="https://cdn0.iconfinder.com/data/icons/octicons/1024/primitive-dot-512.png" width="8" style="opacity:.5;margin:5px" />
+                    Barkod Okut
+                </a>
+                <a>
+                    <img src="https://cdn0.iconfinder.com/data/icons/octicons/1024/primitive-dot-512.png" width="8" style="opacity:.5;margin:5px" />
+                    Manuel giriş ile arama yap
+                </a>
+            </div>
         </div>
     </div>
 </div>

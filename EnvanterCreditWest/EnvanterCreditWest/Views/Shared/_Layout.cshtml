@@ -22,23 +22,6 @@
     <script src="~/Scripts/excel-gen.js"></script>
 
     <style>
-        .ws-button {
-            float: left;
-            width: 15%;
-            margin-left: auto;
-            padding: 10px;
-            background: #2196F3;
-            color: white;
-            font-size: 17px;
-            border: 1px solid grey;
-            border-left: none; /* Prevent double borders */
-            cursor: pointer;
-            float: right;
-            margin-right: 7vh;
-            margin-top: 2vh;
-            margin-bottom: 2vh;
-        }
-
         .nav-link {
             margin: 1vh !important;
         }
@@ -161,21 +144,43 @@
                 color: white;
             }
 
-        .cw-button {
+        .cw-btn {
             background-color: lightgray;
             border-radius: .5vh;
             display: inline-block;
-            padding: .7vh;
+            padding-right: 1vh;
+            padding-left: 1vh;
+            transition: .5s;
+            margin: 1vh;
+            cursor: pointer;
+            min-width: 165px;
+        }
+            .cw-btn > a {
+                color: black !important;
+                font-weight: 600;
+                font-size: 1.5vh;
+                margin: .5vh;
+            }
+
+            .cw-btn > img {
+                width: 48px;
+                height: 48px;
+                margin: .5vh;
+            }
+            .cw-btn:hover {
+                transform: translate(0,-5%);
+            }
+
+
+        .cw-btn-right {
+            margin-left: 5vh;
+            margin-left: auto;
+            margin-right: 5.5vh;
         }
 
-            .cw-button > a {
-                color: black;
-                font-weight: 400;
-            }
-            .cw-button > img{
-                width:48px;
-                height:48px;
-            }
+        .cw-btn-sm {
+            margin: 0;
+        }
     </style>
 </head>
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
