@@ -229,8 +229,10 @@
     <Compile Include="Models\Typeys.cs" />
     <Compile Include="Models\Users.cs" />
     <Content Include="Resources\add.png" />
-    <Content Include="Resources\Android-Barcode-Reader.png" />
+    <Content Include="Resources\add_1.png" />
     <Content Include="Resources\attach.png" />
+    <Content Include="Resources\barcode-scanner.png" />
+    <Content Include="Resources\barcode.png" />
     <Content Include="Resources\cart.png" />
     <Content Include="Resources\caution.png" />
     <Content Include="Resources\cwest.jpg" />
@@ -239,6 +241,7 @@
     <Content Include="Resources\favicon.ico" />
     <Content Include="Resources\file.png" />
     <Content Include="Resources\folder.png" />
+    <Content Include="Resources\funnel.png" />
     <Content Include="Resources\info.png" />
     <Content Include="Resources\loading.gif" />
     <Content Include="Resources\maps.png" />
