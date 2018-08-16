@@ -144,7 +144,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.DateAcquired, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-sm-8">
-            @Html.EditorFor(model => model.DateAcquired, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.DateAcquired, new { htmlAttributes = new { @class = "form-control", @placeholder="DD/MM/YYYY" } })
             @Html.ValidationMessageFor(model => model.DateAcquired, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -152,7 +152,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Warranty, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-sm-8">
-            @Html.EditorFor(model => model.Warranty, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.Warranty, new { htmlAttributes = new { @class = "form-control", @placeholder="DD/MM/YYYY" } })
             @Html.ValidationMessageFor(model => model.Warranty, "", new { @class = "text-danger" })
         </div>
     </div>
