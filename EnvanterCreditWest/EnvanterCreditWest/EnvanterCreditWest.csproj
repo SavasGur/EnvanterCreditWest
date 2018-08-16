@@ -177,6 +177,7 @@
     <Compile Include="Controllers\BrandsController.cs" />
     <Compile Include="Controllers\ChangeDetailsController.cs" />
     <Compile Include="Controllers\ChangesController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FirmsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductDetailsController.cs" />
@@ -438,6 +439,9 @@
     <Content Include="Views\ProductModels\Edit.cshtml" />
     <Content Include="Views\ProductModels\Index.cshtml" />
     <Content Include="Views\Products\ProductDetails.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Error\Interval.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
