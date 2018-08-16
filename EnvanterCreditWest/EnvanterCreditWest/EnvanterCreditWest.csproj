@@ -229,6 +229,7 @@
     <Compile Include="Models\Typeys.cs" />
     <Compile Include="Models\Users.cs" />
     <Content Include="Resources\add.png" />
+    <Content Include="Resources\Android-Barcode-Reader.png" />
     <Content Include="Resources\attach.png" />
     <Content Include="Resources\cart.png" />
     <Content Include="Resources\caution.png" />
