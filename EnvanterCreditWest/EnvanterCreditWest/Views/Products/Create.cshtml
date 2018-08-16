@@ -21,26 +21,6 @@
 <div class="form-horizontal">
     <h4>Cihaz Ekle</h4>
     <hr />
-
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-
-        @Html.LabelFor(model => model.BrandId, null, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="row">
-            <div class="col-sm-8">
-                @Html.DropDownList("BrandId", null, htmlAttributes: new { @class = "form-control", @id = "dropDownBrands" })
-                @Html.ValidationMessageFor(model => model.BrandId, "", new { @class = "text-danger" })
-            </div>
-            <div class="col-sm-2">
-                    <a href="/Brands/Create" class="btn btn-primary">
-                        <i class="fas fa-plus"></i>
-                        Marka Ekle
-                    </a>
-            </div>
-        </div>
-    </div>
-
-
     <div class="form-group">
         @Html.LabelFor(model => model.TypeId, null, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="row">
@@ -49,10 +29,10 @@
                 @Html.ValidationMessageFor(model => model.TypeId, "", new { @class = "text-danger" })
             </div>
             <div class="col-sm-2">
-                <a href="/Typeys/Create" class="btn btn-primary">
-                    <i class="fas fa-plus"></i>
-                    Tür Ekle
-                </a>
+                <div class="cw-btn cw-btn-sm">
+                        <i class="fas fa-plus"></i>
+                        <a href="/Typeys/Create">Tür Ekle</a>
+                </div>
             </div>
         </div>
     </div>
@@ -65,13 +45,34 @@
                 @Html.ValidationMessageFor(model => model.ProductModelId, "", new { @class = "text-danger" })
             </div>
             <div class="col-sm-2">
-                <a href="/ProductModels/Create" class="btn btn-primary">
+                <div class="cw-btn cw-btn-sm">
                     <i class="fas fa-plus"></i>
-                    Model Ekle
-                </a>
+                    <a href="/ProductModels/Create"> Model Ekle</a>
+                </div>
             </div>
         </div>
     </div>
+
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+
+        @Html.LabelFor(model => model.BrandId, null, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="row">
+            <div class="col-sm-8">
+                @Html.DropDownList("BrandId", null, htmlAttributes: new { @class = "form-control", @id = "dropDownBrands" })
+                @Html.ValidationMessageFor(model => model.BrandId, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-2">
+                <div class="cw-btn cw-btn-sm">
+                        <i class="fas fa-plus"></i>
+                        <a href="/Brands/Create">Marka Ekle</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 
     <div class="form-group">
@@ -82,10 +83,10 @@
                 @Html.ValidationMessageFor(model => model.BranchId, "", new { @class = "text-danger" })
             </div>
             <div class="col-sm-2">
-                <a href="/Branches/Create" class="btn btn-primary">
+                <div class="cw-btn cw-btn-sm">
                     <i class="fas fa-plus"></i>
-                    Şube Ekle
-                </a>
+                    <a href="/Branches/Create">Şube Ekle</a>
+                </div>
             </div>
         </div>
     </div>
@@ -98,10 +99,11 @@
                 @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
             </div>
             <div class="col-sm-2">
-                <a href="/Users/Create" class="btn btn-primary">
+                
+                <div class="cw-btn cw-btn-sm">
                     <i class="fas fa-plus"></i>
-                    Kullanıcı Ekle
-                </a>
+                    <a href="/Users/Create">Kullanıcı Ekle</a>
+                </div>
             </div>
         </div>
     </div>
@@ -113,10 +115,11 @@
                 @Html.ValidationMessageFor(model => model.FirmId, "", new { @class = "text-danger" })
             </div>
             <div class="col-sm-2">
-                <a href="/Firms/Create" class="btn btn-primary">
+               
+                <div class="cw-btn cw-btn-sm">
                     <i class="fas fa-plus"></i>
-                    Firma Ekle
-                </a>
+                    <a href="/Firms/Create">Firma Ekle</a>
+                </div>
             </div>
         </div>
     </div>
@@ -129,10 +132,11 @@
                 @Html.ValidationMessageFor(model => model.StatusId, "", new { @class = "text-danger" })
             </div>
             <div class="col-sm-2">
-                <a href="/Statuses/Create" class="btn btn-primary">
+               
+                <div class="cw-btn cw-btn-sm">
                     <i class="fas fa-plus"></i>
-                    Durum Ekle
-                </a>
+                    <a href="/Statuses/Create">Durum Ekle</a>
+                </div>
             </div>
         </div>
     </div>

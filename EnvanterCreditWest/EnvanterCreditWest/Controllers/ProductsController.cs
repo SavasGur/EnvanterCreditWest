@@ -40,7 +40,17 @@ namespace EnvanterCreditWest.Controllers
         public ActionResult Barcode(string barcode)
         {
             var products = db.Products.Include(p => p.Branches).Include(p => p.Firms).Include(p => p.Users).FirstOrDefault(x => x.Barcode == barcode);
-            return View("Details",products);
+            var productsDetail = new ProductDetails();
+            productsDetail = db.ProductDetails.FirstOrDefault(x => x.ProductId == products.Id);
+
+            if (productsDetail == null)
+                productsDetail = new ProductDetails { Id = -1, ProductId = products.Id };
+
+            return View("Details", new ProductBind
+            {
+                Products = products,
+                ProductDetails = productsDetail
+            });
         }
 
         public string CreateBarcode(string barcode = "")
