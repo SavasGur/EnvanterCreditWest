@@ -158,12 +158,13 @@ namespace EnvanterCreditWest.Controllers
             }
         }
 
-        private void Pd_PrintPage(object sender, PrintPageEventArgs e)
+        void Pd_PrintPage(object sender, PrintPageEventArgs e)
         {
             Point loc = new Point(100, 100);
             e.Graphics.DrawImage(printImg, loc);
         }
 
+        
         // GET: Products/Create
         public ActionResult Create()
         {
@@ -255,6 +256,20 @@ namespace EnvanterCreditWest.Controllers
                                },
                     "Value", "Text", products.Currency);
 
+
+            var list = new List<TypeToModels>();
+            var modelsList = db.ProductModels.ToList();
+            foreach (var item in modelsList)
+            {
+                list.Add(new TypeToModels
+                {
+                    ModelId = item.Id,
+                    TypeId = item.TypeId
+                });
+            }
+
+            ViewBag.TypeToModels = JsonConvert.SerializeObject(list);
+
             return View(products);
         }
 
@@ -274,7 +289,7 @@ namespace EnvanterCreditWest.Controllers
             ViewBag.BrandId = new SelectList(db.Brands, "Id", "BrandName", products.BrandId);
             ViewBag.FirmId = new SelectList(db.Firms, "Id", "Name", products.FirmId);
             ViewBag.ProductModelId = new SelectList(db.ProductModels, "Id", "Name", products.ProductModelId);
-            ViewBag.TypeId = new SelectList(db.Types, "Id", "Code", products.TypeId);
+            ViewBag.TypeId = new SelectList(db.Types, "Id", "Name", products.TypeId);
             ViewBag.UserId = new SelectList(db.Users, "Id", "FirstLastName", products.UserId);
             ViewBag.StatusId = new SelectList(db.Statuses, "Id", "Name", products.StatusId);
             ViewBag.Currency = new SelectList(new List<SelectListItem>
@@ -286,6 +301,21 @@ namespace EnvanterCreditWest.Controllers
                                },
                     "Value", "Text", products.Currency);
 
+
+
+            var list = new List<TypeToModels>();
+            var modelsList = db.ProductModels.ToList();
+            foreach (var item in modelsList)
+            {
+                list.Add(new TypeToModels
+                {
+                    ModelId = item.Id,
+                    TypeId = item.TypeId
+                });
+            }
+
+            ViewBag.TypeToModels = JsonConvert.SerializeObject(list);
+
             return View(products);
         }
 
@@ -294,21 +324,24 @@ namespace EnvanterCreditWest.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,BrandId,ProductModelId,Barcode,BranchId,UserId,DateAcquired,Warranty,FirmId,Status,Price,InvoiceURL,TypeId,StatusId,Currency")] Products products)
+        public ActionResult Edit(HttpPostedFileBase invoiceFile, [Bind(Include = "Id,BrandId,ProductModelId,Barcode,BranchId,UserId,DateAcquired,Warranty,FirmId,Status,Price,InvoiceURL,TypeId,StatusId,Currency")] Products products)
         {
 
             if (ModelState.IsValid)
             {
-                var getProduct = db.Products.Find(products.Id);
+             
 
+                var getProduct = db.Products.Find(products.Id);
                 var changes = new Changes
                 {
                     LocalIpAddress = LocalIPAddress.Get(),
                     Date = DateTime.Now.Date,
                     ProductId = products.Id,
-                    Ip="???"
+                    Ip = "???"
                 };
                 db.Changes.Add(changes);
+
+             
 
                 var code = db.Types.First(x => x.Id == products.TypeId).Code;
                 code += db.Brands.First(x => x.Id == products.BrandId).Code;
@@ -465,6 +498,31 @@ namespace EnvanterCreditWest.Controllers
                     getProduct.Warranty = products.Warranty;
                 }
 
+                if (invoiceFile != null)
+                {
+                    var extension = Path.GetExtension(invoiceFile.FileName);
+                    var imgName = getProduct.Barcode + extension;
+
+                    if(!string.IsNullOrEmpty(getProduct.InvoiceURL))
+                    {
+                        string pathOld = Path.Combine(Server.MapPath("~/Images"), Path.GetFileName(getProduct.InvoiceURL));
+                        if (System.IO.File.Exists(pathOld))
+                            System.IO.File.Delete(pathOld);
+                    }
+
+                    string pathNew = Path.Combine(Server.MapPath("~/Images"), Path.GetFileName(imgName));
+
+                    db.ChangeDetails.Add(new ChangeDetails
+                    {
+                        Changes = changes,
+                        Description = "Fatura resmi değişiklik yapıldı.  /Images/" + imgName + " --> " + getProduct.InvoiceURL
+                        
+                    });
+
+                    invoiceFile.SaveAs(pathNew);
+                    getProduct.InvoiceURL = "/Images/" + imgName;
+                }
+               
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -484,6 +542,20 @@ namespace EnvanterCreditWest.Controllers
                                },
                                 "Value", "Text", products.Currency);
 
+
+            var list = new List<TypeToModels>();
+            var modelsList = db.ProductModels.ToList();
+            foreach (var item in modelsList)
+            {
+                list.Add(new TypeToModels
+                {
+                    ModelId = item.Id,
+                    TypeId = item.TypeId
+                });
+            }
+
+            ViewBag.TypeToModels = JsonConvert.SerializeObject(list);
+
             return View(products);
         }
 
@@ -495,6 +567,7 @@ namespace EnvanterCreditWest.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Products products = db.Products.Find(id);
+          
             if (products == null)
             {
                 return HttpNotFound();
@@ -508,6 +581,12 @@ namespace EnvanterCreditWest.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Products products = db.Products.Find(id);
+            if (!string.IsNullOrEmpty(products.InvoiceURL))
+            {
+                string pathOld = Path.Combine(Server.MapPath("~/Images"), Path.GetFileName(products.InvoiceURL));
+                if (System.IO.File.Exists(pathOld))
+                    System.IO.File.Delete(pathOld);
+            }
             db.Products.Remove(products);
             db.SaveChanges();
             return RedirectToAction("Index");
