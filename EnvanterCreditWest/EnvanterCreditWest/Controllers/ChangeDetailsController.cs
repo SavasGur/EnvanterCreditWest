@@ -30,6 +30,8 @@ namespace EnvanterCreditWest.Controllers
             if (id != null)
                 changeDetails = db.ChangeDetails.Where(x => x.Changes.ProductId == id).Include(x => x.Changes.Products).Include(c => c.Changes).ToList();
 
+            ViewBag.ProductId = id;
+
             return View("Index",changeDetails);
         }
 

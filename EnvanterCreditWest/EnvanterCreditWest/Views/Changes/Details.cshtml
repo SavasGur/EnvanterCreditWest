@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Detaylar</h2>
 
 <div>
-    <h4>Changes</h4>
+   
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -46,7 +46,7 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Edit", "Delete", new { id = Model.Id }) |
-    @Html.ActionLink("Listeye Geri Dön", "Index")
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }, new { @class = "btn btn-outline-success" }) 
+    @Html.ActionLink("Sil", "Delete", new { id = Model.Id },new { @class = "btn btn-outline-danger" }) 
+    @Html.ActionLink("Listeye Geri Dön", "Index", null, new { @class = "btn btn-outline-primary" })
 </p>
