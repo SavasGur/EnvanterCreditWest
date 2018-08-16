@@ -41,6 +41,7 @@ else
 {
     <h3>Değişiklik yapılmamıştır.</h3>
     <p>
+        @Html.ActionLink("Ürüne git", "Details", "Products", new { id = @ViewBag.ProductId }, new { @class = "btn btn-primary" })
         @Html.ActionLink("Ürünlere geri dön", "Index", "Products", null, new { @class = "btn btn-success" })
     </p>
 }

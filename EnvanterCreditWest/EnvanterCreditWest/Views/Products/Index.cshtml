@@ -8,8 +8,8 @@
 <h2>Cihazlar Listesi</h2>
 <hr />
 
-<div class="cw-btn">
-    <a href="/Products/Create">Yeni Kayıt</a>
+<div class="cw-btn" id="YeniKayıt">
+    <a>Yeni Kayıt</a>
     <img src="https://cdn3.iconfinder.com/data/icons/tango-icon-library/48/list-add-512.png" width="48px" height="48px" />
 </div>
 <div class="cw-btn" id="filter">
@@ -165,9 +165,12 @@
 
     $("#filter").click(function () {
         if ($(".form-group").css('height') == "0px")
-            $(".form-group").css('height', '18vh');
+            $(".form-group").css('height', '23vh');
         else
             $(".form-group").css('height', '0');
+    });
+    $("#YeniKayıt").click(function () {
+        window.location.href = "/Products/Create";
     });
 
     $("#btnSearch").click(function () {
