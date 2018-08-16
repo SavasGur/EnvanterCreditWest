@@ -445,7 +445,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Binding\" />
     <Folder Include="Images\" />
     <Folder Include="Scripts\Resources\" />
   </ItemGroup>

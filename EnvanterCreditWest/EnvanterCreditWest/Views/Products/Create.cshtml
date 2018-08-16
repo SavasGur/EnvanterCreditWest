@@ -1,13 +1,5 @@
 ﻿@model EnvanterCreditWest.Models.Products
 
-@{
-                /**/
-
-                ViewBag.Title = "Create";
-                Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-
 @using (Html.BeginForm("Create", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()

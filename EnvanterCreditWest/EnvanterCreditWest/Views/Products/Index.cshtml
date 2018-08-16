@@ -1,14 +1,10 @@
 ﻿@model IEnumerable<EnvanterCreditWest.Models.Products>
 
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
 
 <h2>Cihazlar Listesi</h2>
 <hr />
 
-<a class="cw-btn" id="YeniKayıt">
+<a class="cw-btn" href="/Products/Create">
     <span>Yeni Kayıt</span>
     <img src="https://cdn3.iconfinder.com/data/icons/tango-icon-library/48/list-add-512.png" width="48px" height="48px" />
 </a>
@@ -168,9 +164,6 @@
             $(".form-group").css('height', '23vh');
         else
             $(".form-group").css('height', '0');
-    });
-    $("#YeniKayıt").click(function () {
-        window.location.href = "/Products/Create";
     });
 
     $("#btnSearch").click(function () {
