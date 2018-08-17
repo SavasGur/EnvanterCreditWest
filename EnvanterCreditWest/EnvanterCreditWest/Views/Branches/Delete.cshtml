@@ -1,9 +1,5 @@
 ﻿@model EnvanterCreditWest.Models.Branches
 
-@{
-    ViewBag.Title = "Delete";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
 
 
 <h3 style="color:darkred">Silmek istediğinize emin misiniz?</h3>
@@ -33,7 +29,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Sil" class="btn btn-outline-danger" /> 
+            <input type="submit" value="Sil" class="btn btn-danger" /> 
             @Html.ActionLink("Listeye Geri Dön", "Index", null, new { @class = "btn btn-outline-primary" })
         </div>
      }

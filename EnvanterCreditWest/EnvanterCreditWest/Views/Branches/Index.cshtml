@@ -1,15 +1,16 @@
 ﻿@model IEnumerable<EnvanterCreditWest.Models.Branches>
-
+@*slm*@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div style="display:flex;">
+    <h2>Şubeler</h2>
 
-<h2>Şubeler</h2>
-
-<p>
-    @Html.ActionLink("Yeni Ekle", "Create")
-</p>
+    <p style="margin-left:20px;">
+        @Html.ActionLink("Yeni Ekle", "Create", null, new { @class = "btn btn-outline-success" })
+    </p>
+</div>
 <table class="table">
     <tr>
         <th>
@@ -21,20 +22,21 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.BranchName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Adres)
-        </td>
-        <td>
-            @Html.ActionLink("Düzenle", "Edit", new { id = item.Id } ,new {@class="btn btn-outline-success"}) 
-            @Html.ActionLink("Detaylar", "Details", new { id = item.Id }, new {@class="btn btn-outline-primary"}) 
-            @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-outline-danger" })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BranchName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adres)
+            </td>
+            <td>
+                @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-outline-success" })
+                @Html.ActionLink("Detaylar", "Details", new { id = item.Id }, new { @class = "btn btn-outline-primary" })
+                @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-outline-danger" })
+            </td>
+        </tr>
+    }
 
 </table>

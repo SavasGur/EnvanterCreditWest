@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<EnvanterCreditWest.Models.Changes>
-
+@*slm*@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -43,8 +43,8 @@
                 @Html.DisplayFor(modelItem => item.LocalIpAddress)
             </td>
             <td>
-                @Html.ActionLink("Düzenle", "Edit", new { id = item.Id },new { @class = "btn btn-outline-success" }) 
-                @Html.ActionLink("Detaylar", "Index", "ChangeDetails", new { id = item.Id }, new { @class = "btn btn-outline-primary" }) 
+                @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-outline-success" })
+                @Html.ActionLink("Detaylar", "Index", "ChangeDetails", new { id = item.Id }, new { @class = "btn btn-outline-primary" })
                 @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-outline-danger" })
             </td>
         </tr>

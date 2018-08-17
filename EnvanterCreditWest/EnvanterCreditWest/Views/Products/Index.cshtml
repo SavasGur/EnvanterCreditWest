@@ -1,26 +1,30 @@
 ﻿@model IEnumerable<EnvanterCreditWest.Models.Products>
-
+@*slm*@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Cihazlar Listesi</h2>
+<div style="display:flex;">
+    <h2>Cihazlar Listesi</h2>
+    <div style="position:fixed; right:40px;">
+        <a class="cw-btn" id="YeniKayıt">
+            <span>Yeni Kayıt</span>
+            <img src="https://cdn3.iconfinder.com/data/icons/tango-icon-library/48/list-add-512.png" width="48px" height="48px" />
+        </a>
+        <a class="cw-btn" id="filter">
+            <span>Filtrele</span>
+            <img src="~/Resources/funnel.png" width="48px" height="48px" />
+        </a>
+        <a class="cw-btn" id="excelExport">
+            <span>Excel'e Aktar</span>
+            <img src="https://cdn2.iconfinder.com/data/icons/logos-brands-4/24/logo_brand_brands_logos_excel-512.png" width="48px" height="48px" />
+        </a>
+    </div>
+</div>
 <hr />
 
-<a class="cw-btn" id="YeniKayıt">
-    <span>Yeni Kayıt</span>
-    <img src="https://cdn3.iconfinder.com/data/icons/tango-icon-library/48/list-add-512.png" width="48px" height="48px" />
-</a>
-<a class="cw-btn" id="filter">
-    <span>Filter</span>
-    <img src="https://cdn0.iconfinder.com/data/icons/ui-essence/32/_87ui-512.png" width="48px" height="48px" />
-</a>
-<a class="cw-btn" id="excelExport">
-    <span>Export Excel</span>
-    <img src="https://cdn2.iconfinder.com/data/icons/logos-brands-4/24/logo_brand_brands_logos_excel-512.png" width="48px" height="48px" />
-</a>
-<div class="form-group" style="margin:2vh;transition:all 0.5s;height:0;overflow:hidden;">
+
+<div class="form-group" style="margin:2vh;transition:all 0.5s;height:0;overflow:hidden; max-height:18vh;">
     <div class="row">
         <div class="col-md-4" style="display: flex;">
             @Html.DropDownList("Brands", null, htmlAttributes: new { @class = "form-control", @id = "dropBrands" })
@@ -63,9 +67,9 @@
             </div>
         </div>
 
-        <a id="btnSearch" class="cw-btn cw-btn-right">
-            <span>Ara</span>
-            <img src="https://cdn2.iconfinder.com/data/icons/atrous/512/search_magnifying_glass_find-512.png" />
+        <a id="btnSearch" class="btn btn-success" style="width:96%;margin-left:15px;">
+            <span style="color:white;">Ara</span>
+           
         </a>
 
     </div>

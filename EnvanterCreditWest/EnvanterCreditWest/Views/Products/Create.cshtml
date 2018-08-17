@@ -1,13 +1,5 @@
 ﻿@model EnvanterCreditWest.Models.Products
 
-@{
-                /**/
-
-                ViewBag.Title = "Create";
-                Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-
 @using (Html.BeginForm("Create", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
@@ -167,14 +159,14 @@
 
 
     <div class="form-group">
-        Resim
+        Görsel
         <div class="col-md-10">
             <input type="file" name="invoiceFile" />
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Kaydet" class="btn btn-outline-success" />
+            <input type="submit" value="Kaydet" class="btn btn-success" />
             @Html.ActionLink("Listeye Geri Dön", "Index", null, new { @class = "btn btn-outline-primary" })
         </div>
     </div>

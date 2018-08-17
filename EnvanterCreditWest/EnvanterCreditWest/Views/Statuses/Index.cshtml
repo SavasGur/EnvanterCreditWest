@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<EnvanterCreditWest.Models.Statuses>
-
+@*slm*@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -18,17 +18,18 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-outline-success" })
-            @Html.ActionLink("Detaylar", "Details", new { id = item.Id }, new { @class = "btn btn-outline-primary" })
-            @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-outline-danger" })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-outline-success" })
+                @Html.ActionLink("Detaylar", "Details", new { id = item.Id }, new { @class = "btn btn-outline-primary" })
+                @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
 
 </table>
