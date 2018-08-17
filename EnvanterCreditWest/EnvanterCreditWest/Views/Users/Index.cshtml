@@ -4,12 +4,13 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div style="display:flex;">
+    <h2>Kullanıcılar</h2>
 
-<h2>Kullanıcılar</h2>
-
-<p>
-    @Html.ActionLink("Yeni Ekle", "Create")
-</p>
+    <p style="margin-left:20px;">
+        @Html.ActionLink("Yeni Ekle", "Create", null, new { @class = "btn btn-outline-success" })
+    </p>
+</div>
 <table class="table">
     <tr>
         <th>
