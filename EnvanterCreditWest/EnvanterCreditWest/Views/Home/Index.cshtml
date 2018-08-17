@@ -41,7 +41,7 @@
 </style>
 <div id="modals">
     <div id="addmodal" class="modal fade" role="dialog" style="display: none;" aria-hidden="true;">
-        <div class="modal-dialog" style="width: 433px;">
+        <div class="modal-dialog">
 
          <!-- Modal content-->
             <div class="modal-content">
@@ -49,26 +49,20 @@
                     <h4 class="modal-title" style="margin-left: 1rem;">Kayıt Yap</h4>
                     <button type="button" class="close" data-dismiss="modal">x</button>
                 </div>
-                <div class="modal-body" style="padding-right: 3rem;padding-left:  3rem;">
-                    <a class="btn btn-primary" href="/Products/Create" style="width:  150px;">
+                <div class="modal-body" style="padding-right: 1rem;padding-left: 1rem;display:  flex;">
+                    <a class="btn btn-primary" href="/Products/Create" style="margin-right:10px; width:  150px;">
                         Yeni Cihaz Kaydı
                     </a>
 
-                    <a class="btn btn-primary" href="/Branches/Create" style="float: right;width: 150px;">
-                    Yeni Şube Ekle
-                    </a>
-                    <br>
-                    <br>
-
-                    <a class="btn btn-primary" href="/Firms/Create" style="width:  150px;">
-                    Firma Ekle
+                    <a class="btn btn-primary" href="/Branches/Create" style="margin-right:10px; width: 150px;">
+                        Yeni Şube Ekle
                     </a>
 
-                    <a class="btn btn-primary" href="/Users/Create" style="float:  right;width: 150px;">
+                    <a class="btn btn-primary" href="/Users/Create" style="width: 150px;">
                         Kullanıcı Kaydı
                     </a>
                 </div>
-                <div class="modal-footer" style="">
+                <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Geri</button>
                 </div>
             </div>
@@ -84,14 +78,17 @@
                     <h4 class="modal-title" style="margin-left: 1rem;">Şubeler/Depolar</h4><button type="button" class="close" data-dismiss="modal">x</button>
                 </div>
                 <div class="modal-body" style="padding-right: 1rem;padding-left: 1rem;display:  flex;">
+                    <a class="btn btn-primary" href="/Branches" style="margin-right:10px; width:  150px;">
+                        Şube Listesi
+                    </a>
 
-                    @Html.ActionLink("Cihaz Transferi", "Create", "Changes", null, new { @class = "btn btn-primary" })
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    @Html.ActionLink("Çalışan Listesi", null, "Users", null, new { @class = "btn btn-primary" })
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    @Html.ActionLink("Envanter Listesi", null, "Products", null, new { @class = "btn btn-primary" })
+                    <a class="btn btn-primary" href="/Users" style="margin-right:10px; width: 150px;">
+                        Çalışan Listesi
+                    </a>
 
-
+                    <a class="btn btn-primary" href="/Products" style="width: 150px;">
+                        Cihaz Listesi
+                    </a>
                 </div>
 
                 <div class="modal-footer" style="">
