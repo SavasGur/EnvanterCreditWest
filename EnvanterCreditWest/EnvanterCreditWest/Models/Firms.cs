@@ -10,25 +10,29 @@ namespace EnvanterCreditWest.Models
 {
     public class Firms
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required]
-        [DisplayName("Firma Adı")]
+        [Required, DisplayName("Firma Adı")]
         public string Name { get; set; }
-        [Required]
-        [DisplayName("Telefon Numarası")]
+
+        [Required, DisplayName("Telefon Numarası")]
         public string PhoneNumber { get; set; }
+
         public string Email { get; set; }
+
         [DisplayName("Adres")]
         public string Address { get; set; }
+
         [DisplayName("Satış Temsilcisi")]
         public string VendorName { get; set; }
+
         [DisplayName("Temsilci Email")]
         public string VendorEmail { get; set; }
+
         [DisplayName("Temsilci Numarası")]
         public string VendorNumber { get; set; }
+
         [DisplayName("Açıklama")]
         public string Description { get; set; }
     }

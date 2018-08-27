@@ -11,6 +11,52 @@ namespace EnvanterCreditWest.Models
         public EnvanterCreditWestContext() : base("name=EnvanterCreditWestContext")
         {
         }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+
+            modelBuilder.Entity<Products>().HasRequired(t => t.Firms)
+                                         .WithMany()
+                                         .HasForeignKey(d => d.FirmId)
+                                         .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Products>().HasRequired(t => t.ProductModels)
+                                      .WithMany()
+                                      .HasForeignKey(d => d.ProductModelId)
+                                      .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Products>().HasRequired(t => t.Branches)
+                                      .WithMany()
+                                      .HasForeignKey(d => d.BranchId)
+                                      .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Products>().HasRequired(t => t.Brands)
+                                      .WithMany()
+                                      .HasForeignKey(d => d.BrandId)
+                                      .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Products>().HasRequired(t => t.Users)
+                                      .WithMany()
+                                      .HasForeignKey(d => d.UserId)
+                                      .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Products>().HasRequired(t => t.Types)
+                                      .WithMany()
+                                      .HasForeignKey(d => d.TypeId)
+                                      .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<ChangeDetails>().HasRequired(t => t.Changes)
+                           .WithMany()
+                           .HasForeignKey(d => d.ChangesId)
+                           .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Changes>().HasRequired(t => t.Products)
+                           .WithMany()
+                           .HasForeignKey(d => d.ProductId)
+                           .WillCascadeOnDelete(false);
+
+
+        }
+
 
         public System.Data.Entity.DbSet<EnvanterCreditWest.Models.Branches> Branches { get; set; }
 

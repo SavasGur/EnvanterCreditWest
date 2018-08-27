@@ -11,12 +11,12 @@ namespace EnvanterCreditWest.Models
 {
     public class Branches
     {
-        [Key]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [DisplayName("Şube Adı")]
-        [Required]
+        [Required, DisplayName("Şube Adı")]
         public string BranchName { get; set; }
+
         public string Adres { get; set; }
 
     }

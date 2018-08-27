@@ -9,11 +9,10 @@ namespace EnvanterCreditWest.Models
 {
     public class ProductDetails
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Key]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public int ProductId { get; set; }
+
 
         public string Ram { get; set; }
 
@@ -23,7 +22,8 @@ namespace EnvanterCreditWest.Models
 
         public string Size { get; set; }
 
-        [ForeignKey("ProductId")]
+        [ForeignKey("Products")]
+        public int ProductId { get; set; }
         public virtual Products Products { get; set; }
     }
 }

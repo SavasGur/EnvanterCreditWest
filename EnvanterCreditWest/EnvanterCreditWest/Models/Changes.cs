@@ -10,8 +10,7 @@ namespace EnvanterCreditWest.Models
 {
     public class Changes
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [DisplayName("Tarih")]
@@ -19,11 +18,10 @@ namespace EnvanterCreditWest.Models
       
         public string Ip { get; set; }
 
-        public int ProductId { get; set; }
-
-        [ForeignKey("ProductId")]
-        public virtual Products Products { get; set; }
-
         public string LocalIpAddress { get; set; }
+
+        [ForeignKey("Products")]
+        public int ProductId { get; set; }
+        public virtual Products Products { get; set; }
     }
 }

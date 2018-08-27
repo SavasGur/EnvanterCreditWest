@@ -10,8 +10,7 @@ namespace EnvanterCreditWest.Models
 {
     public class Users
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]

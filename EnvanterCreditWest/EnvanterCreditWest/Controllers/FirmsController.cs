@@ -111,7 +111,19 @@ namespace EnvanterCreditWest.Controllers
         {
             Firms firms = db.Firms.Find(id);
             db.Firms.Remove(firms);
-            db.SaveChanges();
+            try
+            {
+                db.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                if (ex.Message == "An error occurred while updating the entries. See the inner exception for details.")
+                {
+                    ViewBag.Error = "Silmek istediğiniz firmaya kayıtlı ürün/ürünler bulunmaktadır. Silme işlemi gerçekleştirilemedi. Lütfen ürün/ürünler üzerinde firma değişikliği yapınız.";
+                    return View("Delete", firms);
+                }
+
+            }
             return RedirectToAction("Index");
         }
 

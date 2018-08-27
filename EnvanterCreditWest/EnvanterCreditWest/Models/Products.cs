@@ -10,16 +10,8 @@ namespace EnvanterCreditWest.Models
 {
     public class Products
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-
-        [Required]
-        [DisplayName("Marka")]
-        public int BrandId { get; set; }
-
-        [DisplayName("Model")]
-        public int ProductModelId { get; set; }
 
         [DisplayName("Barkod")]
         public string Barcode { get; set; }
@@ -33,24 +25,11 @@ namespace EnvanterCreditWest.Models
 
         public string BarcodeUrl { get; set; }
 
-        [Required]
-        [DisplayName("Şube")]
-        public int BranchId { get; set; }
-
-        public int? UserId { get; set; }
-
         [DisplayName("Alış Tarihi")]
         public DateTime DateAcquired { get; set; }
 
         [DisplayName("Garanti Bitiş Tarihi")]
         public DateTime Warranty { get; set; }
-
-        [DisplayName("Firma Adı")]
-        public int FirmId { get; set; }
-
-        [Required]
-        [DisplayName("Durum")]
-        public int StatusId { get; set; }
 
         [DisplayName("Fiyat")]
         public float Price { get; set; }
@@ -60,29 +39,41 @@ namespace EnvanterCreditWest.Models
 
         public string InvoiceURL { get; set; }
 
-        [ForeignKey("ProductModelId")]
-        public virtual ProductModels ProductModels { get; set; }
-
-        [DisplayName("Türü")]
+        #region ForeignKey
+        
+        [Required,DisplayName("Türü"), ForeignKey("Types")]
         public int TypeId { get; set; }
-
-        [ForeignKey("TypeId")]
         public virtual Typeys Types { get; set; }
 
-        [ForeignKey("UserId")]
-        public virtual Users Users { get; set; }
 
-        [ForeignKey("BrandId")]
-        public virtual Brands Brands { get; set; }
+        [Required, DisplayName("Model"), ForeignKey("ProductModels")]
+        public int ProductModelId { get; set; }
+        public virtual ProductModels ProductModels { get; set; }
 
-        [ForeignKey("BranchId")]
+
+        [Required,ForeignKey("Branches"), DisplayName("Şube")]
+        public int BranchId { get; set; }
         public virtual Branches Branches { get; set; }
 
-        [ForeignKey("StatusId")]
+
+        [Required,ForeignKey("Statuses"), DisplayName("Durum")]
+        public int StatusId { get; set; }
         public virtual Statuses Statuses { get; set; }
 
-        [ForeignKey("FirmId")]
+
+        [Required,ForeignKey("Brands"), DisplayName("Marka")]
+        public int BrandId { get; set; }
+        public virtual Brands Brands { get; set; }
+
+
+        [Required,ForeignKey("Users")]
+        public int? UserId { get; set; }
+        public virtual Users Users { get; set; }
+
+        [Required, ForeignKey("Firms"), DisplayName("Firma Adı")]
+        public int FirmId { get; set; }
         public virtual Firms Firms { get; set; }
+        #endregion
     }
 }
 
