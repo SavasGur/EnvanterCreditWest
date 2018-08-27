@@ -33,6 +33,7 @@ namespace EnvanterCreditWest.Controllers
             ViewBag.Brands = new SelectList(db.Brands, "Id", "BrandName");
             ViewBag.Models = new SelectList(db.ProductModels, "Id", "Name");
             ViewBag.StatusId = new SelectList(db.Statuses, "Id", "Name");
+            ViewBag.Types = new SelectList(db.Types, "Id", "Name");
 
             return View(products.ToList());
         }
@@ -64,18 +65,18 @@ namespace EnvanterCreditWest.Controllers
             return "/Resources/" + randomString + ".jpg";
         }
 
-        public ActionResult Search(int checkBrand, int checkBranch, int checkFirm, int checkUser, int checkModel, int checkStatus, int dropBranch, int dropBrand, int dropFirm, int dropUser, int dropModel,int dropStatus)
+        public ActionResult Search(int checkType, int checkBrand, int checkBranch, int checkUser, int checkModel, int checkStatus, int dropBranch, int dropBrand, int dropUser, int dropModel,int dropStatus, int dropType)
         {
             var products = db.Products.Include(p => p.Branches).Include(p => p.Firms).Include(p => p.Users).ToList();
 
             if (checkBrand == 1)
                 products = products.Where(x => x.BrandId == dropBrand).ToList();
 
+            if (checkType == 1)
+                products = products.Where(x => x.TypeId == dropType).ToList();
+
             if (checkBranch == 1)
                 products = products.Where(x => x.BranchId == dropBranch).ToList();
-
-            if (checkFirm == 1)
-                products = products.Where(x => x.FirmId == dropFirm).ToList();
 
             if (checkUser == 1)
                 products = products.Where(x => x.UserId == dropUser).ToList();
@@ -88,11 +89,13 @@ namespace EnvanterCreditWest.Controllers
 
 
             ViewBag.Branches = new SelectList(db.Branches, "Id", "BranchName", dropBranch);
-            ViewBag.Firms = new SelectList(db.Firms, "Id", "Name", dropFirm);
             ViewBag.Users = new SelectList(db.Users, "Id", "FirstLastName", dropUser);
             ViewBag.Brands = new SelectList(db.Brands, "Id", "BrandName", dropBrand);
             ViewBag.Models = new SelectList(db.ProductModels, "Id", "Name", dropModel);
             ViewBag.StatusId = new SelectList(db.Statuses, "Id", "Name");
+            ViewBag.Types = new SelectList(db.Types, "Id", "Name",dropType);
+
+
 
 
             ViewBag.Count = products.Count;
@@ -206,7 +209,7 @@ namespace EnvanterCreditWest.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(HttpPostedFileBase invoiceFile,[Bind(Include = "Id,BrandId,ProductModelId,Barcode,BranchId,UserId,DateAcquired,Warranty,FirmId,Status,Price,InvoiceURL,TypeId,StatusId,Currency")] Products products)
+        public ActionResult Create(HttpPostedFileBase invoiceFile,[Bind(Include = "Id,BrandId,ProductModelId,Barcode,BranchId,UserId,DateAcquired,Warranty,FirmId,Status,Price,InvoiceURL,TypeId,StatusId,Currency,IP,Gateway,CihazAdi")] Products products)
         {
             products.InvoiceURL = "";
             if (ModelState.IsValid)
@@ -324,7 +327,7 @@ namespace EnvanterCreditWest.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(HttpPostedFileBase invoiceFile, [Bind(Include = "Id,BrandId,ProductModelId,Barcode,BranchId,UserId,DateAcquired,Warranty,FirmId,Status,Price,InvoiceURL,TypeId,StatusId,Currency")] Products products)
+        public ActionResult Edit(HttpPostedFileBase invoiceFile, [Bind(Include = "Id,BrandId,ProductModelId,Barcode,BranchId,UserId,DateAcquired,Warranty,FirmId,Status,Price,InvoiceURL,TypeId,StatusId,Currency,IP,Gateway,CihazAdi")] Products products)
         {
 
             if (ModelState.IsValid)
@@ -411,6 +414,41 @@ namespace EnvanterCreditWest.Controllers
 
                     getProduct.Price = products.Price;
                 }
+
+                if (getProduct.IP != products.IP)
+                {
+                    db.ChangeDetails.Add(new ChangeDetails
+                    {
+                        Changes = changes,
+                        Description = "IP değişiklik yapıldı. " + getProduct.IP + " --> " + products.IP
+                    });
+
+                    getProduct.IP = products.IP;
+                }
+
+                if (getProduct.Gateway != products.Gateway)
+                {
+                    db.ChangeDetails.Add(new ChangeDetails
+                    {
+                        Changes = changes,
+                        Description = "Gateway değişiklik yapıldı. " + getProduct.Gateway + " --> " + products.Gateway
+                    });
+
+                    getProduct.Gateway = products.Gateway;
+                }
+
+                if (getProduct.CihazAdi != products.CihazAdi)
+                {
+                    db.ChangeDetails.Add(new ChangeDetails
+                    {
+                        Changes = changes,
+                        Description = "Cihaz adında değişiklik yapıldı. " + getProduct.CihazAdi + " --> " + products.CihazAdi
+                    });
+
+                    getProduct.CihazAdi = products.CihazAdi;
+                }
+
+
 
                 if (getProduct.TypeId != products.TypeId)
                 {

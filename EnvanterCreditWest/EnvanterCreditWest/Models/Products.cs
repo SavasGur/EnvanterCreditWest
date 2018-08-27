@@ -24,6 +24,13 @@ namespace EnvanterCreditWest.Models
         [DisplayName("Barkod")]
         public string Barcode { get; set; }
 
+        public string IP { get; set; }
+
+        public string Gateway { get; set; }
+
+        [DisplayName("Cihaz Adı")]
+        public string CihazAdi { get; set; }
+
         public string BarcodeUrl { get; set; }
 
         [Required]

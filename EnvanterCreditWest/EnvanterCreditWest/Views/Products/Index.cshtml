@@ -4,9 +4,11 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+
 <div style="display:flex;">
     <h2>Cihazlar Listesi</h2>
-    <div style="position:fixed; right:40px;">
+    <div style="position: absolute;right: 0;">
         <a class="cw-btn" id="YeniKayıt">
             <span>Yeni Kayıt</span>
             <img src="https://cdn3.iconfinder.com/data/icons/tango-icon-library/48/list-add-512.png" width="48px" height="48px" />
@@ -23,7 +25,6 @@
 </div>
 <hr />
 
-
 <div class="form-group" style="margin:2vh;transition:all 0.5s;height:0;overflow:hidden; max-height:19vh;">
     <div class="row">
         <div class="col-md-4" style="display: flex;">
@@ -32,6 +33,7 @@
                 <label><input type="checkbox" id="brandsCheckBox" value=""></label>
             </div>
         </div>
+
         <div class="col-md-4" style="display: flex;">
             @Html.DropDownList("StatusId", null, htmlAttributes: new { @class = "form-control", @id = "dropStatus" })
             <div class="checkbox" style="margin: 1.5vh;">
@@ -49,7 +51,7 @@
     <div class="row">
 
         <div class="col-md-4" style="display: flex;">
-            @Html.DropDownList("Firms", null, htmlAttributes: new { @class = "form-control", @id = "dropFirms" })
+            @Html.DropDownList("Types", null, htmlAttributes: new { @class = "form-control", @id = "dropTypes" })
             <div class="checkbox" style="margin: 1.5vh;">
                 <label><input type="checkbox" id="firmsCheckBox" value=""></label>
             </div>
@@ -69,7 +71,7 @@
 
         <a id="btnSearch" class="btn btn-success" style="width:96%;margin-left:15px;">
             <span style="color:white;">Ara</span>
-           
+
         </a>
 
     </div>
@@ -83,9 +85,6 @@
             @Html.DisplayNameFor(model => model.Brands.BrandName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Firms.Name)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.ProductModels.Name)
         </th>
         <th>
@@ -94,8 +93,23 @@
         <th>
             @Html.DisplayNameFor(model => model.Users.FirstLastName)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gateway)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CihazAdi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Users.FirstLastName)
+        </th>
         <th style="display:none">
             @Html.DisplayNameFor(model => model.Barcode)
+        </th>
+        <th style="display:none">
+            @Html.DisplayNameFor(model => model.Firms.Name)
         </th>
         <th style="display:none">
             @Html.DisplayNameFor(model => model.Warranty)
@@ -121,9 +135,6 @@
                 @Html.DisplayFor(modelItem => item.Brands.BrandName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Firms.Name)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.ProductModels.Name)
             </td>
             <td>
@@ -131,6 +142,18 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Users.FirstLastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gateway)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CihazAdi)
+            </td>
+            <td style="display:none">
+                @Html.DisplayFor(momodelItemdel => item.Firms.Name)
             </td>
             <td style="display:none">
                 @Html.DisplayFor(modelItem => item.Barcode)
@@ -147,7 +170,7 @@
             <td>
                 @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-outline-success" })
                 @Html.ActionLink("Detaylar", "Details", new { id = item.Id }, new { @class = "btn btn-outline-primary" })
-                @Html.ActionLink("Değişiklikler", "PIndex", "ChangeDetails", new { id = item.Id }, new { @class = "btn btn-outline-warning"})
+                @Html.ActionLink("Değişiklikler", "PIndex", "ChangeDetails", new { id = item.Id }, new { @class = "btn btn-outline-warning" })
                 @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-outline-danger" })
             </td>
         </tr>
@@ -169,7 +192,7 @@
 
     $("#filter").click(function () {
         if ($(".form-group").css('height') == "0px")
-            $(".form-group").css('height', '23vh');
+            $(".form-group").css('height', '25vh');
         else
             $(".form-group").css('height', '0');
     });
@@ -180,20 +203,20 @@
     $("#btnSearch").click(function () {
         var branchesCheckBox = $('#branchesCheckBox').is(":checked") ? 1 : 0;
         var brandsCheckBox = $('#brandsCheckBox').is(":checked") ? 1 : 0;
-        var firmsCheckBox = $('#firmsCheckBox').is(":checked") ? 1 : 0;
         var usersCheckBox = $('#usersCheckBox').is(":checked") ? 1 : 0;
         var modelCheckBox = $('#modelCheckBox').is(":checked") ? 1 : 0;
         var statusCheckBox = $('#statusCheckBox').is(":checked") ? 1 : 0;
+        var typeCheckBox = $('#typeCheckBox').is(":checked") ? 1 : 0;
 
         var dropBranches = $("#dropBranches option:selected").val();
         var dropBrands = $("#dropBrands option:selected").val();
-        var dropFirms = $("#dropFirms option:selected").val();
         var dropUsers = $("#dropUsers option:selected").val();
         var dropModels = $("#dropModels option:selected").val();
         var dropStatus = $("#dropStatus option:selected").val();
+        var dropType = $("#dropTypes option:selected").val();
 
 
-        var route = "/Products/Search?checkBrand=" + brandsCheckBox + "&checkBranch=" + branchesCheckBox + "&checkFirm=" + firmsCheckBox + "&checkUser=" + usersCheckBox + "&checkModel=" + modelCheckBox + "&checkStatus=" + statusCheckBox + "&dropBranch=" + dropBranches + "&dropBrand=" + dropBrands + "&dropFirm=" + dropFirms + "&dropUser=" + dropUsers + "&dropModel=" + dropModels + "&dropStatus=" + dropStatus + "";
+        var route = "/Products/Search?checkType=" + typeCheckBox + "&checkBrand=" + brandsCheckBox + "&checkBranch=" + branchesCheckBox + "&checkUser=" + usersCheckBox + "&checkModel=" + modelCheckBox + "&checkStatus=" + statusCheckBox + "&dropBranch=" + dropBranches + "&dropBrand=" + dropBrands + "&dropUser=" + dropUsers + "&dropModel=" + dropModels + "&dropStatus=" + dropStatus + "&dropType=" + dropType + "";
         window.location.href = route;
     });
 </script>

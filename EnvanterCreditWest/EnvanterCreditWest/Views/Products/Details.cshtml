@@ -1,6 +1,7 @@
 ﻿@model EnvanterCreditWest.Bind.ProductBind
 
 
+
 <div>
     <div class="row">
         <div class="col-md-6">
@@ -13,6 +14,30 @@
 
                 <dd>
                     @Html.DisplayFor(model => model.Products.Branches.BranchName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Products.IP)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Products.IP)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Products.Gateway)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Products.Gateway)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Products.CihazAdi)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Products.CihazAdi)
                 </dd>
 
                 <dt>

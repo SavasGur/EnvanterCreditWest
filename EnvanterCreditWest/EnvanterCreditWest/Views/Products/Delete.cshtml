@@ -13,6 +13,30 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.IP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gateway)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gateway)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CihazAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CihazAdi)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Brands.Code)
         </dt>
 
@@ -97,7 +121,18 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.InvoiceURL)
+            @if (!string.IsNullOrEmpty(Model.InvoiceURL))
+            {
+                <div class="cw-btn" id="btnImg">
+                    <a>Fatura Göster</a>
+                    <img src="https://cdn1.iconfinder.com/data/icons/ecommerce-and-business-icon-set/256/invoice.png"
+                         style="width:48px;height:48px" />
+                </div>
+            }
+            else
+            {
+                <a>Fatura kayıt edilmemiştir.</a>
+            }
         </dd>
 
     </dl>
@@ -110,4 +145,67 @@
         @Html.ActionLink("Listeye Geri Dön", "Index", null, new { @class = "btn btn-outline-primary" })
     </div>
     }
+
 </div>
+
+<div class="fixed">
+    <span class="fixed-back" />
+    <i class="fas fa-times fa-3x fixed-close"></i>
+    <div class="fixed-inner">
+        <img src="@Model.InvoiceURL" width="100%" />
+    </div>
+</div>
+
+<script>
+    $("#btnImg").click(function () {
+        $(".fixed:eq(0)").css('visibility', 'visible');
+        $(".fixed:eq(0)").css('opacity', '1');
+
+        $(".fixed-back:eq(0)").css('visibility', 'visible');
+        $(".fixed-back:eq(0)").css('opacity', '1');
+
+        $(".fixed-inner:eq(0)").css('top', '50%');
+    });
+
+    $("#btnBarcode").click(function () {
+        $(".fixed:eq(1)").css('visibility', 'visible');
+        $(".fixed:eq(1)").css('opacity', '1');
+
+        $(".fixed-back:eq(1)").css('visibility', 'visible');
+        $(".fixed-back:eq(1)").css('opacity', '1');
+
+        $(".fixed-inner:eq(1)").css('top', '50%');
+    });
+
+
+    function SetLoading() {
+            $(".fixed:eq(2)").css('visibility', 'visible');
+            $(".fixed:eq(2)").css('opacity', '1');
+
+            $(".fixed-back:eq(2)").css('visibility', 'visible');
+            $(".fixed-back:eq(2)").css('opacity', '1');
+
+            $(".fixed-inner:eq(2)").css('top', '50%');
+    }
+    function SetCompleted()
+    {
+        $(".fixed").css('visibility', 'hidden');
+        $(".fixed").css('opacity', '0');
+
+        $(".fixed-back").css('visibility', 'hidden');
+        $(".fixed-back").css('opacity', '0');
+
+        $(".fixed-inner").css('top', '-150%');
+    }
+    $(".fixed-back").click(function () {
+
+        $(".fixed").css('visibility', 'hidden');
+        $(".fixed").css('opacity', '0');
+
+        $(".fixed-back").css('visibility', 'hidden');
+        $(".fixed-back").css('opacity', '0');
+
+        $(".fixed-inner").css('top', '-150%');
+    });
+
+</script>
