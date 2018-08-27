@@ -104,6 +104,7 @@ namespace EnvanterCreditWest.Controllers
             return View(users);
         }
 
+
         // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -111,7 +112,19 @@ namespace EnvanterCreditWest.Controllers
         {
             Users users = db.Users.Find(id);
             db.Users.Remove(users);
-            db.SaveChanges();
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message == "An error occurred while updating the entries. See the inner exception for details.")
+                {
+                    ViewBag.Error = "Silmek istediğiniz şubeye kayıtlı ürün/ürünler bulunmaktadır. Silme işlemi gerçekleştirilemedi. Lütfen ürün/ürünler üzerinde şube değişikliği yapınız.";
+                    return View("Delete", users);
+                }
+
+            }
             return RedirectToAction("Index");
         }
 
