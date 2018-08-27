@@ -180,6 +180,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FirmsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginsController.cs" />
     <Compile Include="Controllers\ProductDetailsController.cs" />
     <Compile Include="Controllers\ProductModelsController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
@@ -195,6 +196,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\EnvanterCreditWestContext.cs" />
+    <Compile Include="Models\Logins.cs" />
     <Compile Include="Models\ProductModels.cs" />
     <Compile Include="Models\Products.cs" />
     <Compile Include="Models\Status.cs" />
@@ -445,6 +447,11 @@
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\Interval.cshtml" />
+    <Content Include="Views\Logins\Create.cshtml" />
+    <Content Include="Views\Logins\Delete.cshtml" />
+    <Content Include="Views\Logins\Details.cshtml" />
+    <Content Include="Views\Logins\Edit.cshtml" />
+    <Content Include="Views\Logins\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
