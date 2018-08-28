@@ -452,6 +452,7 @@
     <Content Include="Views\Logins\Details.cshtml" />
     <Content Include="Views\Logins\Edit.cshtml" />
     <Content Include="Views\Logins\Index.cshtml" />
+    <Content Include="Views\Logins\LoginPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

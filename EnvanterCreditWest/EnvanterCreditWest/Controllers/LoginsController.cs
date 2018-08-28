@@ -17,11 +17,15 @@ namespace EnvanterCreditWest.Controllers
         // GET: Logins
         public ActionResult Index()
         {
-            
-            
-
             return View(db.Logins.ToList());
         }
+
+        // LoginPage
+        public ActionResult LoginPage()
+        {
+            return View();
+        }
+
 
         // GET: Logins/Details/5
         public ActionResult Details(int? id)

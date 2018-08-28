@@ -19,6 +19,7 @@ namespace EnvanterCreditWest.Models
 
         [Required]
         [DisplayName("Şifre")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
     }
