@@ -342,7 +342,10 @@
                                 top: 20%;">
 
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" style="padding:0;" data-toggle="modal" data-target="#LogoutModal">
+                        <i class="fa fa-fw fa-sign-out-alt"></i>Çıkış</a>
+                </li>
             </ul>
 
         </div>
@@ -385,5 +388,23 @@
         });
     </script>
     @RenderSection("scripts", required: false)
+
+    <div class="modal fade" id="LogoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Sistemden Çıkış</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Oturumu kapatmak için aşağıdaki "Çıkış" butonuna basın.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Geri</button>
+                    <a class="btn btn-danger" href="login.html">Çıkış</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

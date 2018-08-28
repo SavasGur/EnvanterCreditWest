@@ -27,12 +27,27 @@
 <div class="form-group" style="margin:2vh;transition:all 0.5s;height:0;overflow:hidden; max-height:19vh;">
     <div class="row">
         <div class="col-md-4" style="display: flex;">
+            @Html.DropDownList("Types", null, htmlAttributes: new { @class = "form-control", @id = "dropTypes" })
+            <div class="checkbox" style="margin: 1.5vh;">
+                <label><input type="checkbox" id="firmsCheckBox" value=""></label>
+            </div>
+        </div>
+        <div class="col-md-4" style="display: flex;">
             @Html.DropDownList("Brands", null, htmlAttributes: new { @class = "form-control", @id = "dropBrands" })
             <div class="checkbox" style="margin: 1.5vh;">
                 <label><input type="checkbox" id="brandsCheckBox" value=""></label>
             </div>
         </div>
+        <div class="col-md-4" style="display: flex;">
+            @Html.DropDownList("Models", null, htmlAttributes: new { @class = "form-control", @id = "dropModels" })
+            <div class="checkbox" style="margin: 1.5vh;">
+                <label><input type="checkbox" id="modelCheckBox" value=""></label>
+            </div>
+        </div>
 
+    </div>
+    <br />
+    <div class="row">
         <div class="col-md-4" style="display: flex;">
             @Html.DropDownList("StatusId", null, htmlAttributes: new { @class = "form-control", @id = "dropStatus" })
             <div class="checkbox" style="margin: 1.5vh;">
@@ -45,28 +60,14 @@
                 <label><input type="checkbox" id="branchesCheckBox" value=""></label>
             </div>
         </div>
-    </div>
-    <br />
-    <div class="row">
 
-        <div class="col-md-4" style="display: flex;">
-            @Html.DropDownList("Types", null, htmlAttributes: new { @class = "form-control", @id = "dropTypes" })
-            <div class="checkbox" style="margin: 1.5vh;">
-                <label><input type="checkbox" id="firmsCheckBox" value=""></label>
-            </div>
-        </div>
         <div class="col-md-4" style="display: flex;">
             @Html.DropDownList("Users", null, htmlAttributes: new { @class = "form-control", @id = "dropUsers" })
             <div class="checkbox" style="margin: 1.5vh;">
                 <label><input type="checkbox" id="usersCheckBox" value=""></label>
             </div>
         </div>
-        <div class="col-md-4" style="display: flex;">
-            @Html.DropDownList("Models", null, htmlAttributes: new { @class = "form-control", @id = "dropModels" })
-            <div class="checkbox" style="margin: 1.5vh;">
-                <label><input type="checkbox" id="modelCheckBox" value=""></label>
-            </div>
-        </div>
+
 
         <a id="btnSearch" class="btn btn-success" style="width:96%;margin-left:15px;">
             <span style="color:white;">Ara</span>
