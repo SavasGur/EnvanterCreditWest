@@ -6,8 +6,8 @@
 
 
 <div style="display:flex;">
-    <h2>Cihazlar Listesi</h2>
-    <div style="position: absolute;right: 0;">
+    <h2>Cihazlar</h2>
+    <div style="position: absolute;right: 40;">
         <a class="cw-btn" id="YeniKayıt">
             <span>Yeni Kayıt</span>
             <img src="https://cdn3.iconfinder.com/data/icons/tango-icon-library/48/list-add-512.png" width="48px" height="48px" />
@@ -24,8 +24,21 @@
 </div>
 <hr />
 
-<div class="form-group" style="margin:2vh;transition:all 0.5s;height:0;overflow:hidden; max-height:19vh;">
+<div class="form-group" style="margin:0;transition:all 0.5s;height:0;overflow:hidden; max-height:20.5vh;">
     <div class="row">
+        <div class="col-md-4">
+            <p class="searchname">Tip</p>
+        </div>
+        <div class="col-md-4">
+            <p class="searchname">Marka</p>
+        </div>
+        <div class="col-md-4">
+            <p class="searchname">Model</p>
+        </div>
+
+    </div>
+    <div class="row">
+
         <div class="col-md-4" style="display: flex;">
             @Html.DropDownList("Types", null, htmlAttributes: new { @class = "form-control", @id = "dropTypes" })
             <div class="checkbox" style="margin: 1.5vh;">
@@ -46,7 +59,19 @@
         </div>
 
     </div>
-    <br />
+
+    <div class="row">
+        <div class="col-md-4">
+            <p class="searchname">Durum</p>
+        </div>
+        <div class="col-md-4">
+            <p class="searchname">Şube</pclass="searchname">
+        </div>
+        <div class="col-md-4">
+            <p class="searchname">Kullanıcı</p>
+        </div>
+
+    </div>
     <div class="row">
         <div class="col-md-4" style="display: flex;">
             @Html.DropDownList("StatusId", null, htmlAttributes: new { @class = "form-control", @id = "dropStatus" })
@@ -192,7 +217,7 @@
 
     $("#filter").click(function () {
         if ($(".form-group").css('height') == "0px")
-            $(".form-group").css('height', '25vh');
+            $(".form-group").css('height', '30vh');
         else
             $(".form-group").css('height', '0');
     });

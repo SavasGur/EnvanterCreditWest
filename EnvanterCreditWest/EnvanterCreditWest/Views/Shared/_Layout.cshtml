@@ -20,16 +20,20 @@
     <script src="~/Scripts/FileSaver.min.js"></script>
 
     <script src="~/Scripts/excel-gen.js"></script>
+    <link href="~/Content/Site.css" rel="stylesheet" />
 
     <style>
         .nav-link {
             margin: 1vh !important;
-            cursor:pointer;
+            cursor: pointer;
         }
-
+        .searchname{
+            margin-bottom:0;
+        }
         form.example button:hover {
             background: #0b7dda;
         }
+
         .table {
             background-color: whitesmoke;
             border-radius: 10px;
@@ -39,18 +43,21 @@
             background-color: #343a40;
             color: white;
         }
+
         tr:hover {
             background-color: white;
         }
+
         form.example::after {
             content: "";
             clear: both;
             display: table;
         }
+
         .fas {
             margin: 1vh;
         }
-   
+
         .center-flex {
             display: flex;
             justify-content: center;
@@ -114,6 +121,7 @@
         .fa, .fas {
             color: gray;
         }
+
         .fixed {
             position: absolute;
             top: 0;
@@ -166,11 +174,12 @@
             padding-left: 1vh;
             transition: .5s;
             /*margin: 1vh;*/
-            margin-right:1vh;
+            margin-right: 1vh;
             cursor: pointer;
             min-width: 165px;
             text-align: center;
         }
+
             .cw-btn > span {
                 color: black !important;
                 font-weight: 600;
@@ -182,9 +191,10 @@
                 height: 40px;
                 margin: .5vh;
             }
+
             .cw-btn:hover {
                 transform: translate(0,-5%);
-                text-decoration:none;
+                text-decoration: none;
             }
 
 
@@ -333,20 +343,9 @@
                     </a>
                 </li>
             </ul>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item" style="
-                                left: 2%;
-                                position: absolute;
-                                width: 235px;
-                                color:  white;
-                                top: 20%;">
-
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" style="padding:0;" data-toggle="modal" data-target="#LogoutModal">
-                        <i class="fa fa-fw fa-sign-out-alt"></i>Çıkış</a>
-                </li>
-            </ul>
+            <a class="nav-link logout" style="padding:0;" data-toggle="modal" data-target="#LogoutModal">
+                <i class="fa fa-fw fa-sign-out-alt"></i>Çıkış
+            </a>
 
         </div>
 
