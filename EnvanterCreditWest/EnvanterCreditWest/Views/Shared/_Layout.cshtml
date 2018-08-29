@@ -1,4 +1,18 @@
-﻿<html lang="en">
+﻿
+@{ 
+    if (Session["Auth"] == null)
+    {
+        Response.Redirect("~/Login");
+        return;
+    }
+    else if ((int)Session["Auth"] != 1)
+    {
+        Response.Redirect("~/Login");
+        return;
+    }
+
+}
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -272,26 +286,29 @@
                     </ul>
                 </li>
 
-                <li class="nav-link btn-group-toggle" data-toggle="collapse" data-target="#collapse3">
-                    <a>
-                        <i class="fa fa-fw fa-users"></i>
-                        <span class="nav-link-text">Kullanıcılar</span>
-                    </a>
-                    <ul id="collapse3" style="list-style:none" class="collapse">
-                        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Ana Sayfa">
-                            <a class="nav-link" href="/Users/Create">
-                                <i class="fa fa-fw fa-plus"></i>
-                                <span class="nav-link-text">Yeni Kayıt</span>
-                            </a>
-                        </li>
-                        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Ana Sayfa">
-                            <a class="nav-link" href="/Users/Index">
-                                <i class="fa fa-fw fa-list"></i>
-                                <span class="nav-link-text">Listele</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                @if ((bool)Session["Role"] == true)
+                {
+                    <li class="nav-link btn-group-toggle" data-toggle="collapse" data-target="#collapse3">
+                        <a>
+                            <i class="fa fa-fw fa-users"></i>
+                            <span class="nav-link-text">Kullanıcılar</span>
+                        </a>
+                        <ul id="collapse3" style="list-style:none" class="collapse">
+                            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Ana Sayfa">
+                                <a class="nav-link" href="/Users/Create">
+                                    <i class="fa fa-fw fa-plus"></i>
+                                    <span class="nav-link-text">Yeni Kayıt</span>
+                                </a>
+                            </li>
+                            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Ana Sayfa">
+                                <a class="nav-link" href="/Users/Index">
+                                    <i class="fa fa-fw fa-list"></i>
+                                    <span class="nav-link-text">Listele</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                }
 
                 <li class="nav-link collapse btn-group-toggle" data-toggle="collapse" data-target="#collapse4">
                     <a>
@@ -343,7 +360,7 @@
                     </a>
                 </li>
             </ul>
-            <a class="nav-link logout" style="padding:0;" data-toggle="modal" data-target="#LogoutModal">
+            <a class="nav-link logout" href="/Login/Logout" style="padding:0;">
                 <i class="fa fa-fw fa-sign-out-alt"></i>Çıkış
             </a>
 
@@ -366,7 +383,12 @@
         </a>
         @RenderBody()
     </div>
-
+    @if (!string.IsNullOrEmpty(ViewBag.SError))
+    {
+        <div id="error-view">
+            @Html.Partial("Error");
+        </div>
+    }
     <!-- Bootstrap core JavaScript-->
 
     <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

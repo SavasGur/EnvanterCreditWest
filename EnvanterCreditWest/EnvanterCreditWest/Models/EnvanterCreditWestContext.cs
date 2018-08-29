@@ -80,6 +80,5 @@ namespace EnvanterCreditWest.Models
 
         public System.Data.Entity.DbSet<EnvanterCreditWest.Models.Statuses> Statuses { get; set; }
 
-        public System.Data.Entity.DbSet<EnvanterCreditWest.Models.Logins> Logins { get; set; }
     }
 }

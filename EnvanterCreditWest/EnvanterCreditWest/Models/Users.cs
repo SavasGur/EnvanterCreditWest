@@ -13,9 +13,15 @@ namespace EnvanterCreditWest.Models
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required]
-        [DisplayName("İsim Soyisim")]
+        [Required,DisplayName("İsim Soyisim")]
         public string FirstLastName { get; set; }
 
+        [DisplayName("Kullanıcı Adı")]
+        public string Username { get; set; }
+
+        [DisplayName("Şifre")]
+        public string Password { get; set; }
+
+        public bool Admin { get; set; }
     }
 }

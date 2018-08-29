@@ -180,6 +180,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FirmsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProductDetailsController.cs" />
     <Compile Include="Controllers\ProductModelsController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
@@ -189,17 +190,22 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201808130553278_tes.cs" />
-    <Compile Include="Migrations\201808130553278_tes.Designer.cs">
-      <DependentUpon>201808130553278_tes.cs</DependentUpon>
+    <Compile Include="Migrations\201808290611487_Test.cs" />
+    <Compile Include="Migrations\201808290611487_Test.Designer.cs">
+      <DependentUpon>201808290611487_Test.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\DbEntitiy.cs" />
     <Compile Include="Models\EnvanterCreditWestContext.cs" />
-    <Compile Include="Models\Logins.cs" />
+    <Compile Include="Models\ErrorBind.cs" />
     <Compile Include="Models\ProductModels.cs" />
     <Compile Include="Models\Products.cs" />
     <Compile Include="Models\Status.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Service\Hash256.cs" />
     <Compile Include="Service\LocalIpAddress.cs" />
     <Compile Include="Service\RandomStringGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -447,6 +453,7 @@
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\Interval.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -465,8 +472,12 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201808130553278_tes.resx">
-      <DependentUpon>201808130553278_tes.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201808290611487_Test.resx">
+      <DependentUpon>201808290611487_Test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,14 +1,88 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Error</title>
-    <link rel="shortcut icon" href="~/Resources/favicon.ico">
-</head>
-<body>
-    <hgroup>
-        <h1>Error.</h1>
-        <h2>An error occurred while processing your request.</h2>
-    </hgroup>
-</body>
-</html>
+﻿<style>
+    #error-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        visibility: hidden;
+        opacity: 0;
+        transition: all 0.5s;
+        z-index: 999999;
+    }
+
+    #error-container-back {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        visibility: hidden;
+        opacity: 0;
+        transition: all 0.5s;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+    }
+
+    #error-container-inner {
+        position: absolute;
+        top: -150%;
+        left: 50%;
+        transition: all 0.7s;
+        transform: translate(-50%,-50%);
+        background-color: maroon;
+        text-align: center;
+        color: white;
+        font-size: 2vh;
+        padding: 3vh;
+        border-radius: 1vh;
+    }
+</style>
+<div id="error-container">
+    <span id="error-container-back" />
+    <div id="error-container-inner">
+        @*<img id="error-container-exit" src="https://image.flaticon.com/icons/svg/149/149690.svg" style="   
+    top: -20px;background-color: white;border-radius: 5vh;position: absolute;width: 4.5vh;left: 50%;transform: translate(-50%);"/>*@
+        <a>@ViewBag.SError</a>
+    </div>
+</div>
+<script>
+
+    $("#error-container").css("opacity", "1");
+    $("#error-container").css("visibility", "visible");
+
+    $("#error-container-back").css("opacity", "1");
+    $("#error-container-back").css("visibility", "visible");
+
+    $("#error-container-inner").css("top", "50%");
+
+    $("#error-container-back").click(function ()
+    {
+        $("#error-container").css("opacity", "0");
+        $("#error-container").css("visibility", "0");
+
+        $("#error-container-back").css("opacity", "0");
+        $("#error-container-back").css("visibility", "hidden");
+
+        $("#error-container-inner").css("top", "-150%");
+
+        setTimeout(function ()
+        {
+            $("#error-view").remove();
+
+        }, 1000);
+    });
+    $("#error-container-exit").click(function () {
+        $("#error-container").css("opacity", "0");
+        $("#error-container").css("visibility", "hidden");
+
+        $("#error-container-back").css("opacity", "0");
+        $("#error-container-back").css("visibility", "hidden");
+
+
+        $("#error-container-inner").css("top", "-150%");
+
+        setTimeout(function () {
+            $("#error-view").remove();
+        }, 500);
+    });
+</script>
