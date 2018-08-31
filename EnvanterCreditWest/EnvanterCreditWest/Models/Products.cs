@@ -10,7 +10,7 @@ namespace EnvanterCreditWest.Models
 {
     public class Products
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DisplayName("ID"), Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [DisplayName("Barkod")]
