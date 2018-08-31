@@ -260,6 +260,7 @@
     <Content Include="Resources\sketch.png" />
     <Content Include="Resources\trash.png" />
     <Content Include="Resources\wall.png" />
+    <Content Include="Resources\wman.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
