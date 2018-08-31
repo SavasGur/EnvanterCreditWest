@@ -37,14 +37,14 @@
         border-radius: 1vh;
     }
 </style>
-<div id="error-container">
+@*<div id="error-container">
     <span id="error-container-back" />
     <div id="error-container-inner">
-        @*<img id="error-container-exit" src="https://image.flaticon.com/icons/svg/149/149690.svg" style="   
-    top: -20px;background-color: white;border-radius: 5vh;position: absolute;width: 4.5vh;left: 50%;transform: translate(-50%);"/>*@
+        <img id="error-container-exit" src="https://image.flaticon.com/icons/svg/149/149690.svg" style="
+    top: -20px;background-color: white;border-radius: 5vh;position: absolute;width: 4.5vh;left: 50%;transform: translate(-50%);"/>
         <a>@ViewBag.SError</a>
     </div>
-</div>
+</div>*@
 <script>
 
     $("#error-container").css("opacity", "1");
@@ -55,8 +55,7 @@
 
     $("#error-container-inner").css("top", "50%");
 
-    $("#error-container-back").click(function ()
-    {
+    $("#error-container-back").click(function () {
         $("#error-container").css("opacity", "0");
         $("#error-container").css("visibility", "0");
 
@@ -65,8 +64,7 @@
 
         $("#error-container-inner").css("top", "-150%");
 
-        setTimeout(function ()
-        {
+        setTimeout(function () {
             $("#error-view").remove();
 
         }, 1000);
