@@ -1,12 +1,12 @@
 ﻿@model IEnumerable<EnvanterCreditWest.Models.Products>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Cihazlar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
 <div style="display:flex;">
-    <h2>Cihazlar</h2>
+    <h2>Cihazlar</h2> 
     <div style="position: absolute;right: 40px;">
         <a class="cw-btn" id="YeniKayıt">
             <span>Yeni Kayıt</span>
@@ -126,7 +126,7 @@
         <th>
             @Html.DisplayNameFor(model => model.CihazAdi)
         </th>
-        <th>
+        <th style="display:none">
             @Html.DisplayNameFor(model => model.Users.FirstLastName)
         </th>
         <th style="display:none">
