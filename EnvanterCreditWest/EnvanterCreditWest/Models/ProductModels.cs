@@ -15,9 +15,9 @@ namespace EnvanterCreditWest.Models
 
         [DisplayName("Model")]
         public string Name { get; set; }
-
+        [DisplayName("Kod")]
         public string Code { get; set; }
-
+        [DisplayName("Tip")]
         public int TypeId { get; set; }
     }
 }
